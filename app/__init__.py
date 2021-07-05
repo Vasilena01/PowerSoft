@@ -33,8 +33,8 @@ def create_app():
     app.config['STATIC_FOLDER'] = STATIC_FOLDER
 
     # Adding jinja extensions
-    app.jinja_options['extensions'].append('jinja2.ext.loopcontrols')
-    app.jinja_options['extensions'].append('jinja2.ext.do')
+    app.jinja_env.add_extension('jinja2.ext.loopcontrols')
+    app.jinja_env.add_extension('jinja2.ext.do')
 
     # Setting up error logging
     if not app.debug:
@@ -126,6 +126,7 @@ def create_app():
     @app.context_processor
     def context_processor():
         context = {
+            'conf': conf,
         }
         return context
 

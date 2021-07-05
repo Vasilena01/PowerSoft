@@ -22,10 +22,7 @@ main = Blueprint('main', __name__, url_prefix='/')
 
 @main.route('')
 def home():
-    form = DeclutterRequestForm()
-
     context = {
-        'form': form,
     }
     return render_template('main/home.html', **context)
 

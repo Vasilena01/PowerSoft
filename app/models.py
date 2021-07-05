@@ -1,7 +1,6 @@
 from flask import current_app
 from flask_mail import Message
 from flask_security import UserMixin, RoleMixin
-from flask_security.models import fsqla_v2 as fsqla
 from sqlalchemy import case
 from sqlalchemy.sql import func
 from sqlalchemy.event import listens_for
