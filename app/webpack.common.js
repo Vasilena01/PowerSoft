@@ -64,12 +64,12 @@ const config = {
             filename: '[name].css',
             chunkFilename: '[id].css',
         }),
-		new CopyPlugin({
-			patterns: [
-				// Needed because tinymce is a tiny bitch and doesn't want to work without the skins being in the public assets
-				{ from: './node_modules/tinymce/skins', to: './skins' },
-			],
-		}),
+		//new CopyPlugin({
+		//	patterns: [
+		//		// Needed because tinymce is a tiny bitch and doesn't want to work without the skins being in the public assets
+		//		{ from: './node_modules/tinymce/skins', to: './skins' },
+		//	],
+		//}),
     ],
 };
 module.exports = config;
