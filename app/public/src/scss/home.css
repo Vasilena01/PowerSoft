@@ -1,0 +1,57 @@
+html,
+body {
+  font-family: 'Raleway';
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  position: fixed;
+  padding: 1rem;
+  background-color: #09091d;
+  opacity: 0.8;
+}
+
+.navbar a {
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #e7e7e7;
+}
+
+.segment2 {
+  z-index: -1;
+  position: relative;
+}
+
+.segment2 .blackbg {
+  background-color: black;
+  position: absolute;
+  z-index: -2;
+}
+
+.segment2 .home-bg {
+  position: absolute;
+  z-index: -6;
+  opacity: 0.8;
+  height: 600px !important;
+}
+
+.segment2 .title {
+  position: relative;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  margin: auto;
+  color: #e7e7e7;
+  z-index: 1;
+}
+
+.segment2 .title h5 {
+  font-size: 1rem;
+  margin-left: 5rem;
+}
+/*# sourceMappingURL=home.css.map */
