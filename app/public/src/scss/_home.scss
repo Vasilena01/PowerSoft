@@ -1,205 +1,52 @@
-/* ---------- Home Hero ----------- */
-#home-hero {
-	margin-top: -3.8rem;
-	max-width: 100%;
+$navbar: rgb(9, 9, 29);
+$white: rgb(255, 255, 255);
+$mid-white: rgb(231, 231, 231);
 
-	@media screen and (max-width: 992px) {
-		margin-top: -2.5rem;
-	}
-
-	.image {
-	    position: relative;
-		//max-width: 100%;
-		//height: 100%;
-		//overflow: hidden;
-		
-		&::after {
-		    content: '\A';
-		    position: absolute;
-		    width: 100%;
-			height:100%;
-		    top:0;
-			left:0;
-		    background: rgba(0,0,0,0.5);
-		}
-	
-		a {
-			font-size: 1rem;
-			top: 60%;
-			position: absolute;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			border: 1.3px solid  $white;
-			color: $white;
-			border-radius: 0px;
-			z-index: 1;
-	
-			@media screen and (max-width: 450px) {
-				font-size: .8rem;
-			}
-	
-			@media screen and (max-width: 350px) {
-				top: 70%;
-			}
-		}
-	
-		a:hover {
-			color: $very-dark-gray;
-			background-color: $white;
-		}
-	
-		h1 {
-		    color: $white;
-		    position: absolute;
-			font-size: 2.1rem;
-		    top: 46%;
-			left: 50%;
-		    transform: translate(-50%, -50%);
-			z-index: 1;
-			line-height: 100%;
-	
-			@media screen and (max-width: 1500px) {
-				width: 90%;
-				top: 40%;
-			}
-	
-			@media screen and (max-width: 992px) {
-				top: 45%;
-			}
-	
-			@media screen and (max-width: 656px) {
-				font-size: 1.8rem;
-				top: 40%;
-			}
-	
-			@media screen and (max-width: 450px) {
-				font-size: 1.5rem;
-				top: 35%;
-			}
-		}
-	
-		img {
-			position: relative;
-		    background: rgba(0, 0, 0, 0.5);
-			width: 100%;
-		}
-	}
+html,
+body {
+    font-family: 'Raleway';
+    scroll-behavior: smooth;
 }
 
-
-/* ---------- Declutter Request Form ----------- */
-.declutter-request-form {
-	max-width: 700px;
-	margin: 3rem auto 0;
-	padding: 0 1rem;
-
-	h2 {
-		margin: 1rem 0;
-		text-align: center;
-	}
-
-	.form-check {
-		display: inline-block;
-	}
+.navbar {
+    position: fixed;
+    padding: 1rem;
+    background-color: $navbar;
+    opacity: 0.8;
+    a {
+        font-size: 1.2rem;
+        color: $white;
+        text-decoration: none;
+    }
+    a:hover {
+        color: $mid-white;
+    }
 }
 
-
-/* ---------- Interesting Facts ----------- */
-#interesting-facts {
-	//background: lighten($primary, 10%);
-	background: $light;
-	width: 100%;
-	margin-top: 7rem;
-	padding: 3rem .5rem;
-
-	.facts-container {
-		max-width: 600px;
-		margin: 0 auto;
-
-		h2 {
-			text-align: center;
-			margin-bottom: 1.8rem;
-		}
-
-		.fact {
-			margin: 1rem 0 1.55rem;
-			padding: .8rem;
-
-			&:last-child {
-				margin-bottom: .55rem;
-			}
-
-			span {
-				padding: .2rem;
-				color: $second-primary;
-				position: relative;	
-				font-size: 1.5rem;
-			}
-
-			&:hover {
-				border-radius: 10px;
-				background-color: lighten($light-primary, 5%);
-				margin-bottom: 0;
-			
-				span {
-					font-size: 1.9rem;
-				}
-			}
-		}
-	}
-}
-
-
-/* ---------- Info Segment ----------- */
-.info-segment {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin: 0 auto;
-	padding-top: 6rem;
-	max-width: 1470px;
-
-	.illustration {
-		margin: 0 1rem;
-		display: content;
-		max-width: 45%;
-
-		img {
-			max-width: 100%;
-			//max-height: 400px;
-		}
-	}
-
-	.text {
-		margin: 0 1rem;
-		max-width: 45%;
-		overflow: hidden;
-
-		h2 {
-			margin-bottom: 2rem;
-		}
-	}
-
-	@media screen and (max-width: 1470px) {
-		max-width: 1100px;
-
-		.illustration img {
-			//max-height: 300px;
-		}
-	}
-	
-	@media screen and (max-width: 1124px) {
-		max-width: 800px;
-		padding: 5rem 1rem 0;
-
-		.illustration {
-			max-width: 100%;
-		}
-
-		.text {
-			max-width: 100%;
-			order: -1;
-			margin-bottom: 1rem;
-		}
-	}
+.segment2 {
+    z-index: -1;
+    position: relative;
+    .blackbg {
+        background-color: black;
+        position: absolute;
+        z-index: -2;
+    }
+    .home-bg {
+        position: absolute;
+        z-index: -6;
+        opacity: 0.8;
+        height: 600px !important;
+    }
+    .title {
+        position: relative;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        color: $mid-white;
+        z-index: 1;
+        h5 {
+            font-size: 1rem;
+            margin-left: 5rem;
+        }
+    }
 }

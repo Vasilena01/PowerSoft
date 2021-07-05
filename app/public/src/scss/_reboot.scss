@@ -49,11 +49,11 @@ button:focus {
     box-shadow: none !important;
 }
 
-@include media-breakpoint-down(sm) {
-	.form-check-label {
-		margin: 0;
-	}
-}
+//@include media-breakpoint-down(sm) {
+//	.form-check-label {
+//		margin: 0;
+//	}
+//}
 
 // Removing the x icon in the search fields
 input[type="search"]::-webkit-search-decoration,

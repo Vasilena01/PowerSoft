@@ -154,7 +154,7 @@
 	position: relative;
 	display: inline-block;
 	font-size: 1.3rem;
-	color: $white;
+	//color: $white;
 
 	&:hover {
 		color: $light;
@@ -163,8 +163,8 @@
 	#cart-items-count {
 		position: absolute;
 		border-radius: 50%;
-		background: $danger;
-		color: $white;
+		//background: $danger;
+		//color: $white;
 		font-size: .8rem;
 		width: 20px;
 		height: 20px;

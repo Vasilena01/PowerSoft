@@ -5,17 +5,17 @@
 		display: block;
 		max-width: 50rem;
 
-		@include media-breakpoint-down(lg) {
-			margin-top: -15rem;
-		}
+		//@include media-breakpoint-down(lg) {
+		//	margin-top: -15rem;
+		//}
 
-		@include media-breakpoint-down(md) {
-			margin-top: -12rem;
-		}
+		//@include media-breakpoint-down(md) {
+		//	margin-top: -12rem;
+		//}
 
-		@include media-breakpoint-down(sm) {
-			margin-top: -7rem;
-		}
+		//@include media-breakpoint-down(sm) {
+		//	margin-top: -7rem;
+		//}
 	}
 
 	a {

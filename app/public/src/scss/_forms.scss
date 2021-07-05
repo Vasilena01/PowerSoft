@@ -38,7 +38,7 @@
 	    }
 
 	    &.is-invalid {
-	        border-bottom: solid $danger;
+	        //border-bottom: solid $danger;
 	    }
 
 	    &.is-valid,
@@ -48,7 +48,7 @@
 	    }
 
 		&.date-input[readonly] {
-			background: $white;
+			//background: $white;
 			cursor: pointer;
 		}
 	}
@@ -98,7 +98,7 @@
 	            transition: all .1s ease-in-out;
 
 				.input-required-asterisk {
-					color: $danger;
+					//color: $danger;
 					font-size: 1.8rem;
 					position: absolute;
 					top: -.2rem;
@@ -276,11 +276,11 @@ inputsection.range-slider input:last-of-type::-moz-range-track {
 	width: 100%;
 	margin-top: 2rem;
 	padding: .7rem 1rem;
-	color: $white;
+	//color: $white;
 	font-size: 1.1rem;
 	font-weight: bold;
 
 	&:hover {
-		color: $white;
+		//color: $white;
 	}
 }
