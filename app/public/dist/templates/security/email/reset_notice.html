@@ -1,0 +1,11 @@
+{% extends 'emails/base.html' %}
+
+{% set no_regards = True %}
+
+{% block content %}
+<h1>Твоята парола беше възстановена успешно!</h1>
+
+<div class="cta-container">
+    <a href="{{ url_for('main.home', _external=True) }}" class="btn btn-primary cta">Учи с Ива</a>
+</div>
+{% endblock content %}

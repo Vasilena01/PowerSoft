@@ -1,0 +1,175 @@
+/* ---------- Listing ----------- */
+.post {
+	background: $light; 
+	padding: 1rem;
+	box-shadow: 0 10px 50px 20px #e6e1e1; 
+	transform: scale(1);
+	transition: transform .5s ease-in-out;
+
+	&:hover {
+		transform: scale(1.03);
+		box-shadow: 0 10px 50px 20px #e3dcdc; 
+	}
+
+	.thumbnail {
+		height: 100%;
+		padding-top: 0;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.details {
+		margin-top: .4rem;
+
+		.meta {
+    	    color: $secondary;
+
+    	    .date,
+    	    .views {
+    	        margin-right: .4rem;
+
+				svg {
+					margin-right: .25rem;
+				}
+    	    }
+
+    	    .category a {
+    	        font-size: .9rem;
+    	        color: $secondary;
+    	        text-transform: uppercase;
+				text-decoration: none;
+    	        font-weight: 600;
+
+    	        &:hover {
+    	            color: $primary;
+    	        }
+    	    }
+    	}
+
+		.title {
+			margin-top: .6rem;
+			font-size: 1.4rem;
+			padding: 0.1rem 0rem;
+			text-decoration: none;
+			color: $primary;
+
+			&:hover {
+				color: $dark-primary;
+			}
+		}
+	}
+
+    .overview {
+        font-size: 0.95em;
+		margin: 0;
+		margin-bottom: .3rem;
+    }
+}
+
+
+/* ---------- Widgets ----------- */
+.blog-widgets {
+	.widget {
+		padding: 0.5rem;
+
+		&.categories {
+		    .item {
+		        background: $light;
+		        padding: .8rem;
+				color: $secondary;
+				font-weight: 600;
+		
+		        &:nth-of-type(2n+2) {
+		            background: none;
+		        }
+		
+		        a {
+					color: inherit;
+					//text-transform: capitalize;
+					text-decoration: none;
+		
+		            &:hover {
+		                color: $primary;
+		            }
+		        }
+		
+		        .active {
+		            color: $primary;
+		        }
+		    }
+		}
+	}
+}
+
+
+/* ---------- Post ----------- */
+#post-container {
+	.thumbnail {
+	    width: 100%;
+	}
+	
+	.meta {
+	    color: $secondary;
+	    margin-top: .4rem;
+	    font-size: 1.1rem;
+	
+	    .meta-left {
+	        color: $secondary;
+	
+			.date,
+			.views {
+				margin-right: .8rem;
+			}
+	
+			svg {
+				margin-right: .25rem;
+			}
+	    }
+	
+	    .category a {
+	        color: $secondary;
+	        text-transform: uppercase;
+			text-decoration: none;
+	        font-weight: 600;
+	        
+	        &:hover {
+				color: $primary;
+			}
+		} 
+	}
+	
+	.overview {
+	    overflow: hidden;
+	    font-size: 1.2rem;
+	    color: $dark-gray;
+		
+	}
+	
+	.content {
+	    max-width: 80%;
+	}
+	
+	.tags {
+	    a.tag {
+	        text-transform: uppercase;
+	        margin-right: .6rem;
+	        margin-bottom: .4rem;
+	        font-weight: 740;
+	        color: $secondary;
+	        border: 2.5px solid $light-primary;
+	        font-size: 0.8em;
+	
+	        &:hover {
+	            background: $dark-primary;
+	            color: #fff;
+	            border-color: $light-primary;
+	        }
+	    }
+	}
+
+	.back-to-all {
+		text-decoration: none;
+	}
+}

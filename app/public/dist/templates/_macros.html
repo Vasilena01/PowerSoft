@@ -1,0 +1,262 @@
+{% macro render_field(field, no_asterisk=False, no_label=False) %}
+<div class="custom-input form-group{{ ' input-with-icon'if field.name == 'password' or field.name == 'new_password' }}" id="{{field.name}}-div">
+	{% do kwargs.update({'placeholder': field.label.text}) %}
+
+	{% if 'class' in kwargs %}
+		{% do kwargs.update({'class': kwargs['class'] + ' form-control'}) %}
+	{% else %}
+		{% do kwargs.update({'class': 'form-control'}) %}
+	{% endif %}
+
+	{% if no_label %}
+		{% do kwargs.update({'class': kwargs['class'] + ' no-label'}) %}
+	{% endif %}
+
+    {{ field(**kwargs)|safe }}
+
+    {% if field.name == 'password' or field.name == 'new_password' %}
+        <button type="button" class="password-visibility-toggler input-icon-right btn">
+            <i class="fa fa-eye"></i>
+        </button>
+    {% endif %}
+
+	{% if not no_label %}
+	<label for="{{ field.name }}">{{ kwargs['placeholder'] }}
+		{% if field.flags.required and not no_asterisk %}
+		<span class="input-required-asterisk"> *</span>
+		{% endif %}
+	</label>
+	{% endif %}
+
+    <div class="invalid-feedback" id="{{field.name}}-feedback">
+    {% if field.errors %}
+        <script>
+            document.getElementById('{{ field.id }}').classList.add('is-invalid');
+        </script>
+        {{ field.errors[0] }}
+    {% endif %}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_field_plain(field) %}
+	{{ field(**kwargs)|safe }}
+{% endmacro %}
+
+{% macro render_select_field(field, class='', no_asterisk=False) %}
+<div class="custom-input form-group" id="{{field.name}}-div">
+	<select class="form-select {{ class }}" name="{{ field.name }}" id="{{ field.name }}" {{ 'required' if field.flags.required }}>
+		{% if not field.data %}
+        <option value="" selected disabled hidden>-- {{ field.label.text }} --</option>
+		{% endif %}
+
+		{% for choice in field.iter_choices() %}
+		<option value="{{ choice[0] }}" {{ 'selected' if choice[2] }}>{{ choice[1] }}</option>
+		{% endfor %}
+	</select>
+	<label for="{{ field.name }}">{{ field.label.text }}
+		{% if field.flags.required and not no_asterisk %}
+		<span class="input-required-asterisk"> *</span>
+		{% endif %}
+	</label>
+
+    <div class="invalid-feedback" id="{{field.name}}-feedback">
+    {% if field.errors %}
+        <script>
+            document.getElementById('{{ field.id }}').classList.add('is-invalid');
+        </script>
+        {{ field.errors[0] }}
+    {% endif %}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_checkbox_field(field) %}
+	{% if 'class' in kwargs %}
+		{% do kwargs.update({'class': kwargs['class'] + ' form-check-input'}) %}
+	{% else %}
+		{% do kwargs.update({'class': 'form-check-input'}) %}
+	{% endif %}
+
+	<div class="form-check">
+		{{ field(**kwargs)|safe }}
+		<label class="form-check-label" for="{{ field.name }}">{{ field.label.text|safe }}</label>
+	</div>
+{% endmacro %}
+
+{% macro render_file_field(field) %}
+	{% if 'class' in kwargs %}
+		{% do kwargs.update({'class': kwargs['class'] + ' form-control'}) %}
+	{% else %}
+		{% do kwargs.update({'class': 'form-control'}) %}
+	{% endif %}
+
+	<div class="custom-input my-1">
+	    {{ field.label }}
+	    {{ field(**kwargs)|safe }}
+	</div>
+{% endmacro %}
+
+{% macro render_date_field(field, min_date_today=True, no_asterisk=False) %}
+<div class="custom-input form-group" id="{{field.name}}-div">
+	<input class="form-control date-input" id="{{ field.name }}" name="{{ field.name }}" type="text" placeholder="{{ field.label.text }}">
+	<label for="{{ field.name }}">{{ field.label.text }}
+		{% if field.flags.required and not no_asterisk %}
+		<span class="input-required-asterisk"> *</span>
+		{% endif %}
+	</label>
+	<script>
+	document.addEventListener('on_js_load', () => {
+		flatpickr('#{{ field.name }}', {
+			disableMobile: true,
+			enableTime: true,
+		    dateFormat: 'Y-m-d H:i',
+			altInput: true,
+    		altFormat: 'F j, Y - H:i',
+			time_24hr: true,
+			{% if min_date_today %}
+			minDate: 'today',
+			{% endif %}
+			{% if field.data %}
+			defaultDate: '{{ field.data.strftime('%Y-%m-%d %H:%M') }}',
+			{% endif %}
+		});
+		let {{ field.name }} = select('#{{ field.name }}');
+		{{ field.name }}.parentNode.appendChild({{ field.name }});
+	});
+	</script>
+</div>
+{% endmacro %}
+
+{% macro render_flags_field(field, flags_map) %}
+{{ render_field_plain(field, class='d-none') }}
+<h5>{{ field.name|titlize }}</h5>
+<div class="row">
+	{% for label, group in flags_map.items() %}
+	<div class="col">
+		<p>{{ label|titlize }}:</p>
+		{% for flag, description in group.items() %}
+		<div class="form-check">
+			<input class="form-check-input" type="radio"
+				name="{{ field.name }}-{{ label }}" {{ 'checked' if field.data and (field.data).__and__(flag) }}
+				data-group="{{ label }}" id="{{ field.name }}-{{ label }}-{{ flag }}" value="{{ flag }}">
+			<label class="form-check-label" for="{{ field.name }}-{{ label }}-{{ flag }}">
+				{{ description }}
+			</label>
+		</div>
+		{% endfor %}
+	</div>
+	{% endfor %}
+</div>
+
+<script>
+	function update_{{ field.name }}_input(e) {
+		let field = document.getElementById('{{ field.name }}');
+		let flags_map = {{ flags_map|safe }};
+		let flag = e.target.value;
+		let group = flags_map[e.target.dataset.group];
+		let group_flags = 0;
+		{# TODO better solution for this flag fuckery #}
+		for (const flag in group) {
+			group_flags |= parseInt(flag);
+			{# Raising all the flags of the group of e.target #}
+			field.value |= parseInt(flag);
+		}
+		{# Putting down all the flags of the group of e.target #}
+		field.value = field.value ^ group_flags;
+		{# Raising the new given flag #}
+		field.value = field.value | flag;
+	}
+	{# Adding the event listeners to all the radio inputs #}
+	{% for label, group in flags_map.items() %}
+		{% for flag, description in group.items() %}
+			document.getElementById('{{ field.name }}-{{ label }}-{{ flag }}').addEventListener('change', update_{{ field.name }}_input);
+		{% endfor %}
+	{% endfor %}
+</script>
+{% endmacro %}
+
+{% macro render_check_flags_field(field, flags) %}
+	{{ render_field_plain(field, class='d-none') }}
+	<h5>{{ field.name|titlize }}</h5>
+	<div id="{{ field.name }}-container">
+	{% for flag, option in flags.items() %}
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox"
+			name="{{ field.name }}-{{ flag }}" {{ 'checked' if field.data and (field.data).__and__(flag) }}
+			id="{{ field.name }}-{{ flag }}" value="{{ flag }}">
+		<label class="form-check-label" for="{{ field.name }}-{{ flag }}">{{ option|titlize }}</label>
+	</div>
+	{% endfor %}
+	</div>
+
+<script>
+	window.update_{{ field.name }}_input = (e) => {
+		let field = document.getElementById('{{ field.name }}');
+		let flags = {{ flags|safe }};
+		let checkbox = e.target;
+		let flag = parseInt(checkbox.value);
+
+		{# Raising the new given flag if the checkbox is checked #}
+		if (checkbox.checked)
+			field.value = parseInt(field.value) | flag;
+		else
+			field.value = parseInt(field.value) ^ flag;
+	}
+
+	{# Adding the event listeners to all the checkbox inputs #}
+	{% for flag, option in flags.items() %}
+		document.getElementById('{{ field.name }}-{{ flag }}').addEventListener('change', update_{{ field.name }}_input);
+	{% endfor %}
+</script>
+{% endmacro %}
+
+{% macro render_pagination(pagination) %}
+<ul class="pagination d-flex justify-content-center mt-5">
+    {% if pagination.has_prev %}
+    <li class="page-item">
+        <a class="page-link" href="{{ path }}page={{ pagination.prev_num }}" aria-label="Previous">
+            <i class="fas fa-chevron-left"></i>
+      </a>
+    </li>
+    {% endif %}
+    {%- for page in pagination.iter_pages() %}
+        {% if page %}
+            {% if page != pagination.page %}
+                <li class="page-item"><a class="page-link" href="{{ path }}page={{ page }}">{{ page }}</a></li>
+            {% else %}
+                <li class="page-item active"><a class="page-link">{{ page }}</a></li>
+            {% endif %}
+        {% else %}
+            <span class="ellipsis"><i class="fas fa-ellipsis-h"></i></span>
+        {% endif %}
+    {%- endfor %}
+    {% if pagination.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="{{ path }}page={{ pagination.next_num }}" aria-label="Next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </li>
+    {% endif %}
+</ul>
+{% endmacro %}
+
+{% macro create_modal(id, header=None, size=None) %}
+<div class="modal fade" id="{{ id }}-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+	<div class="modal-dialog{{ ' modal-' + size if size in ['xl', 'lg', 'sm'] }}" role="document">
+		<div class="modal-content">
+    	    <div class="modal-header">
+    	        {% if header %}
+    	        <h5 class="modal-title h4" id="modal-label">{{ header }}</h5>
+    	        {% endif %}
+    	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Затвори"></button>
+    	    </div>
+    	    <div class="modal-body pt-0">
+    	        <div class="spinner-border text-primary modal-spinner" role="status">
+    	          <span class="sr-only">Loading...</span>
+    	        </div>
+    	    </div>
+    	</div>
+	</div>
+</div>
+{% endmacro %}

@@ -1,0 +1,25 @@
+<div class= "post rounded">
+    <div class="thumbnail">
+        <a href="{{ url_for('blog.post', slug=post.slug, id=post.id) }}">
+            <img src="{{ post._thumbnail }}" alt="{{ post.title }}" class="rounded">
+        </a>
+    </div>
+
+    <div class="details">
+        <div class="meta d-flex flex-wrap justify-content-between">
+            <div>
+                <span class="date"><i class="fa fa-calendar"></i>{{ post.date.strftime('%d.%m. %Y') }}</span>
+                <span class="views"><i class="fa fa-eye"></i>{{ post.views|big_num }}</span>
+            </div>
+            <div class="category">
+                <a href="{{ url_for('blog.filter_by_category', category_slug=post.category.slug, category_id=post.category.id) }}">
+					{{ post.category.name }}
+				</a>
+            </div>
+        </div>
+        <a href="{{ url_for('blog.post', slug=post.slug, id=post.id) }}" class="title">
+            <h3 class="h4">{{ '<strong>DRAFT</strong>: '|safe if post.draft }}{{ post.title }}</h3>
+        </a>
+        <p class="overview text-muted">{{ post.overview }}</p>
+    </div>
+</div>

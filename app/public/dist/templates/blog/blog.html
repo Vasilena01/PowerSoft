@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% from '_macros.html' import render_pagination, render_field %}
+
+{% set blog_active = True %}
+
+{% if category %}
+    {% set title = category|capitalize + ' - Блог' %}
+{% elif q %}
+	{% set title = q + ' - Резултати от търсене' %}
+{% else %}
+    {% set title = 'Блог' %}
+{% endif %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <main class="post-listing col-lg-8">
+            {% if category or q %}
+            <div class="text-center mb-4">
+                <h1 class="capitalize">
+                    {% if category %}
+                    Категория "{{ category }}"
+                    {% elif q %}
+                    Резултати за "{{ q }}"
+                    {% endif %}
+                </h1> 
+                <a href="{{ url_for('blog.index') }}" class="h4">
+					<i class="fas fa-arrow-left me-2"></i>Обратно към всички постове
+				</a>
+            </div>
+            {% endif %}
+
+            <div class="row mx-3 mt-1">
+                {# Here I have added 'elif posts' because of the most-popular category #}
+				{% if posts.items %}
+               	    {% for post in posts.items %}
+                        <div class="col-xl-6 mb-4">
+                        {% include 'blog/_post.html' %}
+                        </div>
+                    {% endfor %}
+				{% elif posts and posts.items != [] %}
+               	    {% for post in posts %}
+                        <div class="col-xl-6 mb-4">
+                        {% include 'blog/_post.html' %}
+                        </div>
+                    {% endfor %}
+				{% else %}
+					<h3 class="text-center text-muted">Няма намерени резултати</h3>
+				{% endif %}
+            </div>
+
+			<nav>
+				{{ render_pagination(posts) }}
+			</nav>
+        </main>
+
+        <aside class="blog-widgets col-lg-4">
+            <div class="widget search ">
+            <header>
+				<h4 class="h5">Търси в блога</h4>
+            </header>
+            <form method="GET" action="{{ url_for('blog.index') }}" id="search-form" class="my-3">
+                <div class="input-with-icon">
+                    {{ render_field(search_form.q, no_asterisk=True) }} 
+                    <button class="btn input-icon-right" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            </div>
+
+            <div class="widget categories">
+                <header><h4 class="mb-3">Категории</h4></header>
+                <div class="item d-flex justify-content-between">
+                {% if category_id == 0 %}
+                    <span class="active">най-популярни</span>
+                {% else %}
+                    <a href="{{ url_for('blog.filter_by_category', category_slug='naj-populqrni', category_id=0) }}">най-популярни</a>
+                {% endif %}
+				<span>{{ posts.total }}</span>
+                </div>
+            
+                {% for category in categories %}
+                    <div class="item d-flex justify-content-between">
+                    {% if category.id == category_id %}
+                        <span class="active">{{ category.name }}</span>
+                    {% else %}
+                        <a href="{{ url_for('blog.filter_by_category', category_slug=category.slug, category_id=category.id) }}">
+                            {{ category.name }}
+                        </a>
+                    {% endif %}
+                    <span>{{ category.posts|length if current_user.has_role('admin') else category.non_draft_posts_count }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+		 </aside>
+    </div>
+</div>
+{% endblock content %}

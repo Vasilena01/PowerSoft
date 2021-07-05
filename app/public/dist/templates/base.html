@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="bg" prefix="og: https://ogp.me/ns#">
+<head>
+	{% if not conf('debug') %}
+	{# Google Tag Manager #}
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-M8ZBTMK');</script>
+	{# End Google Tag Manager #}
+	{# Global site tag (gtag.js) - Google Analytics #}
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-NRVW2MWFQJ"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-NRVW2MWFQJ');
+	</script>
+	{# End Global site tag (gtag.js) - Google Analytics #}
+	{% endif %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<meta property="og:site_name" content="Бялата Стая"/>
+	{% block metas %}
+	{% endblock metas %}
+
+    <title>{% block title %}{{ title + ' - ' if title }}Бялата Стая - Разчисти дома, освободи ума!{% endblock title %}</title>
+	<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+	{% if not conf('debug') %}
+	{# Facebook Pixel Code #}
+	<script>
+	!function(f,b,e,v,n,t,s)
+	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];
+	s.parentNode.insertBefore(t,s)}(window, document,'script',
+	'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '530699034731977');
+	fbq('track', 'PageView');
+	{% block fb_events %}
+	{% endblock fb_events %}
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+	src="https://www.facebook.com/tr?id=530699034731977&ev=PageView&noscript=1"
+	/></noscript>
+	{# End Facebook Pixel Code #}
+	{% endif %}
+</head>
+
+<body>
+	{% if not conf('debug') %}
+	{# Google Tag Manager (noscript) #}
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8ZBTMK"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	{# End Google Tag Manager (noscript) #}
+	{% endif %}
+
+    {% block messages %}
+        {% include '_messages.html' %}
+    {% endblock messages %}
+
+	{% block navbar %}
+		{% include '_navbar.html' %}
+	{% endblock navbar %}
+
+    <main class="{{ container_type if container_type else 'container-fluid' }}" id="main-container">
+		{% block content %}{% endblock content %}
+    </main>
+
+    {% block footer %}
+        {% include '_footer.html' %}
+    {% endblock footer %}
+
+	{% if not modal and not session['has_accepted_cookies'] %}
+	<div id="cookies-agreement">
+        <span>Този сайт използва бисквитки. Чрез посещението си, Вие се съгласявате да използвате бисквитките. Разберете повече <a href="{{ url_for('main.privacy_policy') }}">тук</a>.</span>
+        <a href="javascript:void(0)" class="btn btn-sm btn-primary" onclick="accept_cookies()">
+            Съгласявам се
+        </a>
+    </div>
+	{% endif %}
+
+    {% block main_scripts %}
+	<script src="{{ url_for('static', filename='main.js') }}"></script>
+	<script>
+	var csrf_token = '{{ csrf_token() }}';
+
+	function accept_cookies() {
+		select('#cookies-agreement').remove();
+		post('{{ url_for("main.accept_cookies") }}');
+	}
+
+	{% if scroll_to %}
+	select('#{{ scroll_to }}').scrollIntoView();
+	{% endif %}
+	</script>
+    {% endblock main_scripts %}
+
+    {% block scripts %}
+	{% endblock scripts %}
+</body>
+</html>

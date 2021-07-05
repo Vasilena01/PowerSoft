@@ -1,0 +1,46 @@
+{% extends 'security/base.html' %}
+
+{% set heading = 'Регистрация' %}
+{% set signup = True %}
+{% set auth_id = 'signup' %}
+
+{% block form_fields %}
+    {{ register_user_form.hidden_tag() }}
+    
+    {{ render_field(register_user_form.name) }}
+    {{ render_field(register_user_form.email) }}
+    {{ render_field(register_user_form.password) }}
+    
+    <div class="mt-3">
+        {{ render_checkbox_field(register_user_form.agreement) }}
+    </div>
+{% endblock form_fields %}
+
+{% set submit_button_title = 'Регистрация' %}
+{% block send_params %}'{{ url_for_security('register') }}', '{{ url_for_security('register') }}', true{% endblock send_params %}
+{% set url = url_for_security('register') %}
+{# set redirect_to = url_for_security('register') #}
+{% set has_agreement = True %}
+      
+{% block under_form_content %}
+<div class="text-center {{ 'mt-4' if modal else 'my-4' }}">
+    <p class="{{ 'mt-5' if not modal else 'mt-2' }} mb-0">Вече имаш акаунт?</p>
+    {% if modal %}
+    <button class="btn btn-link" onclick="open_login_modal()">Влез</button>
+    {% else %}
+    <a href="{{ url_for_security('login') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Влез</a>
+    {% endif %}
+</div>
+{% endblock under_form_content %}
+
+{% block scripts %}
+{{ super() }}
+{% if modal %}
+<script>
+function open_login_modal() {
+	{# TODO #}
+    select('#auth-modal .modal-body').load('{{ url_for_security('login') }}?modal=1');
+}
+</script>
+{% endif %}
+{% endblock scripts %}

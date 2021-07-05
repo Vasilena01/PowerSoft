@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% set title = post.title + ' - Блог' %}
+{% set blog_active = True %}
+
+{% set post_url = url_for('blog.post', slug=post.slug, id=post.id, _external=True) %}
+
+{% block metas %}
+{{ super() }}
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="{{ post.title }}"/>
+<meta property="og:image" content="{{ post._thumbnail }}"/>
+<meta property="og:description" content="{{ post.overview }}"/>
+<meta property="og:url" content="{{ post_url }}" />
+{% endblock metas %}
+
+{% block content %}
+<main id="post-container" class="container px-lg-5">
+    <img src="{{ post._thumbnail }}" class="thumbnail rounded" alt="{{ post.title }}">
+    
+    <div class="meta d-flex justify-content-between flex-wrap p-1 ">
+        <div class="meta-left d-flex flex-wrap">
+            <div class="date">
+                <span><i class="far fa-calendar mr-1"></i>{{ post.date.strftime('%d.%m. %Y') }}</span>
+            </div>
+            <div class="views">
+                <span><i class="fa fa-eye mr-1"></i>{{ post.views|big_num }}</span>
+            </div>
+        </div>
+        <div class="category ">
+            <a href="{{ url_for('blog.filter_by_category', category_slug=post.category.slug, category_id=post.category.id) }}">
+				{{ post.category.name }}
+			</a>
+        </div>
+    </div>
+    
+    <h1 class="d-inline">{{ post.title }}</h1>
+    
+    {% if current_user.has_role('admin') %}
+    <a href="{{ url_for('blog_posts.edit_view', id=post.id) }}" class="btn btn-outline-primary ms-3">
+        Редактирай<i class="fas fa-pen ml-2"></i>
+    </a>
+    {% endif %}
+
+    <div class="share-btns mt-1">
+        <a class="btn share-btn fb-btn" href="https://www.facebook.com/sharer/sharer.php?u={{ post_url }}&t={{ post.title }}" target="_blank"
+            title="Сподели във Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn share-btn twtr-btn" href="https://twitter.com/share?text={{ post.title }}&url={{ post_url }}" target="_blank"
+            title="Туийтни">
+            <i class="fab fa-twitter"></i>
+        </a>
+         <a class="btn share-btn in-btn" href="https://www.linkedin.com/cws/share?url={{ post_url }}" target="_blank"
+             title="Сподели в LinkedIn">
+             <i class="fab fa-linkedin-in"></i>
+         </a>
+        <a class="btn share-btn mail-btn" href="mailto:?subject={{ post.title }} - bqlatastaq.com&body={{ post_url }}  - Бялата Стая" target="_blank"
+            title="Сподели чрез Имейл">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <button class="btn share-btn url-btn" onclick="copy2clipboard('{{ post_url }}')"
+            data-bs-toggle="tooltip" data-bs-placement="right" title="Копирай Линка">
+            <i class="fas fa-link"></i>
+        </button>
+    </div>
+
+	<p class="overview mt-2 mb-4">{{ post.overview }}</p>
+
+	<div class="content">
+		{{ post.content|safe }}
+	</div>
+
+    <div class="tags mt-3 mt-lg-5 d-flex flex-wrap">
+    {% for tag in post.tags.split(', ') %}
+        <a href="{{ url_for('blog.index', q=tag) }}" class="tag btn">#{{ tag }}</a>
+    {% endfor %}
+    </div>
+    
+    {% if more %}
+    <div class="posts-container mt-5">
+        <h2 class="mb-3 h1 ">Повече по темата:</h2>
+        <div class="row">
+        {% for post in more %}
+            <div class="col-md-5 col-lg-5 col-xl-4 mb-4">
+            {% include 'blog/_post.html' %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <div class="posts-container mt-4">
+        <h2 class="mb-3 h1 fs-2">Най-нови:</h2>
+        <div class="row">
+        {% for post in latest %}
+            <div class="col-md-5 col-lg-5 col-xl-4 mb-4">
+            {% include 'blog/_post.html' %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="posts-container mt-4">
+        <h2 class="mb-3 h1 fs-2">Най-популярни:</h2>
+        <div class="row">
+        {% for post in most_popular %}
+            <div class="col-md-5 col-lg-5 col-xl-4 mb-4">
+            {% include 'blog/_post.html' %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>   
+    
+    <a href="{{ url_for('blog.index') }}" class="h4 back-to-all"><i class="fas fa-arrow-left me-2"></i>Обратно към всички постове</a>
+</main>
+{% endblock content %}

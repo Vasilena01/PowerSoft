@@ -1,0 +1,26 @@
+/* ---------- Messages ----------- */
+#msgs-container {
+    position: fixed;
+    top: 5rem;
+    right: .2rem;
+    z-index: 2000;
+
+    .msg {
+        position: relative;
+        padding-right: 2.4rem;
+        font-size: 1.1rem;
+        border-radius: 0.7rem;
+
+        .msg-icon {
+            margin-right: .3rem;
+        }
+
+        .close {
+            font-size: 1.2rem;
+            line-height: unset;
+            position: absolute;
+            right: .8rem;
+            top: .7rem;
+        }
+    }
+}

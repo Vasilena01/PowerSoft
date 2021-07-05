@@ -1,0 +1,14 @@
+{% extends 'security/base.html' %}
+
+{% set send_confirmation = True %}
+{% set auth_id = 'send-confirmation' %}
+
+{% set heading = 'Повторно изпращане на имейлa за потвърждение' %}
+
+{% block form_fields %}
+    {{ send_confirmation_form.hidden_tag() }}
+    {{ render_field(send_confirmation_form.email) }}
+{% endblock form_fields %}
+
+{% set submit_button_title = 'Изпращане' %}
+{% set url = url_for_security('send_confirmation') %}

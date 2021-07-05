@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+
+/* ---------- Overwriting some stuff ----------- */
+* {
+	font-family: 'Raleway';
+}
+
+*:focus {
+	outline: none;
+}
+
+::selection {
+    background: $primary;
+    color: $light;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+	margin: 0;
+    scroll-behavior: smooth;
+}
+
+a, .btn-link {
+    color: $primary;
+    transition: color .2s ease-in-out;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &.link-muted {
+        color: $secondary;
+    }
+}
+
+p {
+    font-size: 1.1rem;
+}
+
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+@include media-breakpoint-down(sm) {
+	.form-check-label {
+		margin: 0;
+	}
+}
+
+// Removing the x icon in the search fields
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	-webkit-appearance: none;
+}
+
+
+// Crispy ass images
+img {
+	//image-rendering: pixelated;
+	image-rendering: crisp-edges;
+	image-rendering: -moz-crisp-edges;  // Firefox
+	image-rendering: -o-crisp-edges;  // Opera
+	image-rendering: -webkit-optimize-contrast;  // Webkit (non-standard naming)
+	-ms-interpolation-mode: nearest-neighbor;  // IE (non-standard property)
+}
+
+// Flatpickr colors
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+	background: $primary;
+	border: none;
+}

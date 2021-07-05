@@ -1,0 +1,34 @@
+/* ---------- Btn Circle ----------- */
+.btn-circle {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: .375rem !important;
+    text-align: center !important;
+}
+
+
+/* ---------- No Scroll ----------- */
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+
+/* ---------- Info Btn ----------- */
+.info-btn {
+	display: inline-block;
+	background: none;
+	border: none;
+	padding: 0;
+	color: $primary;
+    font-size: 1.1rem;
+
+	&:hover {
+		color: $dark-primary;
+	}
+
+	svg {
+		pointer-events: none;  // Fixes the popover
+	}
+}

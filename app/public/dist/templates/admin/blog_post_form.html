@@ -1,0 +1,111 @@
+{% extends 'admin/base_extension.html' %}
+
+{% block heading %}{{ action|capitalize }} Post{% endblock heading %}
+
+{% set form_id = action + '-post-form' %}
+{% set form_action = url_for('blog_posts.' + action + '_view', id=request.args.get('id')) %}
+{% set validation_func = 'validate_post_form' %}
+
+{% set  back_url = url_for('blog_posts.index_view') %}
+
+{% if action == 'edit' %}
+	{% set preview_url = url_for('blog.post', slug=post.slug, id=post.id) %}
+{% endif %}
+
+{% block form_content %}
+    {{ form.csrf_token() }}
+    {{ render_field(form.title) }}
+    {{ render_field(form.slug) }}
+    {{ render_field(form.overview) }}
+    <div class="row mb-3">
+        <div class="col-12 col-md-6 mb-3 mb-lg-0">
+        {% if action == 'create' %}
+            {{ render_file_field(form.thumbnail) }}
+        {% elif action == 'edit' %}
+            {{ render_file_field(form.thumbnail) }}
+        {% endif %}
+        </div>
+        <div class="col-10 col-md-5">
+        {{ render_select_field(form.category) }}
+        </div>
+        <div class="col-2 col-md-1 align-self-center p-0">
+            <button type="button" class="btn add-btn p-0 mb-3" data-bs-toggle="modal" data-bs-target="#add-category-modal">
+                <i class="fas fa-plus fa-lg"></i>
+            </button>
+        </div>
+    </div>
+    {{ render_field(form.tags) }}
+    {% if action == 'create' %}
+        {{ render_checkbox_field(form.draft) }}
+    {% else %}
+        {{ render_checkbox_field(form.draft) }}
+    {% endif %}
+    {{ render_field(form.content, class='tinymce') }}
+{% endblock form_content %}
+
+{% block modals %}
+    {{ create_modal('add-category') }}
+{% endblock modals %}
+
+{% block tail_js %}
+{{ super() }}
+<script>
+select('#add-category-modal .modal-body').innerHTML = `
+    <h2 class="text-center mb-4">Add Category</h2>
+    <input type="text" name="category" id="new-category" class="form-control" placeholder="Category name...">
+    <div class="valid-feedback" id="new-category-feedback"></div>
+    <div class="text-right mt-3">
+        <button type="button" class="btn btn-secondary" onclick="add_category()">Add</button>
+    </div>
+`;
+
+{# Set a default category of NULL #}
+{% if action == 'create' %}
+insert_default_option('#category', 'a Category');
+{% endif %}
+
+{# Edit the label of the thumbnail input #}
+{% if action == 'edit' %}
+select('label[for="thumbnail"').innerHTML = '{{ post.thumbnail }}';
+{% endif %}
+
+{# Initializing tinymce #}
+tinymce_init('{{ url_for('admin_extension.upload_post_image') }}', '{{ url_for('admin_extension.delete_post_image') }}');
+
+function add_category() {
+	let new_category = select('#new-category');
+	let new_category_feedback = select('#new-category-feedback');
+
+    let name = select('#new-category').value.toLowerCase().replace(/\s+/g, ' ').trim();
+    if (name.length > 24) {
+        new_category.classList.remove('is-valid');
+        new_category.classList.add('is-invalid');
+
+        new_category_feedback.classList.remove('valid-feedback');
+        new_category_feedback.classList.add('invalid-feedback');
+        new_category_feedback.innerHTML = `Category is ${name.length} characters, but has to be max 24 characters`;
+        return false;
+    }
+    new_category.classList.remove('is-invalid');
+    new_category_feedback.classList.remove('invalid-feedback');
+    new_category_feedback.classList.add('valid-feedback');
+    new_category.innerHTML = '';
+
+	post('{{ url_for('admin_extension.add_post_category') }}', {name: name})
+		.then(response => {
+            msg(response);
+			Modal.getInstance(select('#add-category-modal')).hide();
+            select('#category').insertAdjacentHTML('beforeend', `<option selected value=${response.data.id}>${name}</option>`);
+		});
+
+    new_category.value = '';
+}
+
+{# Check before submitting #}
+function validate_post_form(e) {
+	let category = select('#category');
+	if (!category.options[category.selectedIndex].value)
+		return 'Please select a category';
+}
+</script>
+{% endblock tail_js %}

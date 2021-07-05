@@ -1,0 +1,12 @@
+{% extends 'emails/base.html' %}
+
+{% set no_regards = True %}
+
+{% block content %}
+<h1 class="mb-0">Твоята парола беше променена.</h1>
+{% if security.recoverable %}
+<p class="lead">Ако не си променял ти паролата си, 
+    <a href="{{ url_for_security('forgot_password', _external=True) }}">кликни тук, за да я възстановиш</a>.
+</p>
+{% endif %}
+{% endblock content %}

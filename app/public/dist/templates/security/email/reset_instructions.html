@@ -1,0 +1,14 @@
+{% extends 'emails/base.html' %}
+
+{% set no_regards = True %}
+
+{% block content %}
+<h1 class="mb-0">Забравил си паролата си?</h1>
+<div class="msg-container">
+    <p class="lead">Няма проблем! Кликни бутона по-долу, за да я възстановиш.</p>
+</div>
+
+<div class="cta-container">
+    <a href="{{ reset_link }}" class="btn btn-primary">Възстановяване</a>
+</div>
+{% endblock content %}

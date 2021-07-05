@@ -1,0 +1,26 @@
+.pagination {
+    .page-item  {
+        margin: 0 .3rem;
+
+        a.page-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+			background: $primary;  // TODO tmp fix
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+			justify-content: center;
+            line-height: 1.4rem;
+            transition: background .2s ease-in-out;
+        }
+
+        a.page-link:hover,
+        &.active a.page-link {
+            background: $light-primary;     
+        }
+    }
+}

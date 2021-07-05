@@ -1,0 +1,14 @@
+{% extends 'emails/base.html' %}
+
+{% block content %}
+<h1 class="mb-0">Здравей, {{ user.name }}!</h1>
+<div class="msg-container">
+    <p class="lead text-center">Твоята регистрация беше направена успешно. {% if not oauth %}Сега само трябва да натиснеш бутона по-долу, за да потвърдиш имейла си и можеш да започваш! {% endif %}В моят уебсайт ще откриеш всичко необходимо за намирането на твоята мечтана работа. Нямам търпение да ти помогна!</p>
+</div>
+
+{% if security.confirmable and not oauth %}
+<div class="text-center cta-container">
+    <a href="{{ confirmation_link }}" class="btn btn-primary">Потвърждаване</a>
+</div>
+{% endif %}
+{% endblock content %}

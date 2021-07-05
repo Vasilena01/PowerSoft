@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% from "_macros.html" import render_field, render_checkbox_field %}
+
+{% block modals %}
+{% endblock modals %}
+{% block navbar %}
+{% endblock navbar %}
+{% block footer %}
+{% endblock footer %}
+
+{% block content %}
+{% if not modal %}
+<div class="row justify-content-center my-lg-4 my-3 mx-lg-5">
+    <div class="col-lg-5 col-12">
+{% endif %}
+    <h1 class="text-center{{ ' mb-4' if modal }}">{{ heading }}</h1>
+{% if not modal %}
+    </div>
+</div>
+{% endif %}
+
+{% if not modal %}
+<div class="row justify-content-center mx-lg-5 mb-4">
+    <div class="col-xl-3 col-lg-5 col-md-6 col-sm-8 col-12">
+{% else %}
+<div class="px-lg-4 pb-lg-3">
+{% endif %}
+
+    {% block above_form_content %}
+    {% endblock above_form_content %}
+
+    <form id="{{ auth_id }}-form" action="{{ action_url }}" method="POST">
+        {% block form_fields %}
+        {% endblock form_fields %}
+
+        {% if not action_url %}
+        <div class="text-center {{ 'mt-4' if modal else 'mt-5' }}">
+            <button type="submit" class="btn btn-primary btn-block" id="{{ auth_id }}-submit-btn">
+                {{ submit_button_title }} 
+            </button>
+        </div>
+        {% endif %}
+    </form>
+
+    {% block under_form_content %}
+    {% endblock under_form_content %}
+
+{% if not modal %}
+    </div>
+{% endif %}
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    if (!$('script[src="{{ url_for('static', filename='forms.js') }}"]').length)
+        $.getScript('{{ url_for('static', filename='forms.js') }}');
+</script>
+<script>
+{# Ajax send to server function #}
+$('#{{ auth_id }}-form').submit((e) => {
+    e.preventDefault();
+    $('#{{ auth_id }}-submit-btn')
+        .attr('disabled', 'disabled')
+        .html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Зареждане...');
+    
+    let form_data = forms.get_form_data($('#{{ auth_id }}-form'));
+
+    if (!forms.validate_form(form_data, '{{ auth_id }}-form'{{ ', true' if signup }})) {
+        $('#{{ auth_id }}-submit-btn')
+            .removeAttr('disabled')
+            .html('{{ submit_button_title }}');
+        return;
+    }
+
+    let request_data = JSON.stringify(form_data);
+
+    let jqxhr = $.post('{{ request.path }}', request_data, 'json')
+        .done((response) => {
+            {% if signup or send_confirmation %}
+				{# window.location.replace(`{{ url_for('main.confirmation_sent') }}?email=${form_data.email}`); #}
+            {% elif request.args.get('next', default=None) %}
+                window.location.replace('{{ request.args.get('next') }}');
+            {% elif modal %}
+                {% if change_password %}
+                    $('#change-pass-modal').modal('hide');
+                {% else %}
+                    $('#auth-modal').modal('hide');
+                {% endif %}
+
+                $('#msgs-container').load('{{ url_for('main.get_flashes') }}');
+
+                {% if login or signup %}
+                    $('#login-btn').replaceWith(`
+                        <a class="nav-btn btn btn-outline-primary" href="{{ url_for('profile.index') }}">
+                            <i class="fas fa-user mr-2"></i>Акаунт
+                        </a>
+                    `);
+                {% endif %}
+            {% else %}
+                {% if redirect_to %}
+                    window.location.replace('{{ redirect_to }}');
+                {% else %}
+                    $('#msgs-container').load('{{ url_for('main.get_flashes') }}');
+                {% endif %}
+            {% endif %}
+        })
+        .fail((response, status) => {
+            let errors = response.responseJSON.response.errors;
+            for (let id in errors) {
+                $(`#${id}`).removeClass('is-valid').addClass('is-invalid');
+                $(`#${id}-feedback`).html(errors[id][0]);
+            }
+        })
+        .always(() => {
+            $('#{{ auth_id }}-submit-btn')
+                .removeAttr('disabled')
+                .html('{{ submit_button_title }}');
+        });
+});
+
+{# Toggle password visibility logic #}
+$(".password-visibility-toggler").click((e) => {
+    e.preventDefault();
+    let $parent = $(e.currentTarget).parent();
+
+    if($parent.find('input').attr('type') == 'text') {
+        $parent.find('input').attr('type', 'password');
+        $parent.find('i').removeClass('fa-eye-slash').addClass('fa-eye');
+    }
+    else if($parent.find('input').attr('type') == 'password') {
+        $parent.find('input').attr('type', 'text');
+        $parent.find('i').removeClass('fa-eye').addClass('fa-eye-slash');
+    }
+});
+</script>
+{% endblock scripts %}
+

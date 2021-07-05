@@ -1,0 +1,11 @@
+{% extends 'emails/base.html' %}
+
+{% set no_regards = True %}
+
+{% block content %}
+<h1>Моля потвърди имейла си чрез бутона по-долу.</h1>
+
+<div class="cta-container">
+    <a href="{{ confirmation_link }}" class="btn btn-primary">Потвърждаване</a>
+</div>
+{% endblock content %}

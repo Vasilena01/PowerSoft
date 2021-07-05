@@ -1,0 +1,21 @@
+/* ---------- Cookies Agreement ----------- */
+#cookies-agreement {
+    z-index: 999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: .5rem .8rem;
+    background: $secondary;
+    text-align: center;
+
+    span {
+        display: inline-block;
+        color: $light;
+        margin-right: 1.3rem;
+    }
+
+    a.btn {
+        padding: .3rem 1rem;
+    }
+}

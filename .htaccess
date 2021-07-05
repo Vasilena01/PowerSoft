@@ -1,0 +1,68 @@
+#Username / password authentication
+# AuthName "Access restricted."
+# AuthType Basic
+# AuthUserFile "/services/users/bgstorage2p1@bgstorage2/ivavb/www/ivabalasheva.com/.htpasswd"
+# Require valid-user
+
+# Caching
+Header unset ETag
+FileETag none
+# FileETag MTime Size
+
+# AddType text/css .css
+# AddType image/svg+xml .svg
+# AddType image/x-icon .ico
+# AddOutputFilterByType DEFLATE image/svg+xml text/css image/x-icon
+
+# TODO force no 304 caching
+# TODO page caching
+
+# ExpiresActive On
+# ExpiresByType text/html "access 600 seconds"
+# ExpiresByType application/xhtml+xml "access 600 seconds"
+# ExpiresByType text/css "access 1 month"
+# ExpiresByType text/javascript "access 1 month"
+# ExpiresByType text/x-javascript "access 1 month"
+# ExpiresByType application/javascript "access 1 month"
+# ExpiresByType application/x-javascript "access 1 month"
+# ExpiresByType application/pdf "access 1 month"
+# ExpiresByType image/x-icon "access 1 year"
+# ExpiresByType image/ico "access 1 year"
+# ExpiresByType image/vnd.microsoft.icon "access 1 year"
+# ExpiresByType image/jpg "access 1 year"  
+# ExpiresByType image/jpeg "access 1 year"
+# ExpiresByType image/png "access 1 year"
+# ExpiresByType image/svg+xml "access 1 year"
+# ExpiresByType image/gif "access 1 year"
+# ExpiresByType font/* "access 1 year"
+# ExpiresDefault "access 1 month"
+
+<filesMatch "\.(jpg|jpeg|png|svg|gif|ico|woff2|css|js)$">
+Header set Cache-Control "max-age=31536000, public"
+Header set Cache-Control "immutable"
+</filesMatch>
+
+RewriteEngine On
+
+#Force non-www:
+RewriteCond %{HTTP_HOST} ^www. [NC]
+RewriteRule ^(.*)$ https://bqlatastaq.com%{REQUEST_URI} [R=307,L]
+
+# Forece HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_METHOD} !POST
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=307,L]
+
+# Redirect to the cgi
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /app.cgi/$1 [L]
+
+# Force trailing slash
+# RewriteCond %{REQUEST_URI} /.+[^/]$
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_METHOD} !POST
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI}/ [L,R=307,NE]
+
+# Remove blog post ids (TODO)
+# RewriteCond %{REQUEST_URI} /blog/.+/$
+# RewriteRule ^.*?/blog/[0-9]+-(.+)/$ https://%{HTTP_HOST}/blog/$1/ [NC,L]

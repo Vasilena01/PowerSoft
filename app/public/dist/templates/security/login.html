@@ -1,0 +1,61 @@
+{% extends 'security/base.html' %}
+
+{% set heading = 'Вход' %}
+{% set login = True %}
+{% set auth_id = 'login' %}
+
+{% block form_fields %}
+    {{ login_user_form.hidden_tag() }}
+      
+    {{ render_field(login_user_form.email) }}
+    {{ render_field(login_user_form.password) }}
+
+    <div class="row justify-content-between mb-3">
+        <div class="col-xl-6 col-md-6 col-6 pr-0">
+            {{ render_checkbox_field(login_user_form.remember, class='custom-control-input') }}
+        </div> 
+        <div class="col-xl-6 col-md-6 col-6 pl-0 text-right">
+            {% if modal %}
+            <a href="javascript:void(0)" class="link-muted" onclick="open_forgot_pass_modal()">Забравена парола?</a>
+            {% else %}
+            <a href="{{ url_for_security('forgot_password') }}" class="link-muted">Забравена парола?</a>
+            {% endif %}
+        </div> 
+    </div>
+{% endblock form_fields %}
+
+{% set submit_button_title = 'Вход' %}
+{% set url = url_for_security('login') %}
+{% set redirect_to = url_for('main.home') %}
+
+{% block under_form_content %}
+<div class="text-center {{ 'mt-4' if modal else 'my-4' }}">
+    {% if modal %}
+    <button class="btn btn-circle btn-primary" onclick="open_signup_modal()">
+        <i class="fas fa-envelope"></i>
+    </button>
+    {% else %}
+    <a href="{{ url_for_security('register') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}"
+        class="btn btn-circle btn-primary">
+        <i class="fas fa-envelope"></i>
+    </a>
+    {% endif %}
+</div>
+{% endblock under_form_content %}
+
+{% block scripts %}
+{{ super() }}
+{% if modal %}
+<script>
+function open_signup_modal() {
+	{# TODO #}
+    $('#auth-modal .modal-body').load('{{ url_for_security('register') }}?modal=1');
+}
+
+function open_forgot_pass_modal() {
+	{# TODO #}
+    $('#auth-modal .modal-body').load('{{ url_for_security('forgot_password') }}?modal=1');
+}
+</script>
+{% endif %}
+{% endblock scripts %}

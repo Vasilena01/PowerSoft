@@ -1,0 +1,57 @@
+#about-container {
+	h1 {
+		text-align: center;
+		margin-bottom: 5rem;
+
+		@media screen and (max-width: 992px) {
+			margin-bottom: 3rem;
+		}
+	}
+
+	img {
+		display: block;
+		max-width: 80%;
+		margin: auto;
+
+		@media screen and (max-width: 992px) {
+			max-width: 100%;
+		}
+	}
+
+	hr {
+		text-align: center;
+		color: $secondary;
+		height: 1.5px !important;
+		max-width: 20%;
+		margin: .1rem auto .7rem;
+	}
+	
+	.text {
+		text-align: center;
+		margin: 1.5rem auto 2.5rem;
+		max-width: 95%;
+		transform: scale(1);
+		transition: transform .5s ease-in-out;
+
+		&.first {
+			margin-bottom: 5rem;
+
+			@media screen and (max-width: 992px) {
+				margin-bottom: 2rem;
+			}
+		}
+
+		&:hover {
+			transform: scale(1.03);
+		}
+	}
+
+	form {
+		margin: 5rem auto 1rem;
+		max-width: 700px;
+
+		h3 {
+			margin-bottom: 1rem;
+		}
+	}
+}

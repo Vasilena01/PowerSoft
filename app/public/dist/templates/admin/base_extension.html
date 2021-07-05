@@ -1,0 +1,271 @@
+{% set modal = request.args.get('modal') %}
+
+{% if not modal and not no_master_extend %}  
+    {% extends 'admin/master.html' %}
+{% endif %}
+
+{% from '_macros.html' import render_field, render_file_field, render_checkbox_field, render_select_field, create_modal %}
+
+
+{% block head_css %}
+	{% if not modal %}
+		<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+	{% endif %}
+{% endblock head_css %}
+
+{% block body %}
+{% if not modal %}
+    {% include '_messages.html' %}
+{% endif %}
+
+{% if not modal %}
+	<div class="row my-3">
+		<div class="col-md-12 col-lg-3 order-first">
+{% endif %}
+    <h1 class="{{ 'text-center' if modal }}">{% block heading %}{% endblock heading %}</h1>
+</div>
+{% if not modal %}
+	<div class="col-12 col-lg-6 mx-lg-0 mt-2 mb-3 order-last order-lg-2">
+{% endif %}
+<form id="{{ form_id }}" action="{{ form_action }}" method="POST" enctype="multipart/form-data">
+    {% block form_content %}
+    {% endblock form_content %}
+
+    <div class="text-right mt-2">
+        {% block submit_btn %}
+		<button type="submit" id="submit-btn" class="btn btn-primary">{{ action|capitalize if action else 'Submit' }}</button>
+		{% endblock submit_btn %}
+
+		{% if action == 'create' %}
+		<input type="submit" class="btn btn-primary" name="create_add_another" value="Create and add another one">
+		{% endif %}
+
+        {% if not modal %}
+		<a href="{{ back_url }}" class="btn btn-danger">Cancel</a>
+        {% endif %}
+    </div>
+</form>
+{% if not modal %}
+</div>
+{% endif %}
+
+{% if action == 'edit' and preview_url %}
+<div class="text-lg-right col-5 col-lg-2 order-sm-2 mt-3 mt-lg-2">
+    <a href="{{ preview_url }}" class="btn btn-outline-primary" target="_blank">
+        <i class="fas fa-eye mr-2"></i>Preview
+    </a>
+</div>
+{% endif %}
+
+{% block additional_content %}
+{% endblock additional_content %}
+
+{% if not modal %}
+    <div class="spinner-border text-primary invisible" id="main-spinner" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+{% endif %}
+
+{% block modals %}
+{% endblock modals %}
+
+{% endblock body %}
+
+{% block tail_js %}
+{% if not modal %}
+	<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endif %}
+<script>
+var csrf_token = '{{ csrf_token() }}';
+
+function validate_title(e=null) {
+	let target = select('#title');
+    let feedback = select('#title-feedback');
+
+    if (target.value.length < 5 || target.value.length > 50) {
+		target.classList.remove('is-valid');
+		target.classList.add('is-invalid');
+
+		feedback.classList.remove('valid-feedback');
+		feedback.classList.add('invalid-feedback');
+		feedback.innerText = `Title is ${target.value.length} characters, but has to be between 5 and 50 characters`;
+
+        return false;
+    } else if (target.value.split(' ').length > 9) {
+		target.classList.remove('is-valid');
+		target.classList.add('is-invalid');
+
+		feedback.classList.remove('valid-feedback');
+		feedback.classList.add('invalid-feedback');
+		feedback.innerText = `Title has ${target.value.split(' ').length + 1} words, but the max number allowed is 10 (make sure you have not put doble spaces)`;
+
+        return false;
+    }
+
+	target.classList.remove('is-invalid');
+	target.classList.add('is-valid');
+
+	feedback.classList.remove('invalid-feedback');
+	feedback.classList.add('valid-feedback');
+	feedback.innerText = `Title is prefect.`;
+
+    return true;
+}
+
+function validate_slug(e=null) {
+    let slug_pattern = /^[0-9a-z-]+$/
+	let target = select('#slug');
+	let feedback = select('#slug-feedback');
+
+    if (!target.value) {
+		target.classList.remove('is-invalid');
+		target.classList.remove('is-valid');
+
+		feedback.classList.remove('invalid-feedback');
+		feedback.classList.remove('valid-feedback');
+		feedback.innerText = '';
+
+        return true;
+    } else if (!target.value.match(slug_pattern)) {
+		target.classList.remove('is-valid');
+		target.classList.add('is-invalid');
+
+		feedback.classList.remove('valid-feedback');
+		feedback.classList.add('invalid-feedback');
+		feedback.innerText = 'Slug has to be all lower letters and numbers and can\'t contain spaces (use [-] instead of spaces)';
+
+        return false;
+    }
+
+	target.classList.remove('is-invalid');
+	target.classList.add('is-valid');
+
+	feedback.classList.remove('invalid-feedback');
+	feedback.classList.add('valid-feedback');
+	feedback.innerText = 'Slug is valid';
+
+    return true;
+}
+
+function validate_overview(e=null) {
+	let target = select('#overview');
+    let feedback = select('#overview-feedback');
+
+	if (target.value.length >= 110 && target.value.length <= 150) {
+		target.classList.remove('is-invalid');
+		target.classList.add('is-valid');
+
+		feedback.classList.remove('invalid-feedback');
+		feedback.classList.add('valid-feedback');
+		feedback.innerText = `Overview is ${target.value.length} characters. Prefect :)`;
+
+    	return true;
+    }
+
+	target.classList.remove('is-valid');
+	target.classList.add('is-invalid');
+
+	feedback.classList.remove('valid-feedback');
+	feedback.classList.add('invalid-feedback');
+	feedback.innerText = `Overview is ${target.value.length} characters, but has to be between 110 and 150 characters`;
+
+    return false;
+}
+
+function validate_thumbnail(e) {
+	const desired_aspect_ratio_min = 1.7;
+	const desired_aspect_ratio_max = 1.8;
+	let _URL = window.URL || window.webkitURL;
+	let file, img;
+	
+	if ((file = e.target.files[0])) {
+	    let objectUrl = _URL.createObjectURL(file);
+	    img = new Image();
+	
+		img.onload = () => {
+	        const new_img_aspect_ratio = img.width / img.height
+			if (!(new_img_aspect_ratio > desired_aspect_ratio_min && new_img_aspect_ratio < desired_aspect_ratio_max)) {
+	            alert('Thumbnail has to be between 16:9 aspect ratio! Please resize the thumbnail and try again.');
+	            e.target.value = '';
+	        }
+	
+	        _URL.revokeObjectURL(objectUrl);
+	    };
+	    img.src = objectUrl;
+	}
+}
+
+{# Check if the title's text fits the requirements #}
+if (select('#title'))
+	select('#title').addEventListener('keyup', validate_title);
+
+{# Check training slug is valid #}
+if (select('#slug'))
+	select('#slug').addEventListener('keyup', validate_slug);
+
+{# Check if the overview's text fits the requirements #}
+if (select('#overview'))
+	select('#overview').addEventListener('keyup', validate_overview);
+
+{# Check if the thumbnail fits the requirements #}
+if (select('#thumbnail'))
+	select('#thumbnail').addEventListener('change', validate_thumbnail);
+{#
+else {
+	let has_thumbnail_listener = false;
+	select('#{{ form_id }}').addEventListener('click', (e) => {
+		if (!select('#thumbnail'))
+			has_thumbnail_listener = false;
+
+		if (select('#thumbnail') && !has_thumbnail_listener) {
+			has_thumbnail_listener = true;
+			select('#thumbnail').addEventListener('change', validate_thumbnail);
+		}
+	});
+}
+#}
+
+{# Validate on submit #}
+select('#submit-btn').addEventListener('click', (e) => {
+	window.removeEventListener('beforeunload', beforeunload);
+
+    let main_spinner = select('#main-spinner');
+	main_spinner.classList.remove('invisible');
+
+    let validation_msg = false;
+
+	{# Run the custom validation funcion if present #}
+	{% if validation_func %}
+	validation_msg = {{ validation_func }}();
+	{% endif %}
+
+    if (select('#title') && !validate_title())
+        validation_msg = 'Please make sure that the title meets requirements.';
+    else if (select('#slug') && !validate_slug())
+        validation_msg = 'Please make sure that the slug meets requirements.';
+    else if (select('#overview') && !validate_overview())
+            validation_msg = 'Please make sure that the overview meets requirements.';
+
+    if (validation_msg) {
+        e.preventDefault();
+
+		window.addEventListener('beforeunload', beforeunload);
+
+        alert(validation_msg);
+        main_spinner.classList.add('invisible');
+    }
+});
+
+{# Prevent users from accedently leaving unsaved changes #}
+function beforeunload(e) {
+	e.preventDefault();
+	e.returnValue = '';
+}
+
+select('#{{ form_id }}').addEventListener('change', (e) => {
+	window.addEventListener('beforeunload', beforeunload);
+});
+</script>
+{% endblock tail_js %}

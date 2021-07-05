@@ -1,0 +1,179 @@
+/* ---------- Main Navbar ----------- */
+#main-navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: $light-primary;
+	padding-top: 0.2rem;
+	padding-bottom: 0.8rem;
+	width: 100vw;
+	z-index: 80;
+
+	.logo {
+		width: 60px;
+		height: 60px;
+		margin: .4rem 0 0 2.3rem;
+	}
+
+	h1 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: $very-dark-gray !important;
+		font-size: 2rem !important;
+		margin: 0.5rem 7rem 0rem 7rem; 
+	}
+
+	h3 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 0.7rem !important;
+		text-decoration: overline;
+		text-decoration-color: $secondary;
+		margin: 2.8rem 13rem 0rem 13rem;
+	}
+
+	.nav-link {
+		color: $secondary;
+		font-size: 1.2rem;
+		padding: .5rem .8rem;
+
+		&:hover {
+			color: $dark-gray;
+		}
+
+		&.active {
+			color: $dark-gray;
+		}
+	}
+
+	@media screen and (max-width: 992px) {
+		padding-bottom: 1.3rem;
+
+		h1 {
+			font-size: 2rem;
+			margin-left: 4rem;
+		}
+
+		h3 {
+			font-size: 0.6rem;
+			margin-left: 7rem;
+			margin-top: 2.5rem;
+		}
+
+		.logo {
+			margin-left: 0.6rem;
+			width: 40px;
+			height: 40px;
+		}
+
+		.nav-links {
+			display: none !important;
+		}
+	}
+}
+
+
+/* ---------- Main sidebar ----------- */
+#main-sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	z-index: 120;
+	background-color: $dark-primary;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 1rem;
+
+	.nav-link {
+		text-decoration: none;
+		font-size: 1.2rem;
+		color: $secondary;
+		display: block;
+
+		&.active {
+			color: $dark-gray;
+		}
+	}
+
+	.close-btn {
+		position: absolute;
+		top: -1rem;
+		right: 15px;
+		margin-top: 0.5rem;
+		margin-left: 1rem;
+		text-decoration: none;
+		font-size: 3rem;
+		color: $secondary;
+		transition: 0.3s;
+
+		&:hover {
+			color: $very-dark-primary;
+		}
+	}
+}
+
+#sidebar-open-btn {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	font-size: 20px;
+	cursor: pointer;
+	background-color: transparent;
+	color: $very-dark-gray;
+	padding: 1rem 2rem;
+	border: none;
+	z-index: 100;
+
+	&:hover {
+	}
+
+	@media screen and (max-width: 992px) {
+		& {
+			display: inline-block;
+		}
+	}
+}
+
+
+/* ---------- Social Icons Side Menu ----------- */
+#icons-menu {
+	z-index: 4;
+	position: fixed;
+	padding-top: 0.2rem;
+	margin-left: 0.5rem;
+}
+
+
+/* ---------- Cart Button ----------- */
+.shopping-cart-btn {
+	position: relative;
+	display: inline-block;
+	font-size: 1.3rem;
+	color: $white;
+
+	&:hover {
+		color: $light;
+	}
+
+	#cart-items-count {
+		position: absolute;
+		border-radius: 50%;
+		background: $danger;
+		color: $white;
+		font-size: .8rem;
+		width: 20px;
+		height: 20px;
+		bottom: 0;
+		right: 0;
+
+		&:empty {
+			display: none;
+		}
+	}
+}
+
