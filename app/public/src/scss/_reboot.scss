@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 
 /* ---------- Overwriting some stuff ----------- */
 * {
-	font-family: 'Raleway';
+	font-family: 'Ubuntu', sans-serif;
 }
 
 *:focus {
@@ -27,10 +26,6 @@ a, .btn-link {
     color: $primary;
     transition: color .2s ease-in-out;
 
-    &:focus {
-        box-shadow: none !important;
-    }
-
     &:hover {
         text-decoration: none;
     }
@@ -38,6 +33,18 @@ a, .btn-link {
     &.link-muted {
         color: $secondary;
     }
+}
+
+.btn {
+	text-decoration: none;
+    padding: .6rem .4rem;
+	background: $primary;
+	color: $light;
+	transition: background .2s ease-in-out;
+
+    &:hover {
+		background: lighten($primary, 3%) !important;
+	}
 }
 
 p {
@@ -62,7 +69,6 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
 	-webkit-appearance: none;
 }
-
 
 // Crispy ass images
 img {

@@ -1,19 +1,11 @@
-<div class="navbar w-100 px-2">
+<nav id="main-navbar">
     <div class="logo">
-        <img src="/app/public/dist/assets/logo_big.png" alt="">
+		<img src="{{ url_for('static', filename='img/logo_big.png') }}" alt="Лого на Power Soft">
     </div>
-    <div class="justify-content-end d-flex">
-        <div class="navBtns px-4">
-            <a href="/app/public/dist/templates/main/home_ps.html">Начало</a>
-        </div>
-        <div class="navBtns text-end px-4">
-            <a href="/app/public/dist/templates/main/home_ps.html">За нас</a>
-        </div>
-        <div class="navBtns text-end px-4">
-            <a href="/app/public/dist/templates/main/home_ps.html">Блог</a>
-        </div>
-        <div class="navBtns text-end px-4">
-            <a href="/app/public/dist/templates/main/home_ps.html">Контакти</a>
-        </div>
+    <div class="links">
+		<a href="{{ url_for('main.home') }}">Начало</a>
+		<a href="{{ url_for('main.about') }}">За Нас</a>
+		<a href="{{ url_for('blog.index') }}">Блог</a>
+		<a href="{{ url_for('main.contacts') }}">Контакти</a>
     </div>
-</div>
+</nav>

@@ -8,6 +8,7 @@ from flask import (
     make_response,
     escape,
     jsonify,
+    session,
 )
 from flask_security import current_user
 from flask_mail import Message
@@ -27,8 +28,13 @@ def home():
     return render_template('main/home.html', **context)
 
 
-@main.route('za-nas/', methods=['GET', 'POST'])
+@main.route('za-nas/')
 def about():
+    return render_template('main/about.html')
+
+
+@main.route('kontakti/', methods=['GET', 'POST'])
+def contacts():
     form = SendEmailForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -48,7 +54,7 @@ def about():
         'form': form,
     }
 
-    return render_template('main/about.html', **context)
+    return render_template('main/contacts.html', **context)
 
 
 @main.route('usloviq/')

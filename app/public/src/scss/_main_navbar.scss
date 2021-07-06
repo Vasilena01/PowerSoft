@@ -4,47 +4,35 @@
 	top: 0;
 	left: 0;
 	background-color: $light-primary;
-	padding-top: 0.2rem;
-	padding-bottom: 0.8rem;
+	padding: 1rem 1.5rem;
 	width: 100vw;
 	z-index: 80;
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
 
 	.logo {
-		width: 60px;
-		height: 60px;
-		margin: .4rem 0 0 2.3rem;
+		display: inline-block;
+		width: 80px;
 	}
 
-	h1 {
-		position: absolute;
-		top: 0;
-		left: 0;
-		color: $very-dark-gray !important;
-		font-size: 2rem !important;
-		margin: 0.5rem 7rem 0rem 7rem; 
-	}
+	.links {
+		display: inline-block;
+		margin-right: 3.5rem;
 
-	h3 {
-		position: absolute;
-		top: 0;
-		left: 0;
-		font-size: 0.7rem !important;
-		text-decoration: overline;
-		text-decoration-color: $secondary;
-		margin: 2.8rem 13rem 0rem 13rem;
-	}
+		a {
+			color: $secondary;
+			font-size: 1.2rem;
+			padding: .5rem .8rem;
+			text-decoration: none;
 
-	.nav-link {
-		color: $secondary;
-		font-size: 1.2rem;
-		padding: .5rem .8rem;
+			&:hover {
+				color: $dark-gray;
+			}
 
-		&:hover {
-			color: $dark-gray;
-		}
-
-		&.active {
-			color: $dark-gray;
+			&.active {
+				color: $dark-gray;
+			}
 		}
 	}
 
@@ -135,44 +123,6 @@
 	@media screen and (max-width: 992px) {
 		& {
 			display: inline-block;
-		}
-	}
-}
-
-
-/* ---------- Social Icons Side Menu ----------- */
-#icons-menu {
-	z-index: 4;
-	position: fixed;
-	padding-top: 0.2rem;
-	margin-left: 0.5rem;
-}
-
-
-/* ---------- Cart Button ----------- */
-.shopping-cart-btn {
-	position: relative;
-	display: inline-block;
-	font-size: 1.3rem;
-	//color: $white;
-
-	&:hover {
-		color: $light;
-	}
-
-	#cart-items-count {
-		position: absolute;
-		border-radius: 50%;
-		//background: $danger;
-		//color: $white;
-		font-size: .8rem;
-		width: 20px;
-		height: 20px;
-		bottom: 0;
-		right: 0;
-
-		&:empty {
-			display: none;
 		}
 	}
 }

@@ -1,38 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- bootstrap & jquery -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <!-- fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-    <link rel="shortcut icon"
-    href="/app/public/dist/assets/logo_sm.png">
-    <link rel="stylesheet" href="/app/public/src/scss/home.css">
-    <title>Power Soft</title>
-</head>
-<body>
-    <div id="nav-placeholder"></div>
-    <div class="row segment2 ">
-            <div class="blackbg"></div>
-            <img src="/app/public/dist/assets/img/home_bg3.jpg" alt="background" class="home-bg w-100 col-lg-6 col-md-12">
-            <div class="title justify-content-center">
-                <h1>Power Soft</h1>
-                <h5>силата на софтуера</h5>
-            </div>
-    </div>  
-</body>
-<script>
-    $(function(){
-            $("#nav-placeholder").load("_navbar.html");
-            // $("#foot-placeholder").load("_footer.html");
-        });
-</script>
-</html>
+{% extends 'base.html' %}
+
+{# set title = 'За нас' #}
+{% set about_active = True %}
+
+{% block content %}
+<div id="home-hero">
+	<div class="overlay"></div>
+	<img src="{{ url_for('static', filename='img/home_bg3.jpg') }}" alt="Дънна палатка <3">
+	<div class="title">
+	    <h1>Power Soft</h1>
+	    <p>Силата на софтуера</p>
+	</div>
+</div>
+{% endblock content %}

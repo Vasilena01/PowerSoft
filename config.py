@@ -114,7 +114,7 @@ class ProductionConfig(Config):
     # ------ Flask ------ #
     DEBUG = False
     Testing = False
-    SECRET_KEY = ''
+    SECRET_KEY = '3d59b6924697c3a8e94e4a59b9dc835aa2635940c01051abb3977167b8bf95fa'
     SERVER_NAME = 'bqlatastaq.com:443'
 
     # ------ Security ------ #
@@ -158,7 +158,7 @@ class ProductionConfig(Config):
 class DevelopmentConfig(Config):
     # ------ Flask ------ #
     DEBUG = True
-    SECRET_KEY = ''
+    SECRET_KEY = 'e6939cf258fac8d55393cd7586d576344f3037449097685a7e72898212a0f3ed'
 
     # ------ Security ------ #
     SECURITY_PASSWORD_SALT = ''
