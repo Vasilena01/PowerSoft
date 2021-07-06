@@ -2,12 +2,12 @@
 #main-footer {
 	// Making the footer always stick to the bottom of the page
     margin-top: auto;
-
-	padding: 2rem 0;
+	text-align: center;
+	padding: 1.5rem 0;
 	margin-right: 0 !important;
 	margin-left: 0 !important;
 	width: 100%;
-	background: $dark-primary;
+	background: $primary;
 
 	h4 {
 		margin: 1rem 0.5rem ;
@@ -23,12 +23,32 @@
 		}
 	}
 
+	.foot-contacts {
+		.footer-link:hover {
+			left: 0 !important;
+		}
+	}
+
+	.links {
+		margin-top: 1.5rem;
+		
+		.link {
+			padding: .2rem 0;
+			justify-content: center;
+			display: flex;
+
+			img {
+				padding-left: .5rem;
+				width: 1.1%;
+			}
+		}
+	}
+
 	.footer-link {
 		position: relative;
     	left: 0;
     	transition: left .2s ease-in-out;
-    	//color: $white;
-    	display: inline-block;
+		display: block;
 		padding-right: .8rem;
 		padding-left: .8rem;
 
@@ -41,35 +61,7 @@
 		}
 	}
 
-	//.footmenu hr {
-	//	height: 18vh; 
-	//	width: 1px;
-	//	margin-left: 0.7rem;
-	//
-	//}
-
-	//.footinput input  {
-	//	background-color: transparent;
-	//	border-color: transparent;
-	//	border-bottom-color: rgb(252, 252, 252);
-	//}
-
-	//.footinput button{
-	//	height: 30%;
-	//	background-color: transparent;
-	//	border-color: transparent;
-	//}
-
 	@media only screen and (max-width: 450px) {
-		//.footinput {
-		//	margin: 1rem 0;
-		//	margin-bottom: 2rem;
-		//}
-
-		//.footmenu {
-		//	margin: 0.5rem 0;
-		//	margin-bottom: 0;
-		//}
 	}
 }
 

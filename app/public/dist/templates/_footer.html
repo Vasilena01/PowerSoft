@@ -1,13 +1,19 @@
 <footer id="main-footer">
     <div class="">
-        <div class="">
-            <a class="" href="https://www.facebook.com/bqlatastaq" target="_blank">
-            <a href="tel:+359898520360">+359 898520360</a>
-            <a href="mailto:office@powersoft.bg" target="_blank">office@powersoft.bg</a>
+        <div class="foot-contacts">
+            <a class="footer-link" href="https://www.facebook.com/bqlatastaq" target="_blank">
+            <a class="footer-link" href="tel:+359898520360">+359898 520 360</a>
+            <a class="footer-link" href="mailto:office@powersoft.bg" target="_blank">office@powersoft.bg</a>
 		</div>
 		<div class="links">
-			<a href="{{ url_for('main.terms') }}" class="footer-link"><i class="fas fa-angle-right"></i>Условия за ползване</a>
-			<a href="{{ url_for('main.privacy_policy') }}" class="footer-link"><i class="fas fa-angle-right"></i>Политика за поверителност</a>
+			<div class="link footer-link">
+				<img class="angle" src="{{ url_for('static', filename='img/angle.svg') }}" alt="стрелка">
+				<a href="{{ url_for('main.terms') }}" class="footer-link"><i class="fas fa-angle-right"></i>Условия за ползване</a>
+			</div>
+			<div class="link footer-link">
+				<img class="angle" src="{{ url_for('static', filename='img/angle.svg') }}" alt="стрелка">
+				<a href="{{ url_for('main.privacy_policy') }}" class="footer-link"><i class="fas fa-angle-right"></i>Политика за поверителност</a>
+			</div>
 		</div>
     </div>
 </footer>

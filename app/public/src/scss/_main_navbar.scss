@@ -3,7 +3,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: $light-primary;
+	background-color: $primary;
 	padding: 1rem 1.5rem;
 	width: 100vw;
 	z-index: 80;
@@ -21,17 +21,17 @@
 		margin-right: 3.5rem;
 
 		a {
-			color: $secondary;
-			font-size: 1.2rem;
+			color: $white;
+			font-size: 1rem;
 			padding: .5rem .8rem;
 			text-decoration: none;
 
 			&:hover {
-				color: $dark-gray;
+				color: $light;
 			}
 
 			&.active {
-				color: $dark-gray;
+				color: $light;
 			}
 		}
 	}
