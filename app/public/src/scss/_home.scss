@@ -32,12 +32,36 @@
 		h1 {
 			font-weight: 500;
 			margin: 0;
-			font-size: 3.5rem;
+			font-size: 4.3rem;
 		}
 
 		p {
 			margin-top: .7rem;
-			font-size: 1rem;
+			font-size: 1.5rem;
+		}
+	}
+}
+#services {
+	.service {
+		display: flex;
+		max-width: 80%;
+		margin: 3rem auto;
+		
+		.service-img-container {
+			width: 40%;
+			margin: auto;
+			
+			img {
+				width: 180px;
+			}
+		}
+		
+		.service-text {
+			width: 60%;
+			
+			p:first-of-type {
+				margin-bottom: .3rem;
+			}
 		}
 	}
 }

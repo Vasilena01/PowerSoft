@@ -41,24 +41,24 @@
 				padding-left: .5rem;
 				width: 1.1%;
 			}
+
+			.angle {
+				left: 0;
+				transition: left .2s ease-in-out;
+	
+				&:hover {
+					left: 4px;
+				}
+			}
 		}
 	}
 
 	.footer-link {
 		position: relative;
-    	left: 0;
-    	transition: left .2s ease-in-out;
-		display: block;
+    	display: block;
 		padding-right: .8rem;
 		padding-left: .8rem;
 
-		&:hover {
-			left: 4px;
-		}
-
-		svg {
-			margin-right: .3rem;
-		}
 	}
 
 	@media only screen and (max-width: 450px) {

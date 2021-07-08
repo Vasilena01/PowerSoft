@@ -7,8 +7,10 @@
 		</div>
 		<div class="links">
 			<div class="link footer-link">
-				<img class="angle" src="{{ url_for('static', filename='img/angle.svg') }}" alt="стрелка">
-				<a href="{{ url_for('main.terms') }}" class="footer-link"><i class="fas fa-angle-right"></i>Условия за ползване</a>
+				<a href="{{ url_for('main.terms') }}" class="angle" >
+					<img  src="{{ url_for('static', filename='img/angle.svg') }}" alt="стрелка">
+					Условия за ползване
+				</a>
 			</div>
 			<div class="link footer-link">
 				<img class="angle" src="{{ url_for('static', filename='img/angle.svg') }}" alt="стрелка">
