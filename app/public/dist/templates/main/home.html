@@ -4,11 +4,10 @@
 {% set about_active = True %}
 
 {% block content %}
-<div id="home-hero">
+<div id="home-hero" style="background-image: url({{ url_for('static', filename='img/home_bg3.jpg') }})">
 	<div class="overlay"></div>
-	<img src="{{ url_for('static', filename='img/home_bg3.jpg') }}" alt="Дънна палатка <3">
 	<div class="title">
-	    <h1>Power Soft</h1>
+	    <h1>PowerSoft</h1>
 	    <p>Силата за софтуера</p>
 	</div>
 </div>
