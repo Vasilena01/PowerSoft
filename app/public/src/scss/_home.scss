@@ -46,21 +46,57 @@
 		display: flex;
 		max-width: 80%;
 		margin: 3rem auto;
+		position: relative;
 		
 		.service-img-container {
 			width: 40%;
-			margin: auto;
+			margin: 1rem auto;
+			//position: absolute;
 			
 			img {
-				width: 180px;
+				width: 170px;
 			}
 		}
 		
 		.service-text {
+			margin: 1rem auto;
 			width: 60%;
-			
+			position: relative;
+			text-align: center;
+
 			p:first-of-type {
 				margin-bottom: .3rem;
+			}
+			
+			.description {
+				text-align: justify;
+				overflow: hidden;
+				transition: all .5s ease-in-out;
+				line-height: 0;
+				color: transparent;
+			}
+
+			.description:target {
+				line-height: 1.5;
+			  	padding-top: 1em;
+			  	padding-bottom: 1em;
+			  	color: $primary;
+			}
+
+			a {
+				text-decoration: none;
+				background-color: transparent;
+				color: $secondary;
+				border: 1.7px solid $secondary;
+				padding: 1rem;
+				margin: 1rem auto;
+				display: block;
+				text-align: center;
+			}
+
+			a:hover {
+				background-color: $secondary;
+				color: $white;
 			}
 		}
 	}

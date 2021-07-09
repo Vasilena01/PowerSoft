@@ -20,8 +20,9 @@
 		<div class="service-text"> 
 			<h2>UPGRADE</h2>
 			<p>UPGRADE на компютърна система или лаптоп включва следните етапи:</p>
+			<a type="button" href="#description-1" onclick="toggle_description(this)">Покажи всичко</a>
 
-			<p>1.Проверка и диагностика компонентите на компютъра или лаптопа (безплатна в случаите на покупка на компонентите от нас)<br>
+			<p class="description" id="description-1">1.Проверка и диагностика компонентите на компютъра или лаптопа (безплатна в случаите на покупка на компонентите от нас)<br>
 
 			2.Предложение и консултация на клиента за възможните варианти за UPGRADE <br>
 
@@ -35,9 +36,10 @@
 			<img src="{{ url_for('static', filename='img/repair.svg') }}" alt="гаечен ключ" >
 		</div>
 		<div class="service-text"> 
-			<h2>Ремонт и профилактика компютри</h2>
+			<h2>Ремонт и профилактика компютри</h2>	
+			<a type="button" href="#description-2" onclick="toggle_description(this)">Покажи всичко</a>
 
-			<p>- Диагностика на компютърен компонент – 10 лв.<br>
+			<p class="description" id="description-2">- Диагностика на компютърен компонент – 10 лв.<br>
 
 			- Пълна диагностика на компютърна система с разглобяване и тестване на отделните компоненти – 33 лв.<br>
 			
@@ -61,8 +63,9 @@
 		</div>
 		<div class="service-text"> 
 			<h2>Ремонт и профилактика лаптопи</h2>
+			<a type="button" href="#description-3" onclick="toggle_description(this)">Покажи всичко</a>
 
-			<p>- Пълна Диагностика на лаптоп – 30 лв.<br>
+			<p class="description" id="description-3">- Пълна Диагностика на лаптоп – 30 лв.<br>
 
 			- Почистване/профилактика на лаптоп с помоща на уред за сгъстен въздух – 30 лв.<br>
 			
@@ -86,8 +89,9 @@
 		</div>
 		<div class="service-text"> 
 			<h2>Ремонт на UPS</h2>
+			<a type="button" href="#description-4" onclick="toggle_description(this)">Покажи всичко</a>
 
-			<p>- Диагностика на UPS – от 30 лв.( Заплаща се само в случаите, когато клиента се отказва от ремонта)<br>
+			<p class="description" id="description-4">- Диагностика на UPS – от 30 лв.( Заплаща се само в случаите, когато клиента се отказва от ремонта)<br>
 
 			- Смяна на батерии (заплаща се само ако не са закупени от PowerSoft)  – в зависимост от модела UPS от 20 лв.<br>
 			
@@ -108,8 +112,9 @@
 		</div>
 		<div class="service-text"> 
 			<h2>Софтуерни услуги</h2>
+			<a type="button" href="#description-5" onclick="toggle_description(this)">Покажи всичко</a>
 
-			<p>- Инсталиране на лицензиран Windows – 28 лв.<br>
+			<p class="description" id="description-5">- Инсталиране на лицензиран Windows – 28 лв.<br>
 
 			- Инсталиране на лицензиран MS Office  – 17 лв.<br>
 			
@@ -155,5 +160,21 @@
 
 	</div>
 </section>
-
 {% endblock content %}
+
+{% block scripts %}
+<script>
+function toggle_description(btn) {
+	let p = btn.parentElement.querySelector('.description')
+
+	if (p.style.overflow == 'hidden') {
+		p.style.overflow = 'visible'
+		btn.textContent = 'Скрий'
+	} else {
+		p.style.overflow = 'hidden'
+		btn.textContent = 'Покажи всичко'
+	}
+}
+</script>
+{% endblock scripts %}
+
