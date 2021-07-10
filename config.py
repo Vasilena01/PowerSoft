@@ -44,12 +44,12 @@ class Config(object):
     FLASK_ADMIN_FLUID_LAYOUT = True
 
     # ------ SECURITY ------ #
-    SECURITY_PASSWORD_SALT = ''
+    SECURITY_PASSWORD_SALT = '!)D*$b;@%a_9o;AG^W2(:=F=bo;:`d=L'
     SECURITY_CONFIRMABLE = True
     SECURITY_REGISTERABLE = True
     SECURITY_RECOVERABLE = True
     SECURITY_CHANGEABLE = True
-    SECURITY_EMAIL_SENDER = ''
+    SECURITY_EMAIL_SENDER = 'office@powersoft.bg'
     SECURITY_EMAIL_PLAINTEXT = False
     SECURITY_LOGIN_URL = '/login/'
     SECURITY_LOGOUT_URL = '/logout/'
@@ -118,7 +118,7 @@ class ProductionConfig(Config):
     SERVER_NAME = 'bqlatastaq.com:443'
 
     # ------ Security ------ #
-    SECURITY_PASSWORD_SALT = ''
+    SECURITY_PASSWORD_SALT = 'G>HA"6nu]uTZ9uZJYk6=wA@TXx]\Yj.6'
 
     # ------ CDN ------ #
     CDN_URL = ''
@@ -169,7 +169,7 @@ class DevelopmentConfig(Config):
     CDN_FTP_DIR_BLOG = CDN_FTP_DIR_MAIN + 'blog/'
 
     # ------ Sqlalchemy ------ #
-    SQLALCHEMY_DATABASE_URI = 'postgresql://db_username:db_password@bg1.pgsqlserver.com/db_name'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/powersoft'
 
     # ------ Mail ------ #
     MAIL_SERVER = 'smtp.mailtrap.io'

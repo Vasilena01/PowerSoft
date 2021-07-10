@@ -3,15 +3,15 @@
 	// Making the footer always stick to the bottom of the page
     margin-top: auto;
 	text-align: center;
-	padding: 1.5rem 0;
+	//padding: 1.5rem 0;
 	margin-right: 0 !important;
 	margin-left: 0 !important;
 	width: 100%;
 	background: $primary;
 
-	h4 {
-		margin: 1rem 0.5rem ;
-		font-size: 1.8rem;
+	.container {
+		max-width: 800px;
+		margin: 1.5rem auto;
 	}
 
 	a {
@@ -19,46 +19,36 @@
 		text-decoration: none;
 
 		&:hover {
-			color: darken($light, 8);
+			color: darken($light, 12);
 		}
 	}
 
-	.foot-contacts {
-		.footer-link:hover {
-			left: 0 !important;
-		}
+	.contacts a {
+		display: block;
+		padding: .1rem 0;
 	}
 
 	.links {
 		margin-top: 1.5rem;
-		
+		text-align: center;
+
 		.link {
-			padding: .2rem 0;
-			justify-content: center;
-			display: flex;
-
-			img {
-				padding-left: .5rem;
-				width: 1.1%;
-			}
-		}
-	}
-
-	.footer-link {
-		position: relative;
-    	display: block;
-
-	}
-	.angle {
+			position: relative;
 			left: 0;
+			padding: .2rem 0;
+			display: block;
 			transition: left .2s ease-in-out;
-			padding-right: .8rem;
-			padding-left: .8rem;
-	
+
 			&:hover {
 				left: 4px;
 			}
-		}	
+
+			img {
+				padding-left: .5rem;
+				width: 18px;
+			}
+		}
+	}
 
 	@media only screen and (max-width: 450px) {
 	}

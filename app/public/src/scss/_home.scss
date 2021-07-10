@@ -26,37 +26,40 @@
 		left: 50%;
 		transform: translateX(-50%);
 		text-align: center;
-		//position: sticky;
 
 		h1 {
 			font-weight: 500;
 			margin: 0;
-			font-size: 4.3rem;
+			font-size: calc(3rem + 4vw);
 		}
 
 		p {
-			margin-top: .7rem;
-			font-size: 1.5rem;
+			margin-top: -.9rem;
+			font-size: calc(1.3rem + .9vw);
 		}
 	}
 }
+
+/* ---------- Services ----------- */
 #services {
+	max-width: 1000px;
+	margin: 1rem auto;
+
 	.service {
 		display: flex;
 		max-width: 80%;
 		margin: 3rem auto;
 		position: relative;
-		
+
 		.service-img-container {
 			width: 40%;
 			margin: 1rem auto;
-			//position: absolute;
-			
+
 			img {
 				width: 170px;
 			}
 		}
-		
+
 		.service-text {
 			margin: 1rem auto;
 			width: 60%;
@@ -66,37 +69,25 @@
 			p:first-of-type {
 				margin-bottom: .3rem;
 			}
-			
+
 			.description {
 				text-align: justify;
 				overflow: hidden;
 				transition: all .5s ease-in-out;
 				line-height: 0;
 				color: transparent;
+
+				&.show {
+					line-height: 1.5;
+			  		padding-top: 1em;
+			  		padding-bottom: 1em;
+			  		color: $primary;
+				}
 			}
 
-			.description:target {
-				line-height: 1.5;
-			  	padding-top: 1em;
-			  	padding-bottom: 1em;
-			  	color: $primary;
-			}
-
-			a {
-				text-decoration: none;
-				background-color: transparent;
-				color: $secondary;
-				border: 1.7px solid $secondary;
-				padding: 1rem;
+			.btn-outline {
 				margin: 1rem auto;
 				display: block;
-				text-align: center;
-				transition: background .2s ease-in-out;
-			}
-
-			a:hover {
-				background-color: $secondary;
-				color: $white;
 			}
 		}
 	}

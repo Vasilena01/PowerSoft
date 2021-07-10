@@ -5,6 +5,10 @@
 	font-family: 'Ubuntu', sans-serif;
 }
 
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
 *:focus {
 	outline: none;
 }
@@ -22,7 +26,18 @@ body {
     scroll-behavior: smooth;
 }
 
-a, .btn-link {
+body {
+	margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
     color: $primary;
     transition: color .2s ease-in-out;
 
@@ -36,18 +51,45 @@ a, .btn-link {
 }
 
 .btn {
+	cursor: pointer;
+	border: none;
 	text-decoration: none;
-    padding: .6rem .4rem;
+	text-align: center;
+	font-size: 1.1rem;
+    padding: .7rem 1rem;
 	background: $primary;
-	color: $light;
+	color: $white;
 	transition: background .2s ease-in-out;
 
     &:hover {
-		background: lighten($primary, 3%) !important;
+		background: lighten($primary, 14);
 	}
 }
 
+.btn-outline {
+	@extend .btn;
+	background: transparent;
+	color: $secondary;
+	border: 1.85px solid $secondary;
+	//padding: 1rem;
+	transition: all .2s ease-in-out;
+
+	&:hover {
+		background: $secondary;
+		color: $white;
+	}
+}
+
+h1 {
+	font-size: calc(1.375rem + 1.5vw);
+}
+
+h2 {
+	font-size: calc(1.325rem + .9vw);
+}
+
 p {
+	margin-top: 0;
     font-size: 1.1rem;
 }
 
