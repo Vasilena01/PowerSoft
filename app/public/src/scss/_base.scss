@@ -1,25 +1,36 @@
 /* ---------- VARIABLES ----------- */
+// Basic colors
 $white: #fff;
+$red: #cb0c0e;
+$light-red: #fabebe;
+$light-blue: #beeefa;
+$light-green: #c7ffcb;
 
+// Primary colors
 $primary: #09091d;
+$_primary: 09091d;
 $light-primary: #e9e1d6;
 $dark-primary: #c5b9a9;
 $very-dark-primary: #2a4898;
 $second-primary: #cf694a;
 
+// Secondary colors
 $secondary: #cb0c0e;
-$light: #e7e7e7;
+$_secondary: cb0c0e;
+$light: #f2f2f2;
 $light-gray: #ccc;
 $dark-gray: #636363;
 $very-dark-gray: #121212;
 
-$fb-color: #baae9c;
-$yt-color: #ed1b24;
-$in-color: #e0d5c5;
-$ig-color: #fc6149;
-$twtr-color: #d4c6b3;
-$mail-color: #d4c4ae;
+// Social networks colors
+$fb-color: #45619d;
+//$yt-color: #fff;
+$in-color: #0097d3;
+//$ig-color: #fff;
+$twtr-color: #2caae1;
+$mail-color: #52abd9;
 
+// Box shadows
 $box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.2), 0px 10px 14px 1px rgba(0,0,0,0.14), 0px 4px 18px 3px rgba(0,0,0,0.12);
 $light-box-shadow: 0 13px 42px 11px rgba(0,0,0,.05);
 
@@ -27,6 +38,3 @@ $light-box-shadow: 0 13px 42px 11px rgba(0,0,0,.05);
 /* ---------- RESETS ----------- */
 
 /* ---------- MIXINS AND FUNCTIONS ----------- */
-
-// ------ FOR THE LIKE HEART ANIMATION
-

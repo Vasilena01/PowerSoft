@@ -1,0 +1,45 @@
+.modal {
+	// TODO add animation
+	display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+
+	.modal-content {
+		z-index: 1050;
+		max-width: 1200px;
+		max-height: 800px;
+		position: relative;
+		padding: 1rem;
+		margin: 12vh auto;
+		background: $white;
+
+		.btn-close {
+			position: absolute;
+			top: .8rem;
+    		right: .8rem;
+		}
+	}
+
+	&.modal-s {
+		.modal-content {
+			max-width: 600px;
+		}
+	}
+
+	&.modal-m {
+		.modal-content {
+			max-width: 900px;
+		}
+	}
+
+	&.modal-l {
+		.modal-content {
+			max-width: 1200px;
+		}
+	}
+}

@@ -1,11 +1,11 @@
 {% macro render_field(field, no_asterisk=False, no_label=False) %}
-<div class="custom-input form-group{{ ' input-with-icon'if field.name == 'password' or field.name == 'new_password' }}" id="{{field.name}}-div">
+<div class="input-group{{ ' input-with-icon'if field.name == 'password' or field.name == 'new_password' }}" id="{{field.name}}-div">
 	{% do kwargs.update({'placeholder': field.label.text}) %}
 
 	{% if 'class' in kwargs %}
-		{% do kwargs.update({'class': kwargs['class'] + ' form-control'}) %}
+		{% do kwargs.update({'class': kwargs['class'] + ' input'}) %}
 	{% else %}
-		{% do kwargs.update({'class': 'form-control'}) %}
+		{% do kwargs.update({'class': 'input'}) %}
 	{% endif %}
 
 	{% if no_label %}
@@ -15,8 +15,8 @@
     {{ field(**kwargs)|safe }}
 
     {% if field.name == 'password' or field.name == 'new_password' %}
-        <button type="button" class="password-visibility-toggler input-icon-right btn">
-            <i class="fa fa-eye"></i>
+        <button type="button" class="password-visibility-toggler input-icon-right">
+			<i class="fa fa-eye"></i> {# TODO #}
         </button>
     {% endif %}
 
@@ -44,8 +44,8 @@
 {% endmacro %}
 
 {% macro render_select_field(field, class='', no_asterisk=False) %}
-<div class="custom-input form-group" id="{{field.name}}-div">
-	<select class="form-select {{ class }}" name="{{ field.name }}" id="{{ field.name }}" {{ 'required' if field.flags.required }}>
+<div class="input-group" id="{{field.name}}-div">
+	<select class="input-select {{ class }}" name="{{ field.name }}" id="{{ field.name }}" {{ 'required' if field.flags.required }}>
 		{% if not field.data %}
         <option value="" selected disabled hidden>-- {{ field.label.text }} --</option>
 		{% endif %}
@@ -73,33 +73,27 @@
 
 {% macro render_checkbox_field(field) %}
 	{% if 'class' in kwargs %}
-		{% do kwargs.update({'class': kwargs['class'] + ' form-check-input'}) %}
+		{% do kwargs.update({'class': kwargs['class'] + ' input-check'}) %}
 	{% else %}
-		{% do kwargs.update({'class': 'form-check-input'}) %}
+		{% do kwargs.update({'class': 'input-check'}) %}
 	{% endif %}
 
-	<div class="form-check">
+	<div class="input-check-container">
 		{{ field(**kwargs)|safe }}
-		<label class="form-check-label" for="{{ field.name }}">{{ field.label.text|safe }}</label>
+		<label class="input-check-label" for="{{ field.name }}">{{ field.label.text|safe }}</label>
 	</div>
 {% endmacro %}
 
 {% macro render_file_field(field) %}
-	{% if 'class' in kwargs %}
-		{% do kwargs.update({'class': kwargs['class'] + ' form-control'}) %}
-	{% else %}
-		{% do kwargs.update({'class': 'form-control'}) %}
-	{% endif %}
-
-	<div class="custom-input my-1">
+	<div class="input-file">
 	    {{ field.label }}
 	    {{ field(**kwargs)|safe }}
 	</div>
 {% endmacro %}
 
 {% macro render_date_field(field, min_date_today=True, no_asterisk=False) %}
-<div class="custom-input form-group" id="{{field.name}}-div">
-	<input class="form-control date-input" id="{{ field.name }}" name="{{ field.name }}" type="text" placeholder="{{ field.label.text }}">
+<div class="input-group" id="{{field.name}}-div">
+	<input class="input date-input" id="{{ field.name }}" name="{{ field.name }}" type="text" placeholder="{{ field.label.text }}">
 	<label for="{{ field.name }}">{{ field.label.text }}
 		{% if field.flags.required and not no_asterisk %}
 		<span class="input-required-asterisk"> *</span>
@@ -129,6 +123,7 @@
 {% endmacro %}
 
 {% macro render_flags_field(field, flags_map) %}
+{# TODO #}
 {{ render_field_plain(field, class='d-none') }}
 <h5>{{ field.name|titlize }}</h5>
 <div class="row">
@@ -177,6 +172,7 @@
 {% endmacro %}
 
 {% macro render_check_flags_field(field, flags) %}
+{# TODO #}
 	{{ render_field_plain(field, class='d-none') }}
 	<h5>{{ field.name|titlize }}</h5>
 	<div id="{{ field.name }}-container">
@@ -212,51 +208,45 @@
 {% endmacro %}
 
 {% macro render_pagination(pagination) %}
-<ul class="pagination d-flex justify-content-center mt-5">
+<nav class="pagination">
     {% if pagination.has_prev %}
-    <li class="page-item">
-        <a class="page-link" href="{{ path }}page={{ pagination.prev_num }}" aria-label="Previous">
-            <i class="fas fa-chevron-left"></i>
-      </a>
-    </li>
+    <a class="previous" href="{{ path }}?page={{ pagination.prev_num }}" title="Предишна страница"></a>
     {% endif %}
     {%- for page in pagination.iter_pages() %}
         {% if page %}
             {% if page != pagination.page %}
-                <li class="page-item"><a class="page-link" href="{{ path }}page={{ page }}">{{ page }}</a></li>
+                <a href="{{ path }}?page={{ page }}">{{ page }}</a>
             {% else %}
-                <li class="page-item active"><a class="page-link">{{ page }}</a></li>
+                <a class="active">{{ page }}</a>
             {% endif %}
         {% else %}
-            <span class="ellipsis"><i class="fas fa-ellipsis-h"></i></span>
+            <span class="ellipsis"></span>
         {% endif %}
     {%- endfor %}
     {% if pagination.has_next %}
-    <li class="page-item">
-        <a class="page-link" href="{{ path }}page={{ pagination.next_num }}" aria-label="Next">
-            <i class="fas fa-chevron-right"></i>
-        </a>
-    </li>
+    <a class="next" href="{{ path }}?page={{ pagination.next_num }}" title="Следваща страница"></a>
     {% endif %}
-</ul>
+</nav>
 {% endmacro %}
 
-{% macro create_modal(id, header=None, size=None) %}
-<div class="modal fade" id="{{ id }}-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
-	<div class="modal-dialog{{ ' modal-' + size if size in ['xl', 'lg', 'sm'] }}" role="document">
-		<div class="modal-content">
-    	    <div class="modal-header">
-    	        {% if header %}
-    	        <h5 class="modal-title h4" id="modal-label">{{ header }}</h5>
-    	        {% endif %}
-    	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Затвори"></button>
-    	    </div>
-    	    <div class="modal-body pt-0">
-    	        <div class="spinner-border text-primary modal-spinner" role="status">
-    	          <span class="sr-only">Loading...</span>
-    	        </div>
-    	    </div>
-    	</div>
+{% macro create_modal(id, size=None) %}
+<div class="modal {{ 'modal-' + size if size }}" id="{{ id }}-modal" tabindex="-1"
+	role="dialog" aria-hidden="true" onclick="close_modal('{{ id }}-modal', event)">
+	<div class="modal-content">
+		<button class="btn-close" onclick="close_modal('{{ id }}-modal', event)" aria-label="Затвори"></button>
+		<div class="modal-body">
+			{{ loading() }}
+		</div>
 	</div>
 </div>
+{% endmacro %}
+
+{% macro loading() %}
+<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+{% endmacro %}
+
+{% macro icon(name) %}
+<svg class="icon icon-{{ name }}">
+	<use xlink:href="{{ url_for('static', filename='icons/' + name + '.svg') }}#icon"></use>
+</svg>
 {% endmacro %}

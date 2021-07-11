@@ -1,20 +1,12 @@
 <footer id="main-footer">
 	<div class="container">
 		<div class="contacts">
-    	    <a href="https://www.facebook.com/bqlatastaq" target="_blank">
     	    <a href="tel:+359898520360">+359 89852 0360</a>
     	    <a href="mailto:office@powersoft.bg" target="_blank">office@powersoft.bg</a>
 		</div>
 		<div class="links">
-			<a href="{{ url_for('main.terms') }}" class="link" >
-				<img  src="{{ url_for('static', filename='img/angle.svg') }}" alt="стрелка">
-				Условия за ползване
-			</a>
-
-			<div class="link footer-link">
-				<img class="angle" src="{{ url_for('static', filename='img/angle.svg') }}" alt="стрелка">
-				<a href="{{ url_for('main.privacy_policy') }}" class="footer-link"><i class="fas fa-angle-right"></i>Политика за поверителност</a>
-			</div>
+			<a href="{{ url_for('main.terms') }}" class="link">Условия за ползване</a>
+			<a href="{{ url_for('main.privacy_policy') }}" class="link">Политика за поверителност</a>
 		</div>
 	</div>
 </footer>

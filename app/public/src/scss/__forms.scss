@@ -1,0 +1,269 @@
+/* ---------- Custom Input ----------- */
+.custom-input {
+	border-bottom: none;
+	width: 100%;
+	padding: .1rem;
+	margin: .5rem 0;
+
+	&.form-group label:nth-child(2) {
+	    display: none;  // removing label for every non-text inputs
+	}
+
+	.form-control:first-child {
+	    &:not(textarea) {
+	        padding: .7rem .4rem .08rem;
+	        border-radius: 0rem;
+	        border: none;
+	        //border-bottom: .07rem solid $secondary;
+			border-bottom: $primary solid;
+	        height: unset !important;
+
+	        &:focus {
+	            border-color: $primary;
+	        }
+	    }
+
+		&.no-label {
+			padding: .4rem .4rem .2rem;
+		}
+
+	    &.is-invalid {
+	        border-bottom: solid $red;
+	    }
+
+	    &.is-valid,
+	    &.is-valid:focus {
+	        border-color: $primary;
+	        border-bottom: solid $primary;
+	    }
+
+		&.date-input[readonly] {
+			//background: $white;
+			cursor: pointer;
+		}
+	}
+
+	.valid-feedback {
+	    color: $primary;
+	}
+
+	textarea.form-control:focus {
+	    border-color: $primary;
+	}
+
+	&.form-group {
+	    position: relative;
+
+	    & > .form-control,
+		& > .form-select {
+			&.form-select {
+				padding: 1.8rem 2.25rem 0.5rem 0.75rem;
+			}
+
+			&:not(textarea) {  // input
+				user-select: text;
+			}
+
+			&:not(input) {  // textarea
+				padding: 1.8rem .75rem 1rem;
+			}
+
+	        & ~ label {
+	            position: absolute;
+	            top: .4rem;
+	            left: .47rem;
+	            display: block;
+	            pointer-events: none;
+	            margin-bottom: 0; // Overrides default `<label>` margin
+	            line-height: 1.5;
+	            color: $secondary;
+	            cursor: text;
+	            user-select: none;
+	            transition: all .1s ease-in-out;
+
+				.input-required-asterisk {
+					color: $red;
+					font-size: .9rem;
+					position: absolute;
+					top: .1rem;
+					margin-left: .1rem;
+				}
+	        }
+
+			&:not(input) ~ label {  // textarea
+				top: .9rem;
+				left: .8rem;
+			}
+
+	        // !NOT working in firefox and the old edge when all used together
+	        // &:-webkit-input-placeholder,
+	        // &:-ms-input-placeholder, 
+	        // &:-moz-placeholder,
+	        // &::-webkit-input-placeholder,
+	        // &::-ms-input-placeholder, 
+	        // &::-moz-placeholder,
+	        &:not(.no-label)::placeholder {
+	            color: transparent !important;
+	            opacity: 0 !important;
+	        }
+
+	        &:not(:placeholder-shown),
+			&:focus {
+
+	            & ~ label {
+	                font-size: .9rem;
+	                top: -.4rem;
+	                color: $light-gray;
+	            }
+
+				&:not(input) ~ label {  // textarea
+					top: .7rem;
+					left: .9rem;
+				}
+	        }
+
+			&.form-select ~ label {
+	            top: .35rem;
+	            left: .9rem;
+			}
+
+	    }
+	}
+
+	.custom-file-label {
+	    overflow: hidden;
+	}
+
+	// Removing background on autofill
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover, 
+	input:-webkit-autofill:focus, 
+	input:-webkit-autofill:active  {
+	    -webkit-box-shadow: 0 0 0 30px white inset !important;
+	}
+
+	// Changing text in autofill textbox
+	// TODO better color???
+	input:-webkit-autofill {
+	    -webkit-text-fill-color: $dark-primary !important;
+	}
+}
+
+
+/* ---------- Input With Icon ----------- */
+.input-with-icon {
+    position: relative;
+
+    .input-icon-right,
+    .input-icon-left {
+        position: absolute;
+		top: .4rem;
+        z-index: 1;
+		padding: 0;
+        font-size: 1.2rem;
+		color: $primary;
+
+		&:hover {
+			color: $dark-primary;
+		}
+    }
+
+    .input-icon-left {
+        left: 1%;
+    }
+
+    .input-icon-right {
+		right: .6rem;
+    }
+
+    & > .password-visibility-toggler {
+        // font-size: 1.1rem;
+        color: $primary;
+
+        &:hover {
+            cursor: pointer;
+            color: $dark-primary;
+        }
+    }
+}
+
+
+/* ---------- Range Slider ----------- */
+section.range-slider {
+    position: relative;
+    //width: 220px;
+	max-width: 220px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+
+	input {
+	    pointer-events: none;
+	    position: absolute;
+	    overflow: hidden;
+	    left: 0;
+	    top: 0;
+	    //width: 220px;
+		max-width: 220px;
+		width: 100%;
+	    outline: none;
+	    margin: 0;
+	    padding: 0;
+
+		&::-webkit-slider-thumb {
+		    pointer-events: all;
+		    position: relative;
+		    z-index: 1;
+		    outline: 0;
+		}
+
+		&::-moz-range-thumb {
+		    pointer-events: all;
+		    position: relative;
+		    z-index: 10;
+		    -moz-appearance: none;
+		    width: 9px;
+		}
+
+		&::-moz-range-track {
+		    position: relative;
+		    z-index: -1;
+		    background-color: rgba(0, 0, 0, 1);
+		    border: 0;
+		}
+
+		&[type=range]::-moz-focus-outer {
+		  border: 0;
+		}
+	}
+
+	.range-values {
+		position: absolute;
+		bottom: 7px;
+		left: 50%;
+		transform: translateX(-50%);
+		white-space: nowrap;
+	}
+}
+
+inputsection.range-slider input:last-of-type::-moz-range-track {
+    -moz-appearance: none;
+    background: none transparent;
+    border: 0;
+}
+
+
+/* ---------- Submit Button ----------- */
+.submit-btn {
+	display: block;
+	width: 100%;
+	margin-top: 2rem;
+	padding: .7rem 1rem;
+	//color: $white;
+	font-size: 1.1rem;
+	font-weight: bold;
+
+	&:hover {
+		//color: $white;
+	}
+}

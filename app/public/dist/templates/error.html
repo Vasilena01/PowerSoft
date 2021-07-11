@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container" id="error-page-container">
-    <div class="text-center">
-        <h1 class="display-4">{{ msg }}</h1>
-        <p class="lead">{{ info }}</p>
-		<img src="{{ url_for('static', filename='img/error_robot.svg') }}" alt="broken robot illustration" title="https://storyset.com">
-        <a href="{{ url_for('main.home') }}" class="btn btn-primary">
-            <i class="fas fa-home"></i> Върни се на началната страница
-        </a>
-    </div>
+<div id="error-page-container">
+	<h1>{{ msg }}</h1>
+	<p>{{ info }}</p>
+	<img src="{{ url_for('static', filename='img/error_robot.svg') }}" alt="broken robot illustration" title="https://storyset.com">
+	<a href="{{ url_for('main.home') }}" class="btn-outline">Върни се на началната страница</a>
 </div>
 {% endblock content %}

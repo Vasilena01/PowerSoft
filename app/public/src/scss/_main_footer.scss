@@ -39,6 +39,16 @@
 			display: block;
 			transition: left .2s ease-in-out;
 
+			&::before {
+				content: '';
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' version='1.1' width='512' height='512' x='0' y='0' viewBox='0 0 792.049 792.049' style='enable-background:new 0 0 512 512' xml:space='preserve' class=''%3E%3Cg%3E%3Cg xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='_x38__35_'%3E%3Cg%3E%3Cpath d='M622.955,342.127L268.424,20.521c-27.36-27.36-71.677-27.36-99.037,0c-27.36,27.36-27.36,71.676,0,99.037 l304.749,276.468L169.387,672.492c-27.36,27.359-27.36,71.676,0,99.036s71.677,27.36,99.037,0l354.531-321.606 c14.783-14.783,21.302-34.538,20.084-53.897C644.225,376.665,637.738,356.911,622.955,342.127z' fill='%23ffffff' data-original='%23000000' style='' class=''/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+    			background-position: left;
+    			background-size: contain;
+    			padding: 6px;
+				margin-right: 3px;
+			}
+
 			&:hover {
 				left: 4px;
 			}

@@ -17,23 +17,15 @@
     {{ render_field(form.title) }}
     {{ render_field(form.slug) }}
     {{ render_field(form.overview) }}
-    <div class="row mb-3">
-        <div class="col-12 col-md-6 mb-3 mb-lg-0">
-        {% if action == 'create' %}
-            {{ render_file_field(form.thumbnail) }}
-        {% elif action == 'edit' %}
-            {{ render_file_field(form.thumbnail) }}
-        {% endif %}
-        </div>
-        <div class="col-10 col-md-5">
-        {{ render_select_field(form.category) }}
-        </div>
-        <div class="col-2 col-md-1 align-self-center p-0">
-            <button type="button" class="btn add-btn p-0 mb-3" data-bs-toggle="modal" data-bs-target="#add-category-modal">
-                <i class="fas fa-plus fa-lg"></i>
-            </button>
-        </div>
-    </div>
+    {% if action == 'create' %}
+        {{ render_file_field(form.thumbnail) }}
+    {% elif action == 'edit' %}
+        {{ render_file_field(form.thumbnail) }}
+    {% endif %}
+	<div class="flex">
+		{{ render_select_field(form.category) }}
+    	<button type="button" class="btn-new" onclick="open_modal('add-category-modal')"></button>
+	</div>
     {{ render_field(form.tags) }}
     {% if action == 'create' %}
         {{ render_checkbox_field(form.draft) }}
@@ -44,16 +36,19 @@
 {% endblock form_content %}
 
 {% block modals %}
-    {{ create_modal('add-category') }}
+    {{ create_modal('add-category', size='s') }}
 {% endblock modals %}
 
 {% block tail_js %}
 {{ super() }}
 <script>
 select('#add-category-modal .modal-body').innerHTML = `
-    <h2 class="text-center mb-4">Add Category</h2>
-    <input type="text" name="category" id="new-category" class="form-control" placeholder="Category name...">
-    <div class="valid-feedback" id="new-category-feedback"></div>
+    <h3>Add Category</h3>
+	<div class="input-group">
+		<input type="text" name="category" id="new-category" class="input" placeholder="Category name">
+		<label for="new-catgory">Category name</label>
+		<div class="valid-feedback" id="new-category-feedback"></div>
+	</div>
     <div class="text-right mt-3">
         <button type="button" class="btn btn-secondary" onclick="add_category()">Add</button>
     </div>
@@ -94,7 +89,7 @@ function add_category() {
 	post('{{ url_for('admin_extension.add_post_category') }}', {name: name})
 		.then(response => {
             msg(response);
-			Modal.getInstance(select('#add-category-modal')).hide();
+			close_modal('add-category-modal');
             select('#category').insertAdjacentHTML('beforeend', `<option selected value=${response.data.id}>${name}</option>`);
 		});
 

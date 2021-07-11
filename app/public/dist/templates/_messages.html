@@ -2,30 +2,15 @@
 {%- with messages = get_flashed_messages(with_categories=true) -%}
     {% if messages %}
         {% for category, message in messages if category %}
-            {% if category == 'error' %}
-                {% set alert_type = 'danger' %}
-                {% set icon_name = 'times' %}
-            {% elif category == 'warning' %}
-                {% set alert_type = 'warning' %}
-                {% set icon_name = 'exclamation' %}
-            {% elif category == 'success' %}
-                {% set alert_type = 'success' %}
-                {% set icon_name = 'check' %}
-            {% else %}
-                {% set alert_type = 'info' %}
-                {% set icon_name = 'info' %}
-            {% endif %}
-
-			<div class="alert alert-{{ alert_type }} alert-dismissible fade show msg" id="msg-{{ loop.index }}" role="alert">
-                <i class="fas fa-{{ icon_name }} msg-icon"></i>
+			<div class="msg msg-{{ category }}" id="msg-{{ loop.index }}">
 				{{ message|safe }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<button type="button" class="btn-close" onclick="dismiss_msg(this.parentElement)" aria-label="Затвори"></button>
 
                 {% if not no_auto_msg_remove %}
                 <script>
-                setTimeout(() => {
-					(new Alert(select('#msg-{{ loop.index }}'))).close();
-				}, 10000 + {{ loop.index * 250 }});
+				setTimeout(() => {
+					dismiss_msg(select('#msg-{{ loop.index }}'))
+        		}, 10000 + {{ loop.index * 250 }})
                 </script>
                 {% endif %}
 			</div>

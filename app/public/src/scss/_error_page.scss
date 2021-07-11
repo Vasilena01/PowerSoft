@@ -1,31 +1,34 @@
 /* ---------- Error Page ----------- */
 #error-page-container {
+	margin: 3.5rem auto 2.5rem;
+	text-align: center;
+
+	h1 {
+	}
+
+	p {
+		font-size: calc(.6rem + 1vw);
+	}
+
 	img {
 		margin: -18rem auto 1rem;
 		display: block;
 		max-width: 50rem;
 
-		//@include media-breakpoint-down(lg) {
-		//	margin-top: -15rem;
-		//}
+		@media only screen and (max-width: 992px) {
+			margin-top: -15rem;
+		}
 
-		//@include media-breakpoint-down(md) {
-		//	margin-top: -12rem;
-		//}
+		@media only screen and (max-width: 768px) {
+			margin-top: -12rem;
+		}
 
-		//@include media-breakpoint-down(sm) {
-		//	margin-top: -7rem;
-		//}
+		@media only screen and (max-width: 576px) {
+			margin-top: -7rem;
+		}
 	}
 
 	a {
-		padding: .7rem 1rem;
-		color: $white;
-		font-size: 1.1rem;
-		font-weight: bold;
-
-		&:hover {
-			color: $white;
-		}
+		margin: 0 auto;
 	}
 }
