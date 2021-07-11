@@ -74,9 +74,9 @@ def accept_cookies():
 
 
 # Route for ajax use to get flashes
-#@main.route('get-flash/')
-#def get_flashes():
-#    return render_template('_messages.html')
+@main.route('get-flash/')
+def get_flashes():
+    return render_template('_messages.html')
 
 
 # Custom errorhandlers

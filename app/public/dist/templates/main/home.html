@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% set home_active = True %}
+{# set title = 'За нас' #}
+{% set about_active = True %}
 
 {% block content %}
-<div id="home-hero" style="background-image: url({{ url_for('static', filename='img/home_bg3.jpg') }})">
+<div id="home-hero" style="background-image: url({{ url_for('static', filename='img/home_hero.jpg') }})">
 	<div class="overlay"></div>
 	<div class="title">
 	    <h1>PowerSoft</h1>
@@ -127,6 +128,11 @@
 function toggle_description(btn) {
 	let p = btn.parentElement.querySelector('.description')
 	p.classList.toggle('show')
+
+	if (p.classList.contains('show'))
+		btn.textContent = 'Скрий'
+	else 
+		btn.textContent = 'Покажи всичко'	
 }
 </script>
 {% endblock scripts %}
