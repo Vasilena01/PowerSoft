@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% set home_active = True %}
+{# set title = 'За нас' #}
+{% set about_active = True %}
 
 {% block content %}
-<div id="home-hero" style="background-image: url({{ url_for('static', filename='img/home_bg3.jpg') }})">
+<div id="home-hero" style="background-image: url({{ url_for('static', filename='img/home_hero.jpg') }})">
 	<div class="overlay"></div>
 	<div class="title">
 	    <h1>PowerSoft</h1>
