@@ -26,10 +26,8 @@ class Config(object):
     TEMP_UPLOAD_FOLDER = os.path.join(abs_path, 'app', 'public', 'dist', 'assets')
 
     # ------ Settings ------ #
-    SUPERUSERS = ['']
-    ADMINS = ['']
-    ERRORS_MAIL = ''
-    MAIL_FORM_RECIPIENT = ''
+    ERRORS_MAIL = 'angel.balashev@gmail.com'
+    MAIL_FORM_RECIPIENT = 'office@powersoft.bg'
     BLOG_POSTS_PER_PAGE = 2
     BLOG_THUMBNAIL_SIZE = (1280, 720)
 

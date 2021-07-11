@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% from '_macros.html' import render_field, render_select_field, render_checkbox_field %}
+
+{% set title = 'Контакти' %}
+{% set home_active = True %}
+
+{% block content %}
+<main id="contacts-container">
+	<h3>Имаш някакви въпроси? Пиши ни!</h3>
+	<form action='{{ url_for('main.about') }}' method="POST">
+		{{ form.csrf_token }}
+		{{ render_field(form.name) }}
+		{{ render_field(form.email) }}
+		{{ render_field(form.subject) }}
+		{{ render_field(form.message) }}
+		{{ render_checkbox_field(form.agreement) }}
+		<button type="submit" class="btn">Изпрати</button>
+	</form>
+</main>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+let message = select('#message');
+let message_feedback = select('#message-feedback');
+
+message.addEventListener('keyup', () => {
+    message_feedback.innerText = `${message.value.length} / 10 000`;
+
+    if (message.value.length > 10000) {
+        message.classList.remove('is-valid');
+        message.classList.add('is-invalid');
+        message_feedback.classList.remove('valid-feedback');
+		message_feedback.classList.add('invalid-feedback')
+		return;
+    }
+
+	message.classList.remove('is-invalid');
+	message.classList.add('is-valid');
+	message_feedback.classList.remove('invalid-feedback')
+	message_feedback.classList.add('valid-feedback');
+});
+</script>
+{% endblock scripts %}

@@ -49,7 +49,7 @@ def create_app():
             mail_handler = SMTPHandler(
                 mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
                 fromaddr='no-reply@' + app.config['MAIL_SERVER'],
-                toaddrs=app.config['ERRORS_MAIL'], subject='Failure in bqlatastaq.com',
+                toaddrs=app.config['ERRORS_MAIL'], subject='Failure in powersoft.bg',
                 credentials=auth, secure=secure)
             mail_handler.setLevel(logging.ERROR)
             app.logger.addHandler(mail_handler)
