@@ -1,0 +1,72 @@
+#contacts-container {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1400px;
+	margin: auto;
+	padding: 7rem 3rem 10rem;
+
+	h1 {
+		margin-bottom: 2rem;
+	}
+
+	#contact-form {
+		width: 50%;
+		padding-right: 6rem;
+
+		#message-div {
+			margin-bottom: .5rem;
+		}
+
+		#agreement-div {
+			margin-bottom: 2rem;
+		}
+	}
+
+	#contacts {
+		width: 50%;
+		background: $primary;
+		height: 400px;
+		margin-top: 4rem;
+		position: relative;
+
+		&::before {
+			content: '';
+			display: block;
+			width: 400px;
+			height: 400px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(45deg);
+			background: lighten($primary, 30%);
+		}
+
+		a {
+			position: absolute;
+			text-decoration: none;
+			font-size: 1.5rem;
+			display: block;
+			color: $white;
+			left: 50%;
+			transform: translateX(-50%);
+
+			&:hover {
+				color: $secondary;
+			}
+
+			&:first-child {
+				top: 38%;
+			}
+
+			&:last-child {
+				top: 55%;
+			}
+
+			svg {
+				margin-right: .2rem;
+				width: 22px;
+				height: 22px;
+			}
+		}
+	}
+}

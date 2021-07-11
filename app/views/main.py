@@ -46,14 +46,13 @@ def contacts():
             msg.body = form.message.data
             mail.send(msg)
             flash(conf('msg', 'send_msg'), 'success')
-            return redirect(url_for('main.about'))
+            return redirect(url_for('main.contacts'))
         else:
             flash(conf('msg', 'send_msg_fail'), 'error')
 
     context = {
         'form': form,
     }
-
     return render_template('main/contacts.html', **context)
 
 

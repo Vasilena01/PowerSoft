@@ -78,7 +78,7 @@
 		{% do kwargs.update({'class': 'input-check'}) %}
 	{% endif %}
 
-	<div class="input-check-container">
+	<div class="input-check-container" id="{{ field.name }}-div">
 		{{ field(**kwargs)|safe }}
 		<label class="input-check-label" for="{{ field.name }}">{{ field.label.text|safe }}</label>
 	</div>

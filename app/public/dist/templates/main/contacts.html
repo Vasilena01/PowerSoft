@@ -1,22 +1,29 @@
 {% extends 'base.html' %}
 
-{% from '_macros.html' import render_field, render_select_field, render_checkbox_field %}
+{% from '_macros.html' import render_field, render_select_field, render_checkbox_field, icon %}
 
 {% set title = 'Контакти' %}
-{% set home_active = True %}
+{% set contacts_active = True %}
 
 {% block content %}
 <main id="contacts-container">
-	<h3>Имаш някакви въпроси? Пиши ни!</h3>
-	<form action='{{ url_for('main.about') }}' method="POST">
-		{{ form.csrf_token }}
-		{{ render_field(form.name) }}
-		{{ render_field(form.email) }}
-		{{ render_field(form.subject) }}
-		{{ render_field(form.message) }}
-		{{ render_checkbox_field(form.agreement) }}
-		<button type="submit" class="btn">Изпрати</button>
-	</form>
+	<section id="contact-form">
+		<h1>Имаш някакви въпроси? Пиши ни!</h1>
+		<form action='{{ url_for('main.contacts') }}' method="POST">
+			{{ form.csrf_token }}
+			{{ render_field(form.name) }}
+			{{ render_field(form.email) }}
+			{{ render_field(form.subject) }}
+			{{ render_field(form.message) }}
+			{{ render_checkbox_field(form.agreement) }}
+			<button type="submit" class="btn">Изпрати</button>
+		</form>
+	</section>
+
+	<section id="contacts">
+		<a href="tel:+359898520360">{{ icon('phone') }}+359 89852 0360</a>
+    	<a href="mailto:office@powersoft.bg" target="_blank">{{ icon('envelope') }}office@powersoft.bg</a>
+	</section>
 </main>
 {% endblock content %}
 
