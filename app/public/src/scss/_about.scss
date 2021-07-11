@@ -1,48 +1,45 @@
 #about-container {
-	h1 {
-		text-align: center;
-		margin-bottom: 5rem;
-
-		@media screen and (max-width: 992px) {
-			margin-bottom: 3rem;
-		}
-	}
-
-	img {
-		display: block;
-		max-width: 80%;
+	.about {
+		display: flex;
 		margin: auto;
 
-		@media screen and (max-width: 992px) {
-			max-width: 100%;
+		img {
+			width: 50%
 		}
-	}
+		
+		.about-description {
+			padding: 0 2.5rem 0 3rem;
 
-	hr {
-		text-align: center;
-		color: $secondary;
-		height: 1.5px !important;
-		max-width: 20%;
-		margin: .1rem auto .7rem;
-	}
-	
-	.text {
-		text-align: center;
-		margin: 1.5rem auto 2.5rem;
-		max-width: 95%;
-		transform: scale(1);
-		transition: transform .5s ease-in-out;
-
-		&.first {
-			margin-bottom: 5rem;
-
-			@media screen and (max-width: 992px) {
-				margin-bottom: 2rem;
+			h1 {
+				margin: 1rem 0 !important;
+				font-size: 4rem;
 			}
-		}
 
-		&:hover {
-			transform: scale(1.03);
+		}
+	}	
+
+	.statistics {
+		background-color: $primary;
+		margin-top: 3rem;
+
+		.experience {
+			display: block;
+			margin: 0 auto;
+	
+
+			header {
+				display: flex;
+			
+				img {
+					margin-right: 1rem;
+					width: 30px;
+				}
+
+				h2 {
+					color: $white;
+					font-size: 1.5rem;
+				} 
+			}
 		}
 	}
 

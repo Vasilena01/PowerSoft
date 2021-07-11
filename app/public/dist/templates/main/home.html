@@ -128,6 +128,11 @@
 function toggle_description(btn) {
 	let p = btn.parentElement.querySelector('.description')
 	p.classList.toggle('show')
+
+	if (p.classList.contains('show'))
+		btn.textContent = 'Скрий'
+	else 
+		btn.textContent = 'Покажи всичко'	
 }
 </script>
 {% endblock scripts %}
