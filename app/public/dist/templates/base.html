@@ -14,7 +14,7 @@
 	{% block metas %}
 	{% endblock metas %}
 
-    <title>{% block title %}{{ title + ' - ' if title }}Power Soft - ремонт на компютри, лаптопи, UPS и софтуерни услуги{% endblock title %}</title>
+    <title>{% block title %}{{ title + ' - ' if title }}PowerSoft - ремонт на компютри, лаптопи, UPS и софтуерни услуги{% endblock title %}</title>
 	<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
@@ -58,16 +58,25 @@
     {% block main_scripts %}
 	<script src="{{ url_for('static', filename='main.js') }}"></script>
 	<script>
-	var csrf_token = '{{ csrf_token() }}';
+	var csrf_token = '{{ csrf_token() }}'
 
 	function accept_cookies() {
-		select('#cookies-agreement').remove();
-		post('{{ url_for("main.accept_cookies") }}');
+		select('#cookies-agreement').remove()
+		post('{{ url_for("main.accept_cookies") }}')
 	}
 
 	{% if scroll_to %}
-	select('#{{ scroll_to }}').scrollIntoView();
+	select('#{{ scroll_to }}').scrollIntoView()
 	{% endif %}
+
+	function change_icon(old_icon_selector, new_icon) {
+		let old_icon = select(old_icon_selector)
+		old_icon.insertAdjacentHTML('beforebegin', `
+			<svg class="icon icon-${new_icon}">
+				<use xlink:href="{{ url_for('static', filename='icons/') }}${new_icon}.svg#icon"></use>
+			</svg>`)
+		old_icon.remove()
+	}
 	</script>
     {% endblock main_scripts %}
 

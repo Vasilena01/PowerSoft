@@ -14,59 +14,43 @@
 	{% endif %}
 {% endblock head_css %}
 
+{% block messages %}
+{% endblock messages %}
+
 {% block body %}
 {% if not modal %}
     {% include '_messages.html' %}
 {% endif %}
 
-{% if not modal %}
-	<div class="row my-3">
-		<div class="col-md-12 col-lg-3 order-first">
-{% endif %}
-    <h1 class="{{ 'text-center' if modal }}">{% block heading %}{% endblock heading %}</h1>
+<div id="admin-container">
+	<h1 class="{{ 'text-center' if modal }}">{% block heading %}{% endblock heading %}</h1>
+
+	{% if action == 'edit' and preview_url %}
+	<a href="{{ preview_url }}" class="btn-outline preview-btn" target="_blank">Preview</a>
+	{% endif %}
+
+	<form id="{{ form_id }}" action="{{ form_action }}" method="POST" enctype="multipart/form-data">
+		{% block form_content %}
+	    {% endblock form_content %}
+	
+	    <div class="text-right mt-2">
+	        {% block submit_btn %}
+			<button type="submit" id="submit-btn" class="btn btn-primary">{{ action|capitalize if action else 'Submit' }}</button>
+			{% endblock submit_btn %}
+	
+			{% if action == 'create' %}
+			<input type="submit" class="btn btn-primary" name="create_add_another" value="Create and add another one">
+			{% endif %}
+	
+	        {% if not modal %}
+			<a href="{{ back_url }}" class="btn btn-danger">Cancel</a>
+	        {% endif %}
+	    </div>
+	</form>
 </div>
-{% if not modal %}
-	<div class="col-12 col-lg-6 mx-lg-0 mt-2 mb-3 order-last order-lg-2">
-{% endif %}
-<form id="{{ form_id }}" action="{{ form_action }}" method="POST" enctype="multipart/form-data">
-    {% block form_content %}
-    {% endblock form_content %}
-
-    <div class="text-right mt-2">
-        {% block submit_btn %}
-		<button type="submit" id="submit-btn" class="btn btn-primary">{{ action|capitalize if action else 'Submit' }}</button>
-		{% endblock submit_btn %}
-
-		{% if action == 'create' %}
-		<input type="submit" class="btn btn-primary" name="create_add_another" value="Create and add another one">
-		{% endif %}
-
-        {% if not modal %}
-		<a href="{{ back_url }}" class="btn btn-danger">Cancel</a>
-        {% endif %}
-    </div>
-</form>
-{% if not modal %}
-</div>
-{% endif %}
-
-{% if action == 'edit' and preview_url %}
-<div class="text-lg-right col-5 col-lg-2 order-sm-2 mt-3 mt-lg-2">
-    <a href="{{ preview_url }}" class="btn btn-outline-primary" target="_blank">
-        <i class="fas fa-eye mr-2"></i>Preview
-    </a>
-</div>
-{% endif %}
 
 {% block additional_content %}
 {% endblock additional_content %}
-
-{% if not modal %}
-    <div class="spinner-border text-primary invisible" id="main-spinner" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
-{% endif %}
 
 {% block modals %}
 {% endblock modals %}
@@ -74,9 +58,7 @@
 {% endblock body %}
 
 {% block tail_js %}
-{% if not modal %}
-	<script src="{{ url_for('static', filename='main.js') }}"></script>
-{% endif %}
+<script src="{{ url_for('static', filename='main.js') }}"></script>
 <script>
 var csrf_token = '{{ csrf_token() }}';
 

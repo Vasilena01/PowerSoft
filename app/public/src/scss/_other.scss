@@ -32,3 +32,94 @@
 		pointer-events: none;  // Fixes the popover
 	}
 }
+
+
+/* ---------- Icon ----------- */
+.icon {
+	width: 16px;
+	height: 16px;
+	margin-bottom: -2px;
+}
+
+
+/* ---------- Arrow Link ----------- */
+.arrow-link {
+	text-decoration: none;
+	color: $primary;
+	position: relative;
+	font-size: 1.15rem;
+	display: block;
+
+	.arrow {
+		position: absolute;
+    	top: 13px;
+    	margin-left: 10px;
+    	width: 42px;
+    	height: 2px;
+    	background: currentColor;
+    	transition: all 0.15s ease-in-out;
+
+		&::before,
+		&::after {
+			content: '';
+    		display: inline-block;
+    		position: absolute;
+    		right: -1px;
+    		width: 12px;
+    		height: 2px;
+    		background: currentColor;
+		}
+
+		&::before {
+			transform: rotate(135deg);
+    		top: 4px;
+		}
+
+		&::after {
+			transform: rotate(-135deg);
+			top: -4px;
+		}
+	}
+
+	&:hover .arrow {
+		width: 56px;
+	}
+
+	@media only screen and (max-width: 400px) {
+		font-size: .9rem;
+
+		.arrow {
+			top: 10px;
+			width: 30px;
+    		height: 1.5px;
+			margin-left: 7px;
+
+			&::before,
+			&::after {
+				width: 10px;
+				height: 1.5px;
+			}
+
+			&::before {
+				transform: rotate(135deg);
+    			top: 3.5px;
+			}
+
+			&::after {
+				transform: rotate(-135deg);
+				top: -3.5px;
+			}
+		}
+
+		&:hover .arrow {
+			width: 45px;
+		}
+	}
+}
+
+
+/* ---------- Fluid Image ----------- */
+.img-fluid {
+	max-width: 100%;
+	height: auto;
+}

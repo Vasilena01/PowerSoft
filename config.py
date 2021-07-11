@@ -14,9 +14,9 @@ class Config(object):
     TESTING = False
 
     # ------ CDN ------ #
-    CDN_FTP_ADDRESS = ''
-    CDN_FTP_USERNAME = ''
-    CDN_FTP_PASSWORD = ''
+    CDN_FTP_ADDRESS = 'nl01.upload.cdn13.com'
+    CDN_FTP_USERNAME = '1011335.1011335'
+    CDN_FTP_PASSWORD = 'gTmUjIMaeCgQiTQM'
     CDN_DIR_BLOG = '/blog/'
 
     # ------ Directory ------ #
@@ -30,7 +30,7 @@ class Config(object):
     ADMINS = ['']
     ERRORS_MAIL = ''
     MAIL_FORM_RECIPIENT = ''
-    BLOG_POSTS_PER_PAGE = 8
+    BLOG_POSTS_PER_PAGE = 2
     BLOG_THUMBNAIL_SIZE = (1280, 720)
 
     # ------ Messages ------ #
@@ -164,8 +164,8 @@ class DevelopmentConfig(Config):
     SECURITY_PASSWORD_SALT = ''
 
     # ------ CDN ------ #
-    CDN_URL = ''
-    CDN_FTP_DIR_MAIN = '//'
+    CDN_URL = 'https://11335-7.b.cdn12.com'
+    CDN_FTP_DIR_MAIN = '/powersoft_test/'
     CDN_FTP_DIR_BLOG = CDN_FTP_DIR_MAIN + 'blog/'
 
     # ------ Sqlalchemy ------ #

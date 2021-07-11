@@ -1,286 +1,227 @@
-/* ---------- Custom Input ----------- */
-.custom-input {
-	border-bottom: none;
-	width: 100%;
-	padding: .1rem;
-	margin: .5rem 0;
-
-	&.form-group label:nth-child(2) {
-	    display: none;  // removing label for every non-text inputs
-	}
-
-	.form-control:first-child {
-	    &:not(textarea) {
-	        padding: .7rem .4rem .08rem;
-	        border-radius: 0rem;
-	        border: none;
-	        //border-bottom: .07rem solid $secondary;
-			border-bottom: $primary solid;
-	        height: unset !important;
-
-	        &:focus {
-	            box-shadow: none;
-	            border-color: $primary !important;
-	        }
-	    }
-
-		&.no-label {
-			padding: .4rem .4rem .2rem;
-		}
-
-	    &.is-invalid, 
-	    &.is-valid {
-	        background: none;
-
-	        &:focus {
-	            box-shadow: none;
-	        }
-	    }
-
-	    &.is-invalid {
-	        //border-bottom: solid $danger;
-	    }
-
-	    &.is-valid,
-	    &.is-valid:focus {
-	        border-color: $primary;
-	        border-bottom: solid $primary;
-	    }
-
-		&.date-input[readonly] {
-			//background: $white;
-			cursor: pointer;
-		}
-	}
+/* ---------- Input Group ----------- */
+.input-group {
+	position: relative;
+	margin: 1rem 0;
 
 	.valid-feedback {
 	    color: $primary;
 	}
+}
 
-	textarea.form-control:focus {
-	    border-color: $primary;
-	    box-shadow: none !important;
+/* ---------- Floating Label ----------- */
+.floating-label {
+    position: absolute;
+    top: .4rem;
+    left: .47rem;
+    display: block;
+    pointer-events: none;
+    margin-bottom: 0; // Overrides default `<label>` margin
+    line-height: 1.5;
+    color: $secondary;
+    cursor: text;
+    user-select: none;
+    transition: all .1s ease-in-out;
+
+	.input-required-asterisk {
+		color: $red;
+		font-size: .9rem;
+		position: absolute;
+		top: .1rem;
+		margin-left: .1rem;
+	}
+}
+
+/* ---------- Input ----------- */
+.input {
+	display: block;
+    width: 100%;
+	padding: .7rem 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $very-dark-gray;
+    background-color: $white;
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	border-radius: 0rem;
+	border: none;
+	border-bottom: 2px $primary solid;
+	user-select: text;
+
+	&:focus {
+	    border-color: lighten($primary, 20);
 	}
 
-	.form-select:focus {
-	    box-shadow: none !important;
+	// Textarea
+	&:not(input) {
+		border: none;
+		background-color: $light;
+		padding: 1.5rem .8rem;
 	}
 
-	&.form-group {
-	    position: relative;
+	// Hiding the placeholder
+	&:not(.no-label)::placeholder {
+	    color: transparent !important;
+	    opacity: 0 !important;
+	}
 
-	    & > .form-control,
-		& > .form-select {
-			&.form-select {
-				padding: 1.8rem 2.25rem 0.5rem 0.75rem;
-			}
+	// Floating label
+	& ~ label {
+		@extend .floating-label;
+	}
 
-			&:not(textarea) {  // input
-				user-select: text;
-			}
+	// Textarea label
+	&:not(input) ~ label {
+		top: .6rem;
+		left: .7rem;
+	}
 
-			&:not(input) {  // textarea
-				padding: 1.8rem .75rem 1rem;
-			}
-
-	        & ~ label {
-	            position: absolute;
-	            top: .4rem;
-	            left: .47rem;
-	            display: block;
-	            pointer-events: none;
-	            //width: 100%;
-	            margin-bottom: 0; // Overrides default `<label>` margin
-	            line-height: 1.5;
-	            color: $secondary;
-	            cursor: text;
-	            user-select: none;
-	            transition: all .1s ease-in-out;
-
-				.input-required-asterisk {
-					//color: $danger;
-					font-size: 1.8rem;
-					position: absolute;
-					top: -.2rem;
-					margin-left: .2rem;
-				}
-	        }
-
-			&:not(input) ~ label {  // textarea
-				top: .9rem;
-				left: .8rem;
-			}
-
-	        // !NOT working in firefox and the old edge when all used together
-	        // &:-webkit-input-placeholder,
-	        // &:-ms-input-placeholder, 
-	        // &:-moz-placeholder,
-	        // &::-webkit-input-placeholder,
-	        // &::-ms-input-placeholder, 
-	        // &::-moz-placeholder,
-	        &:not(.no-label)::placeholder {
-	            color: transparent !important;
-	            opacity: 0 !important;
-	        }
-
-	        &:not(:placeholder-shown),
-			&:focus {
-
-	            & ~ label {
-	                font-size: .9rem;
-	                //top: -.8rem;
-	                top: -.4rem;
-	                color: $light-gray;
-	            }
-
-				&:not(input) ~ label {  // textarea
-					top: .7rem;
-					left: .9rem;
-				}
-	        }
-
-			&.form-select ~ label {
-	            top: .35rem;
-	            left: .9rem;
-			}
-
+	&:not(:placeholder-shown),
+	&:focus {
+	    & ~ label {
+	        font-size: .9rem;
+	        top: -.4rem;
+	        color: $light-gray;
 	    }
-	}
 
-	.custom-file-label {
-	    overflow: hidden;
+		&:not(input) ~ label {  // textarea
+			top: .4rem;
+			left: .7rem;
+		}
 	}
 
 	// Removing background on autofill
-	input:-webkit-autofill,
-	input:-webkit-autofill:hover, 
-	input:-webkit-autofill:focus, 
-	input:-webkit-autofill:active  {
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover, 
+	&:-webkit-autofill:focus, 
+	&:-webkit-autofill:active  {
 	    -webkit-box-shadow: 0 0 0 30px white inset !important;
 	}
 
 	// Changing text in autofill textbox
-	// TODO better color???
-	input:-webkit-autofill {
+	&:-webkit-autofill {
 	    -webkit-text-fill-color: $dark-primary !important;
 	}
+
+	// Feedback
+	&.is-invalid {
+	    border-color: $red;
+	}
+
+	&.is-valid {
+	    border-color: $primary;
+	}
 }
 
-
-/* ---------- Input With Icon ----------- */
-.input-with-icon {
-    position: relative;
-
-    .input-icon-right,
-    .input-icon-left {
-        position: absolute;
-		top: .4rem;
-        z-index: 1;
-		padding: 0;
-        font-size: 1.2rem;
-		color: $primary;
-
-		&:hover {
-			color: $dark-primary;
-		}
-    }
-
-    .input-icon-left {
-        left: 1%;
-    }
-
-    .input-icon-right {
-		right: .6rem;
-    }
-
-    & > .password-visibility-toggler {
-        // font-size: 1.1rem;
-        color: $primary;
-
-        &:hover {
-            cursor: pointer;
-            color: $dark-primary;
-        }
-    }
-}
-
-
-/* ---------- Range Slider ----------- */
-section.range-slider {
-    position: relative;
-    //width: 220px;
-	max-width: 220px;
+/* ---------- Select Input ----------- */
+.input-select {
+	display: block;
     width: 100%;
-    height: 50px;
-    text-align: center;
-
-	input {
-	    pointer-events: none;
-	    position: absolute;
-	    overflow: hidden;
-	    left: 0;
-	    top: 0;
-	    //width: 220px;
-		max-width: 220px;
-		width: 100%;
-	    outline: none;
-	    margin: 0;
-	    padding: 0;
-
-		&::-webkit-slider-thumb {
-		    pointer-events: all;
-		    position: relative;
-		    z-index: 1;
-		    outline: 0;
-		}
-
-		&::-moz-range-thumb {
-		    pointer-events: all;
-		    position: relative;
-		    z-index: 10;
-		    -moz-appearance: none;
-		    width: 9px;
-		}
-
-		&::-moz-range-track {
-		    position: relative;
-		    z-index: -1;
-		    background-color: rgba(0, 0, 0, 1);
-		    border: 0;
-		}
-
-		&[type=range]::-moz-focus-outer {
-		  border: 0;
-		}
-	}
-
-	.range-values {
-		position: absolute;
-		bottom: 7px;
-		left: 50%;
-		transform: translateX(-50%);
-		white-space: nowrap;
-	}
-}
-
-inputsection.range-slider input:last-of-type::-moz-range-track {
+    padding: 1.1rem 2.25rem .375rem .75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $very-dark-gray;
+    background-color: $white;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    border: 1px solid $light-gray;
+    -webkit-appearance: none;
     -moz-appearance: none;
-    background: none transparent;
-    border: 0;
+    appearance: none;
+
+	& ~ label {
+		position: absolute;
+	    font-size: .9rem;
+	    top: .18rem;
+		left: .7rem;
+		pointer-events: none;
+	    color: $light-gray;
+	}
 }
 
 
-/* ---------- Submit Button ----------- */
-.submit-btn {
+/* ---------- File Input ----------- */
+// TODO
+.input-file {
 	display: block;
 	width: 100%;
-	margin-top: 2rem;
-	padding: .7rem 1rem;
-	//color: $white;
-	font-size: 1.1rem;
-	font-weight: bold;
+	padding: .5rem;
+
+	label {
+		cursor: pointer;
+		display: block;
+	}
+
+	input {
+		cursor: pointer;
+		display: block;
+		border: none;
+		font-size: 1rem;
+		padding-top: .3rem;
+		overflow: hidden;
+	}
+}
+
+
+/* ---------- Search Input ----------- */
+.input-search {
+	position: relative;
+
+	.search-btn {
+		background-color: transparent;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23#{$_primary}' d='M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z'%3E%3C/path%3E%3C/svg%3E");
+    	background-repeat: no-repeat;
+    	background-position: center;
+		background-size: contain;
+		padding: 10px;
+		border: none;
+		position: absolute;
+		top: 8px;
+		right: 9px;
+		cursor: pointer;
+		transition: background-image .15s ease-in-out;
+
+		&:hover {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23#{$_secondary}' d='M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z'%3E%3C/path%3E%3C/svg%3E");
+		}
+	}
+}
+
+
+/* ---------- Button 'New' ----------- */
+.btn-new {
+	@extend .btn;
+
+	background-color: transparent;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' xml:space='preserve'%3E%3Cpath d='M28,14H18V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v10H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h10v10c0,1.104,0.896,2,2,2 s2-0.896,2-2V18h10c1.104,0,2-0.896,2-2S29.104,14,28,14z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+	margin: 0 .8rem;
 
 	&:hover {
-		//color: $white;
+		background-color: transparent;
+	}
+}
+
+
+/* ---------- Button 'Close' ----------- */
+.btn-close {
+	@extend .btn;
+
+	background-color: transparent;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' version='1.1' width='512' height='512' x='0' y='0' viewBox='0 0 329.26933 329' style='enable-background:new 0 0 512 512' xml:space='preserve' class=''%3E%3Cg%3E%3Cpath xmlns='http://www.w3.org/2000/svg' d='m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0' fill='%23121212' data-original='%23000000' style='' class=''/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: .5rem;
+
+	&:hover {
+		background-color: transparent;
 	}
 }

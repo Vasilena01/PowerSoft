@@ -1,6 +1,6 @@
 from flask import Flask, url_for
 from flask_security import roles_required
-#from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch
 
 import logging
 from logging.handlers import SMTPHandler
@@ -95,7 +95,7 @@ def create_app():
     app.register_error_handler(500, server_error)
 
     # Setting Up Elasticsearch
-    #app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']])
+    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']])
 
     # Protecting Admin Index
     @app.before_first_request

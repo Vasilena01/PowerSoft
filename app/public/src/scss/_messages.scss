@@ -7,20 +7,24 @@
 
     .msg {
         position: relative;
-        padding-right: 2.4rem;
+		padding: .7rem 2.4rem .7rem 1rem;
         font-size: 1.1rem;
         border-radius: 0.7rem;
+		margin-bottom: .7rem;
+		background: $light-blue;
 
-        .msg-icon {
-            margin-right: .3rem;
-        }
+		&.msg-success {
+			background: $light-green;
+		}
 
-        .close {
-            font-size: 1.2rem;
-            line-height: unset;
+		&.msg-fail {
+			background: $light-red;
+		}
+
+        .btn-close {
             position: absolute;
             right: .8rem;
-            top: .7rem;
+            top: 1rem;
         }
     }
 }

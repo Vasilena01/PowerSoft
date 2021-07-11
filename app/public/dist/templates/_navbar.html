@@ -1,11 +1,11 @@
 <nav id="main-navbar">
-    <div class="logo">
+	<a class="logo" href="{{ url_for('main.home') }}">
 		<img src="{{ url_for('static', filename='img/powersoft_logo_w.svg') }}" alt="Лого на Power Soft">
-    </div>
+    </a>
     <div class="links">
-		<a href="{{ url_for('main.home') }}">Начало</a>
-		<a href="{{ url_for('main.about') }}">За Нас</a>
-		<a href="{{ url_for('blog.index') }}">Блог</a>
-		<a href="{{ url_for('main.contacts') }}">Контакти</a>
+		<a href="{{ url_for('main.home') }}" {{ 'class=active' if home_active }}>Начало</a>
+		<a href="{{ url_for('main.about') }}" {{ 'class=active' if about_active }}>За Нас</a>
+		<a href="{{ url_for('blog.index') }}" {{ 'class=active' if blog_active }}>Блог</a>
+		<a href="{{ url_for('main.contacts') }}" {{ 'class=active' if contacts_active }}>Контакти</a>
     </div>
 </nav>
