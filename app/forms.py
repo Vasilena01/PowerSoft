@@ -48,7 +48,7 @@ class TelFieldMixin:
 
 
 class AgreementMixin:
-    agreement = BooleanField('Съгласен съм с <a href="/usloviq/">условията за ползване</a> и <a href="/politika-za-poveritelnost/">политиката за поверителност на данните</a>', [InputRequired(message='Няма как да продължиш напред без това съгласие.')])
+    agreement = BooleanField('Съгласен съм с <a href="/politika-za-poveritelnost/">политиката за поверителност на лични данни</a>', [InputRequired(message='Няма как да продължиш напред без това съгласие.')])
 
 
 class TitleMixin:

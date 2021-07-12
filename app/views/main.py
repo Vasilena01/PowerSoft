@@ -56,11 +56,6 @@ def contacts():
     return render_template('main/contacts.html', **context)
 
 
-@main.route('usloviq/')
-def terms():
-    return render_template('main/terms.html')
-
-
 @main.route('politika-za-poveritelnost/')
 def privacy_policy():
     return render_template('main/privacy_policy.html')

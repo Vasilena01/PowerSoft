@@ -65,10 +65,6 @@
 		post('{{ url_for("main.accept_cookies") }}')
 	}
 
-	{% if scroll_to %}
-	select('#{{ scroll_to }}').scrollIntoView()
-	{% endif %}
-
 	function change_icon(old_icon_selector, new_icon) {
 		let old_icon = select(old_icon_selector)
 		old_icon.insertAdjacentHTML('beforebegin', `
@@ -77,6 +73,10 @@
 			</svg>`)
 		old_icon.remove()
 	}
+
+	{% if scroll_to %}
+	select('#{{ scroll_to }}').scrollIntoView()
+	{% endif %}
 	</script>
     {% endblock main_scripts %}
 

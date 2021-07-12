@@ -15,7 +15,7 @@
 
 ::selection {
     background: $primary;
-    color: $light;
+    color: $light !important;
 }
 
 html,
@@ -54,41 +54,6 @@ button {
 	border: none;
 }
 
-.btn {
-	cursor: pointer;
-	border: none;
-	text-decoration: none;
-	text-align: center;
-	font-size: 1.1rem;
-    padding: .7rem 1rem;
-	//padding: 0.4rem .8rem;
-	background-color: $primary;
-	color: $white;
-	transition: background .2s ease-in-out;
-
-    &:hover {
-		background-color: lighten($primary, 14);
-	}
-}
-
-.btn-outline {
-	@extend .btn;
-	background: transparent;
-	color: $secondary;
-	border: 1.85px solid $secondary;
-	//padding: 1rem;
-	transition: color .2s ease-in-out, background .2s ease-in-out;
-
-	&:hover {
-		background: $secondary;
-		color: $white;
-	}
-}
-
-.flex {
-	display: flex;
-}
-
 h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
     margin-bottom: .5rem;
@@ -125,6 +90,10 @@ p {
     font-size: 1.1rem;
 }
 
+li {
+	font-size: 1.1rem;
+}
+
 // Removing the x icon in the search fields
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -141,77 +110,4 @@ img {
 	image-rendering: -o-crisp-edges;  // Opera
 	image-rendering: -webkit-optimize-contrast;  // Webkit (non-standard naming)
 	-ms-interpolation-mode: nearest-neighbor;  // IE (non-standard property)
-}
-
-// Flatpickr colors
-.flatpickr-day.selected,
-.flatpickr-day.selected:hover {
-	background: $primary;
-	border: none;
-}
-
-// Loading
-.lds-ellipsis {
-	display: inline-block;
-	position: relative;
-  	width: 80px;
-  	height: 80px;
-	margin: auto;
-
-  	div {
-		position: absolute;
-  		top: 33px;
-  		width: 13px;
-  		height: 13px;
-  		border-radius: 50%;
-  		background: #fff;
-  		animation-timing-function: cubic-bezier(0, 1, 1, 0);
-
-		&:nth-child(1) {
-			left: 8px;
-			animation: lds-ellipsis1 0.6s infinite;
-		}
-
-		&:nth-child(2) {
-			left: 8px;
-			animation: lds-ellipsis2 0.6s infinite;
-		}
-
-		&:nth-child(3) {
-			left: 32px;
-			animation: lds-ellipsis2 0.6s infinite;
-		}
-
-		&:nth-child(4) {
-			left: 56px;
-			animation: lds-ellipsis3 0.6s infinite;
-		}
-	}
-}
-
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
-  }
-}
-
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
 }

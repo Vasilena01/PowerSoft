@@ -3,7 +3,7 @@
 	flex-wrap: wrap;
 	max-width: 1400px;
 	margin: auto;
-	padding: 7rem 3rem 10rem;
+	padding: 6rem 3rem 8rem;
 
 	h1 {
 		margin-bottom: 2rem;
@@ -38,20 +38,21 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%) rotate(45deg);
-			background: lighten($primary, 30%);
+			background: $second-primary;
 		}
 
 		a {
 			position: absolute;
 			text-decoration: none;
 			font-size: 1.5rem;
+			white-space: nowrap;
 			display: block;
 			color: $white;
 			left: 50%;
 			transform: translateX(-50%);
 
 			&:hover {
-				color: $secondary;
+				color: $light-gray;
 			}
 
 			&:first-child {
@@ -62,10 +63,101 @@
 				top: 55%;
 			}
 
-			svg {
+			.icon {
 				margin-right: .2rem;
 				width: 22px;
 				height: 22px;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 1220px) {
+		padding: 4rem 3rem 5rem;
+
+		#contact-form {
+			padding-right: 3rem;
+		}
+
+		#contacts {
+			&::before {
+				width: 340px;
+				height: 340px;
+			}
+
+			a {
+				font-size: 1.4rem;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 940px) {
+		max-width: 800px;
+
+		#contact-form {
+			width: 100%;
+			padding-right: 0;
+		}
+
+		#contacts {
+			width: 100%;
+			margin-top: 6rem;
+		}
+	}
+
+	@media only screen and (max-width: 500px) {
+		padding: 4rem 1rem 4.5rem;
+
+		#contacts {
+			height: 250px;
+
+			&::before {
+				width: 250px;
+				height: 250px;
+			}
+
+			a {
+				font-size: 1.2rem;
+
+				&:first-child {
+					top: 38%;
+				}
+
+				&:last-child {
+					top: 50%;
+				}
+
+				.icon {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+	}
+
+	@media only screen and (max-width: 360px) {
+		#contacts {
+			height: 200px;
+
+			&::before {
+				width: 200px;
+				height: 200px;
+			}
+
+			a {
+				font-size: 1rem;
+
+				&:first-child {
+					top: 33%;
+				}
+
+				&:last-child {
+					top: 50%;
+				}
+
+				.icon {
+					width: 16px;
+					height: 16px;
+				}
 			}
 		}
 	}

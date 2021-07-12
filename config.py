@@ -27,12 +27,13 @@ class Config(object):
 
     # ------ Settings ------ #
     ERRORS_MAIL = 'angel.balashev@gmail.com'
-    MAIL_FORM_RECIPIENT = 'office@powersoft.bg'
-    BLOG_POSTS_PER_PAGE = 2
+    MAIL_FORM_RECIPIENT = 'angel.balashev@gmail.com'
+    BLOG_POSTS_PER_PAGE = 6
     BLOG_THUMBNAIL_SIZE = (1280, 720)
 
     # ------ Messages ------ #
-    MSG_EXAMPLE = ''
+    MSG_SEND_MSG = 'Съобщението ти беше изпратено успешно!'
+    MSG_SEND_MSG_FAIL = 'Съобщението ти беше изпратено успешно!'
 
     # ------ SQLALCHEMY ------ #
     SQLALCHEMY_TRACK_MODIFICATIONS = False

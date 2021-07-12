@@ -9,10 +9,9 @@ $light-green: #c7ffcb;
 // Primary colors
 $primary: #09091d;
 $_primary: 09091d;
-$light-primary: #e9e1d6;
-$dark-primary: #c5b9a9;
-$very-dark-primary: #2a4898;
-$second-primary: #cf694a;
+$light-primary: lighten($primary, 30%);
+$dark-primary: darken($primary, 30%);
+$second-primary: #075be2;
 
 // Secondary colors
 $secondary: #cb0c0e;
@@ -25,9 +24,7 @@ $dark: #212529;
 
 // Social networks colors
 $fb-color: #45619d;
-//$yt-color: #fff;
 $in-color: #0097d3;
-//$ig-color: #fff;
 $twtr-color: #2caae1;
 $mail-color: #52abd9;
 

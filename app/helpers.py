@@ -161,6 +161,9 @@ def mail_log_error(subject, body, get_caller_stack=False):
 
 
 def conf(category, name=''):
+    # Only returning from the config file because there is no settings table
+    return current_app.config.get(f'{category}_{name}'.upper())
+
     if not name:
         full_name = category.upper()
     else:

@@ -1,6 +1,6 @@
 <nav id="main-navbar">
 	<a class="logo" href="{{ url_for('main.home') }}">
-		<img src="{{ url_for('static', filename='img/powersoft_logo_w.svg') }}" alt="Лого на Power Soft">
+		<img src="{{ url_for('static', filename='img/powersoft_logo_w.svg') }}" alt="Лого на PowerSoft">
     </a>
     <div class="links">
 		<a href="{{ url_for('main.home') }}" {{ 'class=active' if home_active }}>Начало</a>
@@ -8,4 +8,6 @@
 		<a href="{{ url_for('blog.index') }}" {{ 'class=active' if blog_active }}>Блог</a>
 		<a href="{{ url_for('main.contacts') }}" {{ 'class=active' if contacts_active }}>Контакти</a>
     </div>
+
+	<button id="navbar-toggler" onclick="toggle_navbar()"><span></span><span></span><span></span></button>
 </nav>
