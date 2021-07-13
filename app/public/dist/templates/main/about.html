@@ -1,79 +1,129 @@
 {% extends 'base.html' %}
 
-{% from '_macros.html' import render_field, render_select_field, render_checkbox_field %}
+{% from '_macros.html' import icon %}
 
 {% set title = 'За нас' %}
 {% set about_active = True %}
 
 {% block content %}
 <main id="about-container" class="container">
-	<div class="about">
-		<img src="{{ url_for('static', filename='img/about-board.jpg') }}" alt="motherboard">
 		<div class="about-description">
-			<h1>За нас</h1>
-			<p> Фирма PowerSoft е създадена 1999 година в гр.София. Мисията на дружеството е създаване на дълготрайни и коректни търговски взаимоотношения с всички настоящи и бъдещи клиенти, както и бързата доставка на поръчаните продукти, при изгодни ценови и гаранционни условия.</p> 
-			<p> Фирмата разполага със собствен сервиз за асемблиране и тестване на компютърна и офис техника, което спомага за бързото и качествено обслужване на нашите клиенти.</p> 
-			<p> Марките, които PowerSoft дистибутира са добре познати и установени на нашия пазар - INTEL, AMD, ASUS, DELL, IBM, WESTERN DIGITAL, SEAGATE, GIGABYTE, ACER, FUJITSU, TOSHIBA, SAMSUNG, PHILIPS, CANON, HP, BROTHER, PANASONIC, HITACHI, EPSON, XEROX, LEXMARK, и много други.</p> 
-			<p> Над 20 годишният опит на нашите служители, са гаранция за качествения подбор на продаваните от нас стоки и последващото гаранционно и извънгаранционно обслужване. Основните дейности на фирмата са: </p>
-		<ul>
-			<li>Търговия с преносими компютри, таблети и смартфони</li>
-			<li>Асемблиране и търговия на компютърни системи</li>
-			<li>Търговия с модули, периферия, аксесоари</li>
-			<li>Търговия с принтерна, копирна техника и консумативи</li>
-			<li>Upgrade(обновяване) на стари конфигурации, модули и периферия</li>
-			<li>Монтиране и настройка на модули и периферия</li>
-			<li>Инсталиране и настройка на софтуер</li>
-			<li>Проектиране,изграждане и поддръжка на мрежова инфраструктура</li>
-			<li>Абонаментен сервиз на компютърна техника</li>
-			<li>Консултации</li>
-			<li>Лизинг</li>
-			<li>Гаранционна, извънгаранционна поддръжка и сервиз</li>
-		</ul>
+			<section>
+				<h2>За нас</h2>
+				<p> Фирма PowerSoft е създадена 1999 година в гр.София. Мисията на дружеството е създаване на дълготрайни и коректни търговски взаимоотношения с всички настоящи и бъдещи клиенти, както и бързата доставка на поръчаните продукти, при изгодни ценови и гаранционни условия.</p> 
+				<p> Фирмата разполага със собствен сервиз за асемблиране и тестване на компютърна и офис техника, което спомага за бързото и качествено обслужване на нашите клиенти.</p> 
+			</section>
 		</div>
-	</div>
-	<div class="statistics">
-		<div class="experience">
-			<header>
-				<img src="{{ url_for('static', filename='img/location.svg') }}" alt="motherboard">
-				<h2>Години опит</h2>
-			</header>
 
+		<div id="statistics">
+			<div class="statistic">
+				<h1><span id="experience-counter" data-end-number="22">0</span>+</h1>
+				<header>
+					{{ icon('map-marker') }}
+					<p>Години опит</p>
+				</header>
+			</div>
+
+			<div class="statistic">
+				<h1><span id="customers-counter" data-end-number="1500">1000</span>+</h1>
+				<header>
+					{{ icon('users') }}
+					<p>Доволни клиенти</p>
+				</header>
+			</div>
+
+			<div class="statistic" id="sold-computers">
+				<h1><span id="computer-counter" data-end-number="3000">2537</span>+</h1>
+				<header>
+					{{ icon('plug') }}
+					<p>Ремонтирани компютри</p>
+				</header>
+			</div>
+		</div>
+
+		<div class="about-description">
+			{#<section>
+				<h2>Нашите партьори</h2>
+				<p> Марките, които PowerSoft дистибутира са добре познати и установени на нашия пазар - INTEL, AMD, ASUS, DELL, IBM, WESTERN DIGITAL, SEAGATE, GIGABYTE, ACER, FUJITSU, TOSHIBA, SAMSUNG, PHILIPS, CANON, HP, BROTHER, PANASONIC, HITACHI, EPSON, XEROX, LEXMARK, и много други.</p> 
+			</section>#}
+			<section>
+				<div>
+				<h2>С какво се занимаваме?</h2>
+				<p> Над 20 годишният опит на нашите служители, са гаранция за качествения подбор на продаваните от нас стоки и последващото гаранционно и извънгаранционно обслужване. Основните дейности на фирмата са: </p>
+				</div>	
+				<ul>	
+					<li>Търговия с преносими компютри, таблети и смартфони</li>
+					<li>Асемблиране и търговия на компютърни системи</li>
+					<li>Търговия с модули, периферия, аксесоари</li>
+					<li>Търговия с принтерна, копирна техника и консумативи</li>
+					<li>Upgrade(обновяване) на стари конфигурации, модули и периферия</li>
+					<li>Монтиране и настройка на модули и периферия</li>
+					<li>Инсталиране и настройка на софтуер</li>
+					<li>Проектиране,изграждане и поддръжка на мрежова инфраструктура</li>
+					<li>Абонаментен сервиз на компютърна техника</li>
+					<li>Консултации</li>
+					<li>Лизинг</li>
+					<li>Гаранционна, извънгаранционна поддръжка и сервиз</li>
+				</ul>
+			</section>
+		</div>
+		
+	<div id="partners">
+		<h2>Нашите партьори</h2>
+		<div class="logos">
+			<img src="{{ url_for('static', filename='img/company_logos/acer_logo.svg') }}" alt="acer logo">
+			<img src="{{ url_for('static', filename='img/company_logos/amd_logo.svg') }}" alt="amd logo">
+			<img src="{{ url_for('static', filename='img/company_logos/asus_logo.svg') }}" alt="asus logo">
+			<img src="{{ url_for('static', filename='img/company_logos/dell_icon.svg') }}" alt="dell logo">
+			<img src="{{ url_for('static', filename='img/company_logos/hp_logo.svg') }}" alt="hp logo" id="hp-logo">
+			<img src="{{ url_for('static', filename='img/company_logos/intel_logo.svg') }}" alt="intel logo">
+			<img src="{{ url_for('static', filename='img/company_logos/lenovo_logo.svg') }}" alt="lenovo logo">
+			<img src="{{ url_for('static', filename='img/company_logos/samsung.svg') }}" alt="samsung logo">
+			<img src="{{ url_for('static', filename='img/company_logos/toshiba_logo.svg') }}" alt="toshiba_logo">
+			<img src="{{ url_for('static', filename='img/company_logos/epson_logo.svg') }}" alt="epson logo">
+			<img src="{{ url_for('static', filename='img/company_logos/western_digital_logo.svg') }}" alt="western digital logo">
+			<img src="{{ url_for('static', filename='img/company_logos/panasonic_logo.svg') }}" alt="panasonic logo">
+			<img src="{{ url_for('static', filename='img/company_logos/philips_logo.svg') }}" alt="philips logo">
+			<img src="{{ url_for('static', filename='img/company_logos/brother_logo.svg') }}" alt="brother logo">
+			<img src="{{ url_for('static', filename='img/company_logos/canon_logo.svg') }}" alt="canon logo">
+			<img src="{{ url_for('static', filename='img/company_logos/fujitsu_logo.svg') }}" alt="fujitsu logo">
+			<img src="{{ url_for('static', filename='img/company_logos/hitachi_logo.svg') }}" alt="hitachi logo">
+			<img src="{{ url_for('static', filename='img/company_logos/gigabyte_logo.svg') }}" alt="gigabyte logo">
+			<img src="{{ url_for('static', filename='img/company_logos/seagate_logo.svg') }}" alt="seagate logo">
+			<img src="{{ url_for('static', filename='img/company_logos/lexmark_logo.svg') }}" alt="lexmark logo">
 		</div>
 	</div>
-	
-	{#	<form action='{{ url_for('main.about') }}' method="POST">
-		<h3 class="text-center">Имаш някакви въпроси? Пиши ни!</h3>
-		{{ form.csrf_token }}
-		{{ render_field(form.name) }}
-		{{ render_field(form.email) }}
-		{{ render_field(form.subject) }}
-		{{ render_field(form.message) }}
-		{{ render_checkbox_field(form.agreement) }}
-		<button type="submit" class="btn btn-primary submit-btn">Изпрати</button>
-	</form> #}
 </main>
 {% endblock content %}
 
 {% block scripts %}
 <script>
-let message = select('#message');
-let message_feedback = select('#message-feedback');
+	function counter(element_id, interval) {
+		let element = select(`#${element_id}`)
+	  	window[`interval_${element_id}`] = setInterval(() => {
+			element.textContent = parseInt(element.textContent) + 1
+	  	  	if (parseInt(element.textContent) >= element.dataset.endNumber)
+				clearInterval(window[`interval_${element_id}`])
+	  	}, interval)
+	}
 
-message.addEventListener('keyup', () => {
-    message_feedback.innerText = `${message.value.length} / 10 000`;
+	function call_on_scroll_into_view(element, callback, args) {
+		let bounding = element.getBoundingClientRect()
+    	const check_and_call = (e) => {
+				if  (bounding.top < (window.scrollY + window.innerHeight)){
+    	        callback(...args)
+    	        window.removeEventListener('scroll', check_and_call)
+    	    }
+    	}
+		check_and_call()
+    	window.addEventListener('scroll', check_and_call)
+	}
 
-    if (message.value.length > 10000) {
-        message.classList.remove('is-valid');
-        message.classList.add('is-invalid');
-        message_feedback.classList.remove('valid-feedback');
-		message_feedback.classList.add('invalid-feedback')
-		return;
-    }
-
-	message.classList.remove('is-invalid');
-	message.classList.add('is-valid');
-	message_feedback.classList.remove('invalid-feedback')
-	message_feedback.classList.add('valid-feedback');
-});
+//counter('experience-counter',100)
+//counter('computer-counter',1)
+//counter('customers-counter',2)
+call_on_scroll_into_view(select('#statistics'), counter, ['experience-counter', 100])
+call_on_scroll_into_view(select('#statistics'), counter, ['computer-counter', 1])
+call_on_scroll_into_view(select('#statistics'), counter, ['customers-counter', 2])
 </script>
 {% endblock scripts %}
