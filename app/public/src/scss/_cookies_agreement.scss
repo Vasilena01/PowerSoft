@@ -1,23 +1,30 @@
 /* ---------- Cookies Agreement ----------- */
 #cookies-agreement {
-    z-index: 999;
+    z-index: 200;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1rem .5rem;
-    background: $secondary;
+    padding: .6rem .5rem .6rem;
+    background: $dark-gray;
     text-align: center;
 
     span {
         display: inline-block;
-        color: $light;
+        color: $white;
         margin-right: 1.3rem;
     }
 
-    a.btn {
-        padding: .3rem 1rem;
-		background: $primary;
-		color: $light;
-    }
+	a {
+		color: $white;
+
+		&:hover {
+			color: $light-gray;
+		}
+	}
+
+	.btn {
+		padding: .5rem;
+		margin-top: .6rem;
+	}
 }

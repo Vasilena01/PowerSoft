@@ -27,7 +27,7 @@ class Config(object):
 
     # ------ Settings ------ #
     ERRORS_MAIL = 'angel.balashev@gmail.com'
-    MAIL_FORM_RECIPIENT = 'angel.balashev@gmail.com'
+    MAIL_FORM_RECIPIENT = 'office@powersoft.bg'
     BLOG_POSTS_PER_PAGE = 6
     BLOG_THUMBNAIL_SIZE = (1280, 720)
 

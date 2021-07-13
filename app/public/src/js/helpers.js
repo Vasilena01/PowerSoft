@@ -101,21 +101,18 @@ window.close_modal = (id, e) => {
 
 // Toggle the navbar for mobile devices
 window.toggle_navbar = () => {
-	let navbar = select('#main-navbar .links')
 	let navbar_toggler = select('#navbar-toggler')
 
 	if (!navbar_toggler.classList.contains('navbar-expanded')) {
 		select('body').classList.add('no-scroll')
+		select('#main-navbar').classList.add('navbar-expanded')
 		navbar_toggler.classList.add('navbar-expanded')
-		navbar.style.height = 'calc(100vh - 70px)'
-		navbar.style.opacity = '1'
 		return
 	}
 
 	select('body').classList.remove('no-scroll')
+	select('#main-navbar').classList.remove('navbar-expanded')
 	navbar_toggler.classList.remove('navbar-expanded')
-	navbar.style.height = '0'
-	navbar.style.opacity = '0'
 }
 
 // Copy the string given to the clipboard (+ some tooltip & icons stuff)

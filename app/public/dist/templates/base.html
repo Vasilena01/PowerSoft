@@ -38,7 +38,7 @@
 		{% include '_navbar.html' %}
 	{% endblock navbar %}
 
-    <main class="{{ container_type if container_type else 'container-fluid' }}" id="main-container">
+    <main id="main-container">
 		{% block content %}{% endblock content %}
     </main>
 
@@ -49,9 +49,7 @@
 	{% if not modal and not session['has_accepted_cookies'] %}
 	<div id="cookies-agreement">
         <span>Този сайт използва бисквитки. Чрез посещението си, Вие се съгласявате да използвате бисквитките. Разберете повече <a href="{{ url_for('main.privacy_policy') }}">тук</a>.</span>
-        <a href="javascript:void(0)" class="btn" onclick="accept_cookies()">
-            Съгласявам се
-        </a>
+        <button class="btn" onclick="accept_cookies()">Съгласявам се</button>
     </div>
 	{% endif %}
 
