@@ -1,54 +1,205 @@
+/* ---------- About ----------- */
 #about-container {
-	.about {
-		display: flex;
-		margin: auto;
+	.about-description {
+		text-align: justify;
 
-		img {
-			width: 50%
-		}
-		
-		.about-description {
-			padding: 0 2.5rem 0 3rem;
-
-			h1 {
-				margin: 1rem 0 !important;
-				font-size: 4rem;
-			}
-
-		}
-	}	
-
-	.statistics {
-		background-color: $primary;
-		margin-top: 3rem;
-
-		.experience {
+		section {
+			padding-bottom: 3rem;
+		//	margin: 3rem auto;
+			margin: 1rem auto;
+			padding: .5rem 1.5rem;
+			max-width: 900px;
 			display: block;
-			margin: 0 auto;
-	
 
-			header {
-				display: flex;
-			
-				img {
-					margin-right: 1rem;
-					width: 30px;
-				}
+			ul {
+				width: 65%;
+				margin: auto;
+			}
+		}
 
-				h2 {
-					color: $white;
-					font-size: 1.5rem;
-				} 
+		h2 {
+			text-align: center;
+			margin: 2rem 0 !important;
+			font-size: 2.5rem !important;
+
+			&::after {
+				content: '';
+				background: $secondary;
+				width: 100px;
+				height: 2px;
+				margin: 1.8rem auto;
+				display: block;
 			}
 		}
 	}
+}
 
-	form {
-		margin: 5rem auto 1rem;
-		max-width: 700px;
+/* ---------- Statistics ----------- */
+#statistics {
+	background-color: $secondary;
+	padding-top: 1.5rem;
+	justify-content: center;
+	display: flex;
 
-		h3 {
+	.statistic {
+		width: 30%;
+		display: block;
+		color: $white;
+		padding: 2.5rem;
+	
+		span {
+			padding-left: .5rem;
+		}	
+
+		header {
+			display: flex;
+		
+			.icon {
+				color: $white;
+				width: 30px;
+				height: 50px;
+				margin-top: 0.7rem;
+			}
+
+			.icon-map-marker {
+				width: 20px;
+				height: 30px;
+			}
+			
+			.icon-plug {
+				width: 30px;
+				height: 30px;
+			}
+
+			.icon-users {
+				margin-top: .2rem;
+			}
+
+			p {
+				margin: .8rem !important;
+				font-size: 1.3rem;
+			} 
+		}
+	}
+}
+
+/* ---------- Partners ----------- */
+#partners {
+	
+	h2 {
+		text-align: center;
+		margin: 3rem 0 2rem !important;
+		font-size: 2.5rem !important;
+
+			&::after {
+				content: '';
+				background: $secondary;
+				width: 100px;
+				height: 2px;
+				margin: 1.8rem auto;
+				display: block;
+			}
+	}
+	.logos {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 4rem auto;
+		justify-content: center;
+
+		img {
+			height: 40px;
+			padding: .5rem;
+		}
+
+		#hp-logo {
+			height: 60px;
 			margin-bottom: 1rem;
+		}
+	}
+}
+@media screen and (max-width: 800px) {
+	#about-container {
+	
+		.about-description {
+			width: 100%;
+
+			section {
+				text-align: left;
+
+				ul {
+					width: 100%;
+					margin: 0;
+					padding-left: 1.3rem ;
+				}
+			}
+		}		
+	}
+
+	#statistics {
+		display: block;
+
+		.statistic {
+			min-width: 90%;
+			display: block;
+			padding: 1.5rem .5rem;
+			margin: 1rem;
+			margin-top: 0 !important;
+
+			header {
+				font-size: 3rem;
+				
+				.icon {
+					display: block;
+				}
+
+				.icon-map-marker {
+					width: 30px;
+					height: 40px;
+				}
+				
+				.icon-plug {
+					width: 65px;
+					height: 40px;
+				}
+
+				.icon-users {
+					margin-top: .2rem;
+					width: 70px;
+					height: 40px;
+
+				}
+			}
+
+			#sold-computers {
+				width: 60%;	
+
+			}
+			
+			h1 {
+				font-size: 3rem;
+				text-align: left;
+			}
+		}
+
+		#sold-computers {
+			width: 40%
+		}
+	}
+
+	#partners {
+	
+		.logos {
+			margin: 1.5rem;
+			padding: 1rem;
+
+			img {
+				margin: auto;
+				height: 50px;
+			}
+
+			.first-logos,.second-logos {
+				margin: 0 2rem !important;
+			}
 		}
 	}
 }
