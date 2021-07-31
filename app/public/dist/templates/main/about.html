@@ -7,69 +7,63 @@
 
 {% block content %}
 <main id="about-container" class="container">
-		<div class="about-description">
-			<section>
-				<h2>За нас</h2>
-				<p> Фирма PowerSoft е създадена 1999 година в гр.София. Мисията на дружеството е създаване на дълготрайни и коректни търговски взаимоотношения с всички настоящи и бъдещи клиенти, както и бързата доставка на поръчаните продукти, при изгодни ценови и гаранционни условия.</p> 
-				<p> Фирмата разполага със собствен сервиз за асемблиране и тестване на компютърна и офис техника, което спомага за бързото и качествено обслужване на нашите клиенти.</p> 
-			</section>
+	<div class="about-description">
+		<section>
+			<h1 class="heading-underlined">За нас</h1>
+			<p> Фирма PowerSoft е създадена 1999 година в гр.София. Мисията на дружеството е създаване на дълготрайни и коректни търговски взаимоотношения с всички настоящи и бъдещи клиенти, както и бързата доставка на поръчаните продукти, при изгодни ценови и гаранционни условия.</p> 
+			<p> Фирмата разполага със собствен сервиз за асемблиране и тестване на компютърна и офис техника, което спомага за бързото и качествено обслужване на нашите клиенти.</p> 
+		</section>
+	</div>
+
+	<div id="statistics">
+		<div class="statistic">
+			<h1><span id="experience-counter" data-end-number="22">0</span>+</h1>
+			<header>
+				{{ icon('map-marker') }}
+				<p>Години опит</p>
+			</header>
 		</div>
 
-		<div id="statistics">
-			<div class="statistic">
-				<h1><span id="experience-counter" data-end-number="22">0</span>+</h1>
-				<header>
-					{{ icon('map-marker') }}
-					<p>Години опит</p>
-				</header>
-			</div>
-
-			<div class="statistic">
-				<h1><span id="customers-counter" data-end-number="1500">1000</span>+</h1>
-				<header>
-					{{ icon('users') }}
-					<p>Доволни клиенти</p>
-				</header>
-			</div>
-
-			<div class="statistic" id="sold-computers">
-				<h1><span id="computer-counter" data-end-number="3000">2537</span>+</h1>
-				<header>
-					{{ icon('plug') }}
-					<p>Ремонтирани компютри</p>
-				</header>
-			</div>
+		<div class="statistic">
+			<h1><span id="customers-counter" data-end-number="1500">1000</span>+</h1>
+			<header>
+				{{ icon('users') }}
+				<p>Доволни клиенти</p>
+			</header>
 		</div>
 
-		<div class="about-description">
-			{#<section>
-				<h2>Нашите партьори</h2>
-				<p> Марките, които PowerSoft дистибутира са добре познати и установени на нашия пазар - INTEL, AMD, ASUS, DELL, IBM, WESTERN DIGITAL, SEAGATE, GIGABYTE, ACER, FUJITSU, TOSHIBA, SAMSUNG, PHILIPS, CANON, HP, BROTHER, PANASONIC, HITACHI, EPSON, XEROX, LEXMARK, и много други.</p> 
-			</section>#}
-			<section>
-				<div>
-				<h2>С какво се занимаваме?</h2>
-				<p> Над 20 годишният опит на нашите служители, са гаранция за качествения подбор на продаваните от нас стоки и последващото гаранционно и извънгаранционно обслужване. Основните дейности на фирмата са: </p>
-				</div>	
-				<ul>	
-					<li>Търговия с преносими компютри, таблети и смартфони</li>
-					<li>Асемблиране и търговия на компютърни системи</li>
-					<li>Търговия с модули, периферия, аксесоари</li>
-					<li>Търговия с принтерна, копирна техника и консумативи</li>
-					<li>Upgrade(обновяване) на стари конфигурации, модули и периферия</li>
-					<li>Монтиране и настройка на модули и периферия</li>
-					<li>Инсталиране и настройка на софтуер</li>
-					<li>Проектиране,изграждане и поддръжка на мрежова инфраструктура</li>
-					<li>Абонаментен сервиз на компютърна техника</li>
-					<li>Консултации</li>
-					<li>Лизинг</li>
-					<li>Гаранционна, извънгаранционна поддръжка и сервиз</li>
-				</ul>
-			</section>
+		<div class="statistic" id="sold-computers">
+			<h1><span id="computer-counter" data-end-number="3000">2537</span>+</h1>
+			<header>
+				{{ icon('plug') }}
+				<p>Ремонтирани компютри</p>
+			</header>
 		</div>
-		
+	</div>
+
+	<div class="about-description">
+		<section>
+			<h1 class="heading-underlined">С какво се занимаваме?</h1>
+			<p> Над 20 годишният опит на нашите служители, са гаранция за качествения подбор на продаваните от нас стоки и последващото гаранционно и извънгаранционно обслужване. Основните дейности на фирмата са: </p>
+			<ul>	
+				<li>Търговия с преносими компютри, таблети и смартфони</li>
+				<li>Асемблиране и търговия на компютърни системи</li>
+				<li>Търговия с модули, периферия, аксесоари</li>
+				<li>Търговия с принтерна, копирна техника и консумативи</li>
+				<li>Upgrade(обновяване) на стари конфигурации, модули и периферия</li>
+				<li>Монтиране и настройка на модули и периферия</li>
+				<li>Инсталиране и настройка на софтуер</li>
+				<li>Проектиране,изграждане и поддръжка на мрежова инфраструктура</li>
+				<li>Абонаментен сервиз на компютърна техника</li>
+				<li>Консултации</li>
+				<li>Лизинг</li>
+				<li>Гаранционна, извънгаранционна поддръжка и сервиз</li>
+			</ul>
+		</section>
+	</div>
+
 	<div id="partners">
-		<h2>Нашите партьори</h2>
+		<h1 class="heading-underlined">Нашите партьори</h1>
 		<div class="logos">
 			<img src="{{ url_for('static', filename='img/company_logos/acer_logo.svg') }}" alt="acer logo">
 			<img src="{{ url_for('static', filename='img/company_logos/amd_logo.svg') }}" alt="amd logo">
@@ -98,30 +92,6 @@
 
 {% block scripts %}
 <script>
-	function counter(element_id, interval) {
-		let element = select(`#${element_id}`)
-	  	window[`interval_${element_id}`] = setInterval(() => {
-			element.textContent = parseInt(element.textContent) + 1
-	  	  	if (parseInt(element.textContent) >= element.dataset.endNumber)
-				clearInterval(window[`interval_${element_id}`])
-	  	}, interval)
-	}
-
-	function call_on_scroll_into_view(element, callback, args) {
-		let bounding = element.getBoundingClientRect()
-    	const check_and_call = (e) => {
-				if  (bounding.top < (window.scrollY + window.innerHeight)){
-    	        callback(...args)
-    	        window.removeEventListener('scroll', check_and_call)
-    	    }
-    	}
-		check_and_call()
-    	window.addEventListener('scroll', check_and_call)
-	}
-
-//counter('experience-counter',100)
-//counter('computer-counter',1)
-//counter('customers-counter',2)
 call_on_scroll_into_view(select('#statistics'), counter, ['experience-counter', 100])
 call_on_scroll_into_view(select('#statistics'), counter, ['computer-counter', 1])
 call_on_scroll_into_view(select('#statistics'), counter, ['customers-counter', 2])

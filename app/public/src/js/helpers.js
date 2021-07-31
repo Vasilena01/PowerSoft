@@ -115,6 +115,47 @@ window.toggle_navbar = () => {
 	navbar_toggler.classList.remove('navbar-expanded')
 }
 
+// Creates a counter element
+window.counter = (element_id, interval) => {
+	let element = select(`#${element_id}`)
+
+  	window[`interval_${element_id}`] = setInterval(() => {
+		// Adding 1 to the current number of the element
+		element.textContent = parseInt(element.textContent) + 1
+
+		// If the counter is equal or greater than the endNumber set
+  	  	if (parseInt(element.textContent) >= element.dataset.endNumber) {
+			// Setting the number of the element to the endNumber
+			element.textContent = element.dataset.endNumber
+			// Clearing the interval
+			clearInterval(window[`interval_${element_id}`])
+		}
+  	}, interval)
+}
+
+// Calling a function when the element given is visible on the screen
+window.call_on_scroll_into_view = (element, callback, args) => {
+	// Getting the bounding of the element
+	let bounding = element.getBoundingClientRect()
+
+	// Checker function for the position of the element in accordance to the screen
+	const check_and_call = () => {
+		if (bounding.top < (window.scrollY + window.innerHeight)){
+	        callback(...args)
+	        window.removeEventListener('scroll', check_and_call)
+			return true
+	    }
+	}
+
+	// Initial check
+	if (check_and_call())
+		return
+
+	// If the element was not initally visible, asisgning a scroll listener
+	window.addEventListener('scroll', check_and_call)
+}
+
+
 // Copy the string given to the clipboard (+ some tooltip & icons stuff)
 window.copy2clipboard = (str) => {
     const el = document.createElement('textarea')

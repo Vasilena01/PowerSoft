@@ -5,8 +5,7 @@
 
 		section {
 			padding-bottom: 3rem;
-		//	margin: 3rem auto;
-			margin: 1rem auto;
+			margin: 1rem auto 3rem;
 			padding: .5rem 1.5rem;
 			max-width: 900px;
 			display: block;
@@ -17,22 +16,28 @@
 			}
 		}
 
-		h2 {
-			text-align: center;
-			margin: 2rem 0 !important;
-			font-size: 2.5rem !important;
-
-			&::after {
-				content: '';
-				background: $secondary;
-				width: 100px;
-				height: 2px;
-				margin: 1.8rem auto;
-				display: block;
-			}
+		h1 {
+			margin: 2rem 0;
 		}
 	}
+
+	@media screen and (max-width: 800px) {
+		.about-description {
+			width: 100%;
+
+			section {
+				text-align: left;
+
+				ul {
+					width: 100%;
+					margin: 0;
+					padding-left: 1.3rem ;
+				}
+			}
+		}		
+	}
 }
+
 
 /* ---------- Statistics ----------- */
 #statistics {
@@ -81,61 +86,8 @@
 			} 
 		}
 	}
-}
 
-/* ---------- Partners ----------- */
-#partners {
-	
-	h2 {
-		text-align: center;
-		margin: 3rem 0 2rem !important;
-		font-size: 2.5rem !important;
-
-			&::after {
-				content: '';
-				background: $secondary;
-				width: 100px;
-				height: 2px;
-				margin: 1.8rem auto;
-				display: block;
-			}
-	}
-	.logos {
-		display: flex;
-		flex-wrap: wrap;
-		margin: 4rem auto;
-		justify-content: center;
-
-		img {
-			height: 40px;
-			padding: .5rem;
-		}
-
-		#hp-logo {
-			height: 60px;
-			margin-bottom: 1rem;
-		}
-	}
-}
-@media screen and (max-width: 800px) {
-	#about-container {
-	
-		.about-description {
-			width: 100%;
-
-			section {
-				text-align: left;
-
-				ul {
-					width: 100%;
-					margin: 0;
-					padding-left: 1.3rem ;
-				}
-			}
-		}		
-	}
-
-	#statistics {
+	@media screen and (max-width: 800px) {
 		display: block;
 
 		.statistic {
@@ -185,20 +137,37 @@
 			width: 40%
 		}
 	}
+}
 
-	#partners {
-	
+
+/* ---------- Partners ----------- */
+#partners {
+	max-width: 1200px;
+	margin: auto;
+
+	.logos {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: 3rem 0;
+
+		img {
+			height: 30px;
+			margin: .8rem .5rem;
+		}
+
+		#hp-logo {
+			height: 40px;
+		}
+	}
+
+	@media screen and (max-width: 800px) {
 		.logos {
 			margin: 1.5rem;
 			padding: 1rem;
 
 			img {
-				margin: auto;
-				height: 50px;
-			}
-
-			.first-logos,.second-logos {
-				margin: 0 2rem !important;
+				height: 20px;
 			}
 		}
 	}
