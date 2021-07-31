@@ -16,6 +16,7 @@ from .helpers import (
     log,
 )
 
+import random
 import json
 import os
 
@@ -166,7 +167,7 @@ class BlogPost(SearchableMixin, db.Model):
     overview = db.Column(db.String(256), nullable=False)
     tags = db.Column(db.Text)  # words seperated with [, ]
     content = db.Column(db.Text, nullable=False)
-    views = db.Column(db.BigInteger, nullable=False, default=40)
+    views = db.Column(db.BigInteger, nullable=False, default=random.randint(40, 60))
 
     category_id = db.Column(db.Integer, db.ForeignKey('blog_categories.id'), nullable=False)
     category = db.relationship('BlogCategory', backref='posts')

@@ -12,19 +12,15 @@
 </div>
 
 <section id="services">
-	<h1 class="heading-underlined">Нашите услуги</h1>
 	<div class="service">
 		<div class="service-img-container">
-			<img src="{{ url_for('static', filename='img/up-arrow.svg') }}" alt="стрелка нагоре" >
+			<img src="{{ url_for('static', filename='img/subscription.svg') }}" alt="абонамент" >
 		</div>
 		<div class="service-text"> 
-			<h2>UPGRADE</h2>
+			<h3>Абонаментна поддръжка и сервиз</h2>	
 			<button class="btn-outline" onclick="toggle_description(this)">Покажи всичко</button>
 			<p class="description">
-				1. Проверка и диагностика компонентите на компютъра или лаптопа (безплатна в случаите на покупка на компонентите от нас)<br>
-				2. Предложение и консултация на клиента за възможните варианти за UPGRADE <br>
-				3. Основно почистване и профилактика на компютъра или лаптопа<br>
-				4. Асемблиране и тестване на новата конфигурация
+				PANDA >3
 			</p>
 		</div>
 	</div>
@@ -34,7 +30,7 @@
 			<img src="{{ url_for('static', filename='img/repair.svg') }}" alt="гаечен ключ" >
 		</div>
 		<div class="service-text"> 
-			<h2>Ремонт и профилактика компютри</h2>	
+			<h3>Ремонт и профилактика компютри</h2>	
 			<button class="btn-outline" onclick="toggle_description(this)">Покажи всичко</button>
 			<p class="description">
 				- Диагностика на компютърен компонент – 10 лв.<br>
@@ -119,6 +115,23 @@
 			</p>
 		</div>
 	</div>
+
+	<div class="service">
+		<div class="service-img-container">
+			<img src="{{ url_for('static', filename='img/up-arrow.svg') }}" alt="стрелка нагоре" >
+		</div>
+		<div class="service-text"> 
+			<h2>UPGRADE</h2>
+			<p></p>
+			<button class="btn-outline" onclick="toggle_description(this)">Покажи всичко</button>
+			<p class="description">
+				1. Проверка и диагностика компонентите на компютъра или лаптопа (безплатна в случаите на покупка на компонентите от нас)<br>
+				2. Предложение и консултация на клиента за възможните варианти за UPGRADE <br>
+				3. Основно почистване и профилактика на компютъра или лаптопа<br>
+				4. Асемблиране и тестване на новата конфигурация
+			</p>
+		</div>
+	</div>
 </section>
 {% endblock content %}
 
@@ -135,3 +148,4 @@ function toggle_description(btn) {
 }
 </script>
 {% endblock scripts %}
+
