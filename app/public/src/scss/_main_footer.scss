@@ -11,7 +11,7 @@
 
 	.container {
 		max-width: 800px;
-		margin: 1.5rem auto;
+		margin: 1.3rem auto 1.5rem;
 	}
 
 	a {
@@ -29,7 +29,7 @@
 	}
 
 	.links {
-		margin-top: 1.5rem;
+		margin-top: .5rem;
 		text-align: center;
 
 		.link {
@@ -59,8 +59,24 @@
 			}
 		}
 	}
+	.copyrights {
+		width: 100%;
+		padding: .7rem;
+		margin-top: -0.5rem;
+		text-align: center;
+		color: $white;
+		background-color: $red;
+	}
 
 	@media only screen and (max-width: 450px) {
+		.copyrights {
+			margin-top: .5rem;
+
+			span {
+				display: block;
+				margin: .1rem 0;
+			}
+		}
 	}
 }
 
