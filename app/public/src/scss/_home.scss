@@ -71,6 +71,15 @@
 			position: relative;
 			text-align: center;
 
+			h2::after {
+				content: '';
+				background: $secondary;
+				width: 110px;
+				height: 2px;
+				margin: .8rem auto 2rem;
+				display: block;
+			}
+
 			p:first-of-type {
 				margin-bottom: .3rem;
 			}
