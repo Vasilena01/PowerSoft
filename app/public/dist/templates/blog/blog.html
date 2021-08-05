@@ -72,10 +72,10 @@
 	        {% for category in categories %}
 	            <div class="category">
 					{% if category.id == category_id %}
-	            	    <span class="active">{{ category.name }}</span>
+	            	    <span class="active">Съвети</span>
 	            	{% else %}
 	            	    <a href="{{ url_for('blog.filter_by_category', category_slug=category.slug, category_id=category.id) }}">
-	            	        {{ category.name }}
+	            	        Съвети
 	            	    </a>
 	            	{% endif %}
 					<span>{{ category.posts|length if current_user.has_role('admin') else category.non_draft_posts_count }}</span>
