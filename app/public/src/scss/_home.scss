@@ -85,7 +85,7 @@
 			}
 
 			.description {
-				text-align: justify;
+				text-align: left;
 				overflow: hidden;
 				transition: all .4s ease-in-out;
 				line-height: 0;
@@ -96,6 +96,9 @@
 			  		padding-top: 1em;
 			  		padding-bottom: 1em;
 			  		color: $primary;
+				}
+				span {
+					color: $red;
 				}
 			}
 
