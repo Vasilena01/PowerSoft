@@ -56,11 +56,14 @@
 			}
 
 			&:first-child {
-				top: 38%;
+				top: 33%;
+			}
+			&:nth-child(2) {
+				top: 45%;
 			}
 
 			&:last-child {
-				top: 55%;
+				top: 57%;
 			}
 
 			.icon {
@@ -119,11 +122,15 @@
 				font-size: 1.2rem;
 
 				&:first-child {
-					top: 38%;
+					top: 30%;
+				}
+
+				&:nth-child(2) {
+					font-size: 1.1rem;
 				}
 
 				&:last-child {
-					top: 50%;
+					top: 60%;
 				}
 
 				.icon {
@@ -147,11 +154,15 @@
 				font-size: 1rem;
 
 				&:first-child {
-					top: 33%;
+					top: 31%;
+				}
+
+				&:nth-child(2) {
+					font-size: .9rem;
 				}
 
 				&:last-child {
-					top: 50%;
+					top: 59%;
 				}
 
 				.icon {
