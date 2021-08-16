@@ -50,7 +50,7 @@
 		width: 30%;
 		display: block;
 		color: $white;
-		padding: 2.5rem;
+		padding: 2.3rem;
 	
 		span {
 			padding-left: .5rem;
@@ -61,8 +61,6 @@
 		
 			.icon {
 				color: $white;
-				width: 30px;
-				height: 50px;
 				margin-top: 0.7rem;
 			}
 
@@ -71,19 +69,29 @@
 				height: 30px;
 			}
 			
-			.icon-plug {
-				width: 30px;
-				height: 30px;
+			.icon-briefcase {
+				width: 35px;
+				height: 40px;
 			}
 
 			.icon-users {
+				width: 50px;
+				height: 60px;
 				margin-top: .2rem;
 			}
 
 			p {
 				margin: .8rem !important;
 				font-size: 1.3rem;
+				
+				span {
+					font-size: 1.5rem;
+				}
 			} 
+
+			.f-sm {
+				font-size: 1.1rem;
+			}
 		}
 	}
 
@@ -109,16 +117,21 @@
 					height: 40px;
 				}
 				
-				.icon-plug {
-					width: 65px;
+				.icon-briefcase {
+					width: 35px;
 					height: 40px;
 				}
 
 				.icon-users {
-					margin-top: .2rem;
-					width: 70px;
-					height: 40px;
-
+					margin-top: .5rem;
+					width: 60px;
+					height: 35px;
+				}
+				
+				p {
+					span {
+						font-size: 1.7rem; 
+					}
 				}
 			}
 
@@ -139,6 +152,23 @@
 	}
 }
 
+	@media screen and (max-width: 450px) {
+		.icon-map-marker {
+			width: 30px;
+			height: 35px !important;
+		}
+		
+		.icon-briefcase {
+			width: 50px !important;
+			height: 55px !important;
+		}
+
+		.icon-users {
+			margin-top: .5rem;
+			width: 60px;
+			height: 40px !important;
+		}
+	}
 
 /* ---------- Partners ----------- */
 #partners {
