@@ -64,33 +64,6 @@ db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit)
 db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
 
 
-# ------------- Settings ---------------
-"""
-class Setting(db.Model):
-    __tablename__ = 'settings'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256), unique=True, nullable=False)
-    data = db.Column(JSON, nullable=False)
-    # TODO add roles restrictions on settings edit
-
-    def __repr__(self):
-        return f'<Setting {self.name}>'
-
-    def __str__(self):
-        return self.name
-
-
-# Updates all config variables for this Setting
-@listens_for(Setting, 'after_update')
-def config_update_cleanup(mapper, connection, target):
-    data = json.loads(target.data)  # NOTE kogato si napravq az formata za settings tova nqma da e nujno
-    for _name, value in data.items():
-        _full_name = f'{target.name}_{_name}'.upper()
-        current_app.config[_full_name] = value
-"""
-
-
 # ------------- Authentication ---------------
 roles_users = db.Table('roles_users',
     db.Column('user_id', db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), primary_key=True),

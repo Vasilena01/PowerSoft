@@ -40,13 +40,6 @@ class NameFieldMixin:
     ])
 
 
-class TelFieldMixin:
-    tel = TelField('Телефон', [
-        Length(max=12),
-        InputRequired(message='Моля въведи телефонен номер.')
-    ]);
-
-
 class AgreementMixin:
     agreement = BooleanField('Съгласен съм с <a href="/politika-za-poveritelnost/">политиката за поверителност на лични данни</a>', [InputRequired(message='Няма как да продължиш напред без това съгласие.')])
 

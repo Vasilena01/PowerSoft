@@ -8,7 +8,8 @@
 {% set post_url = url_for('blog.post', slug=post.slug, id=post.id, _external=True) %}
 
 {% block metas %}
-{{ super() }}
+<meta name="description" content="{{ post.overview }}">
+<meta name="keywords" content="{{ post.tags }}">
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="{{ post.title }}"/>
 <meta property="og:image" content="{{ post._thumbnail }}"/>
